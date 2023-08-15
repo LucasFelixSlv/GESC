@@ -15,7 +15,7 @@
 }
 
 .navbarBotaoMob{
-    color:#42C82C!important;
+    /*color:#42C82C!important;*/
     margin-left:10px;
     border: 2px solid #42C82C!important;
 }
@@ -43,7 +43,7 @@
         left: 0px;
         bottom: -8px;
         opacity: 0;
-        transition: all 0.2s;
+        transition: all 0.4s;
         pointer-events: none;
     }
     
@@ -56,4 +56,10 @@
     .navbarBotao:hover{
         color: #42C82C;
     }
+
+    .fundoNavbarBotao:hover{
+        background-color: #373738;
+        transition: all 0.4s;
+    }
+
 }

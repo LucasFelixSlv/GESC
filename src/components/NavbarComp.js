@@ -27,21 +27,22 @@ function NavbarComp() {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span className="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon format-button"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <div className="navbar-nav col-lg-12">
-          <div className=" col-lg-4 ">
-          <a className={`${styles.navbarBotao}`} href="#test">
+          
+          <div className={`${styles.fundoNavbarBotao} col-lg-4`}>
+          <a className={`${styles.navbarBotao} teste`} href="#test">
             CRIAR EVENTO
           </a>
           </div>
-          <div className=" col-lg-4 ">
+          <div className={`${styles.fundoNavbarBotao} col-lg-4`}>
           <a className={`${styles.navbarBotao}`} href="#test">
             ACESSE SUA CONTA
           </a>
           </div>
-          <div className=" col-lg-4 ">
+          <div className={`${styles.fundoNavbarBotao} col-lg-4`}>
           <a className={`${styles.navbarBotao}`} href="#test">
             CADASTRE-SE
           </a>
