@@ -1,5 +1,6 @@
 import "./App.css";
 import MainCarousel from "./components/MainCarousel";
+import ModalJs from "./components/ModalJS";
 import NavbarComp from "./components/NavbarComp";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className="App">
       <NavbarComp />
       <MainCarousel/>
+      <ModalJs/>
     </div>
   );
 }
