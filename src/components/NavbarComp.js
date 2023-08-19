@@ -1,14 +1,21 @@
 import styles from "../styles/NavbarComp.module.css";
+import { useState } from "react";
+import AccountCreation from "./AccountCreation";
 
 function NavbarComp() {
+
+  const [openLogin, setOpenLogin] = useState(false);
+  const [optionLogin, setOptionLogin] = useState();
+
   return (
+    <>
+    {openLogin && <AccountCreation closeLogin={setOpenLogin} option={optionLogin}/>} 
     <nav className={`${styles.navbarBg} navbar navbar-expand-lg navbar-dark sticky-top`}>
-      <a
+      <button
         className={`${styles.navbarGesc} navbar-brand col-3 col-md col-lg`}
-        href="#test"
       >
         GESC
-      </a>
+      </button>
       <div className="form-outline col-4 col-md-8 col-lg-5">
         <input
           type="search"
@@ -33,23 +40,24 @@ function NavbarComp() {
         <div className="navbar-nav col-lg-12">
           
           <div className={`${styles.fundoNavbarBotao} col-lg-4`}>
-          <a className={`${styles.navbarBotao} teste`} href="#test">
+          <button className={`${styles.navbarBotao} teste`}>
             CRIAR EVENTO
-          </a>
+          </button>
           </div>
           <div className={`${styles.fundoNavbarBotao} col-lg-4`}>
-          <a className={`${styles.navbarBotao}`} href="#test">
+          <button className={`${styles.navbarBotao}`} onClick={()=> {setOpenLogin(true); setOptionLogin("login");}}>
             ACESSE SUA CONTA
-          </a>
+          </button>
           </div>
           <div className={`${styles.fundoNavbarBotao} col-lg-4`}>
-          <a className={`${styles.navbarBotao}`} href="#test">
+          <button className={`${styles.navbarBotao}`} onClick={()=> {setOpenLogin(true); setOptionLogin("signup");}}>
             CADASTRE-SE
-          </a>
+          </button>
           </div>
         </div>
       </div>
-    </nav>
+    </nav>     
+    </>
   );
 }
 

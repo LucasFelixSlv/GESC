@@ -1,13 +1,14 @@
 .navbarBg{
     background-color: #252526;
     padding: 10px!important;
-    margin-bottom: 15px;
 }
 
 .navbarGesc{
     color: #42C82C!important;
     font-size:40px!important;
     font-weight: bold;
+    background: none;
+    border: none;
 }
 
 .navbarText{
@@ -15,7 +16,6 @@
 }
 
 .navbarBotaoMob{
-    /*color:#42C82C!important;*/
     margin-left:10px;
     border: 2px solid #42C82C!important;
 }
@@ -27,6 +27,9 @@
     transition: all 0.4s;
     text-decoration: none;
     line-height: 25px;
+    outline: none;
+    background: none;
+    border: none;
 }
 
 .navbarBotao:hover{

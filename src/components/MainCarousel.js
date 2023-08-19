@@ -13,24 +13,24 @@ function MainCarousel() {
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" className={styles.carouselIndicators} aria-label="Slide 3"></button>
         </div>
         <div className={`${styles.carouselBorder} carousel-inner`}>
-          <div class="carousel-item active">
+          <div className="carousel-item active">
             <CarouselEvent img={img004} titulo="Evento 1"/>
           </div>
-          <div class="carousel-item">
+          <div className="carousel-item">
             <CarouselEvent img={img004} titulo="Evento 2"/>
           </div>
-          <div class="carousel-item">
+          <div className="carousel-item">
             <CarouselEvent img={img004} titulo="Evento 3"/>
           </div>
         </div>
         <div className={styles.hideControls}>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
           <span className={`${styles.carouselArrowPrev} carousel-control-prev-icon`} aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+          <span className="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
           <span className={`${styles.carouselArrowNext} carousel-control-next-icon`} aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+          <span className="visually-hidden">Next</span>
         </button>
         </div>
       </div>
