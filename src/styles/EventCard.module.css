@@ -1,11 +1,20 @@
 .imageFit{
-    aspect-ratio: 7 / 4;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
+    border-top-left-radius: 10px!important;
+    border-top-right-radius: 10px!important;
+}
+
+.roundCard{
+    border-radius: 10px!important;
 }
 
 .infoCard{
     display: flex;
     flex-direction: column;
+    background-color: #252526;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .textCard{
@@ -14,6 +23,7 @@
     justify-content: center;
     align-items: center;
     flex-grow: 1;
+    color: #fff;
 }
 
 .textCard h3{
@@ -22,6 +32,25 @@
 
 .buttonCard{
     margin-top: auto!important;
+    background-color: #42C82C;
+    color: #252526;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 5px;
+    border: 2px solid #94ea89;
+    transition: all 0.2s ease;
+}
+
+.buttonCard:hover{
+    background-color: #252526;
+    color: #94ea89;
+    border-color: #42C82C;
+}
+
+.infoCard p{
+    color: #42C82C;
+    font-weight: bold;
+    font-size: 22px;
 }
 
 /*tamanho da imagem: 280x160*/

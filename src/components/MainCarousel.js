@@ -1,5 +1,5 @@
 import styles from '../styles/MainCarousel.module.css'
-import img004 from '../imgs/im004.jpg'
+import img005 from '../imgs/im005.jpg'
 import CarouselEvent from './CarouselEvent';
 
 
@@ -14,13 +14,13 @@ function MainCarousel() {
         </div>
         <div className={`${styles.carouselBorder} carousel-inner`}>
           <div className="carousel-item active">
-            <CarouselEvent img={img004} titulo="Evento 1"/>
+            <CarouselEvent img="https://placehold.co/1600x900" titulo="Evento 1"/>
           </div>
           <div className="carousel-item">
-            <CarouselEvent img={img004} titulo="Evento 2"/>
+            <CarouselEvent img="https://placehold.co/1920x1080" titulo="Evento 2"/>
           </div>
           <div className="carousel-item">
-            <CarouselEvent img={img004} titulo="Evento 3"/>
+            <CarouselEvent img={img005} titulo="Evento 3"/>
           </div>
         </div>
         <div className={styles.hideControls}>

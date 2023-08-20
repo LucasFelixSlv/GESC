@@ -41,7 +41,7 @@ function AccountCreation({closeLogin, option}) {
                     
                     <div className={styles.loginSignup}>
                         Não possui uma conta?
-                        <button className={styles.singupLoginSwitch} id="signup" onClick={()=>{setLoginStatus("signup")}} >Cadastre-se</button>
+                        <button className={styles.singupLoginSwitch} onClick={()=>{setLoginStatus("signup")}} >Cadastre-se</button>
                     </div>
                 </form>
             </div>
@@ -69,7 +69,7 @@ function AccountCreation({closeLogin, option}) {
                     
                     <div className={styles.loginSignup}>
                         Já possui uma conta?
-                        <button className={styles.singupLoginSwitch} id="signup" onClick={()=>{setLoginStatus("login")}}>Faça login</button>
+                        <button className={styles.singupLoginSwitch} onClick={()=>{setLoginStatus("login")}}>Faça login</button>
                     </div>
                 </form>
             </div>
