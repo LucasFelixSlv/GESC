@@ -1,0 +1,27 @@
+.imageFit{
+    aspect-ratio: 7 / 4;
+    object-fit: cover;
+}
+
+.infoCard{
+    display: flex;
+    flex-direction: column;
+}
+
+.textCard{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.textCard h3{
+    width: 100%;
+}
+
+.buttonCard{
+    margin-top: auto!important;
+}
+
+/*tamanho da imagem: 280x160*/

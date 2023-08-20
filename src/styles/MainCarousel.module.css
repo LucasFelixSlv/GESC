@@ -31,9 +31,3 @@
     border: 2px solid #fff;
     border-radius: 100%;
 }
-
-@media(max-width: 991px){
-    .hideControls span{
-        display: none;
-    }
-}
