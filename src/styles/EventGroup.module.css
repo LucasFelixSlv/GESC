@@ -3,3 +3,24 @@
         justify-content: center!important;
     }    
 }
+
+.nextEvents{
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.divDateSelect{
+    position: relative;
+    z-index: 1000!important;
+    background-color: #42C82C;
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 16px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid #94ea89;
+}
+
+.divDateSelect input{
+    max-width: 50%;
+}
