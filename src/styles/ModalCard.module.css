@@ -1,0 +1,16 @@
+.buttonCard{
+    margin-top: auto!important;
+    background-color: #42C82C;
+    color: #252526;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 5px;
+    border: 2px solid #94ea89;
+    transition: all 0.2s ease;
+}
+
+.buttonCard:hover{
+    background-color: #252526;
+    color: #94ea89;
+    border-color: #42C82C;
+}
