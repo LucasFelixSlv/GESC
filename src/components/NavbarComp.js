@@ -39,18 +39,18 @@ function NavbarComp() {
       <div className="collapse navbar-collapse" id="navbarNav">
         <div className="navbar-nav col-lg-12">
           
-          <div className={`${styles.fundoNavbarBotao} col-lg-4`}>
-          <button className={`${styles.navbarBotao} teste`}>
+          <div className={`${styles.fundoNavbarButton} col-lg-4`}>
+          <button className={`${styles.navbarButton} teste`}>
             CRIAR EVENTO
           </button>
           </div>
-          <div className={`${styles.fundoNavbarBotao} col-lg-4`}>
-          <button className={`${styles.navbarBotao}`} onClick={()=> {setOpenLogin(true); setOptionLogin("login");}}>
+          <div className={`${styles.fundoNavbarButton} col-lg-4`}>
+          <button className={`${styles.navbarButton}`} onClick={()=> {setOpenLogin(true); setOptionLogin("login");}}>
             ACESSE SUA CONTA
           </button>
           </div>
-          <div className={`${styles.fundoNavbarBotao} col-lg-4`}>
-          <button className={`${styles.navbarBotao}`} onClick={()=> {setOpenLogin(true); setOptionLogin("signup");}}>
+          <div className={`${styles.fundoNavbarButton} col-lg-4`}>
+          <button className={`${styles.navbarButton}`} onClick={()=> {setOpenLogin(true); setOptionLogin("signup");}}>
             CADASTRE-SE
           </button>
           </div>

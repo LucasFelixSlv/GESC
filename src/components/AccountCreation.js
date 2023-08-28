@@ -24,17 +24,17 @@ function AccountCreation({closeLogin, option}) {
                 <form action="#">
                     <h2>Login</h2>
                     <div className={styles.inputBox}>
-                        <input type="email" placeholder="Digite o seu email" required/>
+                        <input type="email" id="emailLogin" name="emailLogin" placeholder="Digite o seu email" required/>
                         <i className={`${styles.iconEmail} uil uil-envelope-alt`} ></i>
                     </div>
                     <div className={styles.inputBox}>
-                        <input type={showPassword ? "text" : "password" } placeholder="Digite sua senha" required/>
+                        <input type={showPassword ? "text" : "password" } id="passwordLogin" name="passwordLogin" placeholder="Digite sua senha" required/>
                         <i className={`${styles.iconPassword} uil uil-lock password`}></i>
                         <i className={`${styles.iconPasswordHide} uil ${showPassword ? "uil-eye" : "uil-eye-slash"}`} onClick={togglePassword}></i>
                     </div>
 
                     <div className={`${styles.optionField}`}>
-                        <button href="#" class={styles.forgotPassword}>Esqueceu a senha?</button>
+                        <button class={styles.forgotPassword}>Esqueceu a senha?</button>
                     </div>
 
                     <button className={styles.buttonLogin} type="submit">Entrar</button>
@@ -51,16 +51,16 @@ function AccountCreation({closeLogin, option}) {
                 <form action="#">
                     <h2>Cadastro</h2>
                     <div className={styles.inputBox}>
-                        <input type="email" placeholder="Digite o seu email" required/>
+                        <input type="email" id="emailSignup" name="emailSignup" placeholder="Digite o seu email" required/>
                         <i className={`${styles.iconEmail} uil uil-envelope-alt`} ></i>
                     </div>
                     <div className={styles.inputBox}>
-                        <input type={showPassword ? "text" : "password" } placeholder="Crie sua senha" required/>
+                        <input type={showPassword ? "text" : "password" } id="passwordSignup" name="passwordSignup" placeholder="Crie sua senha" required/>
                         <i className={`${styles.iconPassword} uil uil-lock password`}></i>
                         <i className={`${styles.iconPasswordHide} uil ${showPassword ? "uil-eye" : "uil-eye-slash"}`} onClick={togglePassword}></i>
                     </div>
                     <div className={styles.inputBox}>
-                        <input type={showPassword ? "text" : "password" } placeholder="Confirme sua senha" required/>
+                        <input type={showPassword ? "text" : "password" } id="passwordSignupCheck" name="passwordSignupCheck" placeholder="Confirme sua senha" required/>
                         <i className={`${styles.iconPassword} uil uil-lock password`}></i>
                         <i className={`${styles.iconPasswordHide} uil ${showPassword ? "uil-eye" : "uil-eye-slash"}`} onClick={togglePassword}></i>
                     </div>

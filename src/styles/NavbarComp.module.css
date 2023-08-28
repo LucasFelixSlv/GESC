@@ -15,12 +15,12 @@
     color: #42C82C;
 }
 
-.navbarBotaoMob{
+.navbarButtonMob{
     margin-left:10px;
     border: 2px solid #42C82C!important;
 }
 
-.navbarBotao{
+.navbarButton{
     color: rgba(255, 255, 255, 0.75);
     font-size:15px;
     position: relative;
@@ -32,12 +32,12 @@
     border: none;
 }
 
-.navbarBotao:hover{
+.navbarButton:hover{
     color: #fff;
 }
 
 @media(min-width: 992px){
-    .navbarBotao::after{
+    .navbarButton::after{
         content: '';
         height: 2px;
         width: 100%;
@@ -50,17 +50,17 @@
         pointer-events: none;
     }
     
-    .navbarBotao:hover::after{
+    .navbarButton:hover::after{
         opacity:1;
     }
 }
 
 @media(max-width: 991px){
-    .navbarBotao:hover{
+    .navbarButton:hover{
         color: #42C82C;
     }
 
-    .fundoNavbarBotao:hover{
+    .fundoNavbarButton:hover{
         background-color: #373738;
         transition: all 0.4s;
     }
