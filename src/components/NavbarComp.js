@@ -20,7 +20,7 @@ function NavbarComp() {
         <input
           type="search"
           id="form1"
-          class="form-control"
+          className="form-control"
           placeholder="Pesquisar evento"
           aria-label="Search"
         />
