@@ -1,7 +1,7 @@
 function CarouselEvent({img, titulo}) {
     return (
         <>
-            <img src={img} class="d-block w-100" alt={titulo} />
+            <img src={img} className="d-block w-100" alt={titulo} />
         </>
     )
 }

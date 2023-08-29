@@ -26,7 +26,7 @@ function NavbarComp() {
         />
       </div>
       <button
-        className={`${styles.navbarBotaoMob} navbar-toggler`}
+        className={`${styles.navbarButtonMob} navbar-toggler`}
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarNav"

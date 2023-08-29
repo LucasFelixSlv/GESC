@@ -14,3 +14,21 @@
     color: #94ea89;
     border-color: #42C82C;
 }
+
+.imageResize{
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.titleModal{
+    overflow: hidden;
+    word-wrap: break-word
+}
+
+/* exemplo de ajuste de tamanho do modal */
+.teste{
+    width: 60%!important;
+    max-width: none!important;
+}
+

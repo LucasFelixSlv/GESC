@@ -16,12 +16,13 @@ function ModalCard({imagem, titulo, data}) {
                     onHide={handleClose}
                     backdrop="static"
                     keyboard={false}
+                    dialogClassName={styles.teste}
                 >
-                    <Modal.Header closeButton>
-                        <Modal.Title>{titulo}</Modal.Title>
+                    <Modal.Header closeButton >
+                        <Modal.Title className={styles.titleModal}>{titulo}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        {imagem}
+                        <img src={imagem} className={`${styles.imageResize}`} alt={titulo}/>
                         {data}
                     </Modal.Body>
                     <Modal.Footer>
