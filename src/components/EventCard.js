@@ -1,7 +1,7 @@
 import styles from '../styles/EventCard.module.css'
 import ModalCard from './ModalCard';
 
-function EventCard({ imagem, titulo, data }) {
+function EventCard({ imagem, titulo, data, descricao }) {
     return (
         <div className="col-10 col-md-6 col-lg-4">
             <div className={`${styles.roundCard} card h-100`}>
@@ -11,7 +11,7 @@ function EventCard({ imagem, titulo, data }) {
                     <div className={`${styles.textCard}`}>
                     <h3 className={` card-title`}>{titulo}</h3>
                     </div>
-                    <ModalCard imagem={imagem} titulo={titulo} data={data}/>
+                    <ModalCard imagem={imagem} titulo={titulo} data={data} descricao={descricao}/>
                 </div>
             </div>
         </div>
