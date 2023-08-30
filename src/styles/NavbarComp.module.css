@@ -1,0 +1,84 @@
+.navbarBg{
+    background-color: #252526;
+    padding: 10px!important;
+}
+
+.navbarGesc{
+    color: #42C82C!important;
+    font-size:40px!important;
+    font-weight: bold;
+    background: none;
+    border: none;
+}
+
+.navbarText{
+    color: #42C82C;
+}
+
+.navbarButtonMob{
+    margin-left:10px;
+    border: 2px solid #42C82C!important;
+}
+
+.navbarButton{
+    color: rgba(255, 255, 255, 0.75);
+    font-size:15px;
+    position: relative;
+    transition: all 0.4s;
+    text-decoration: none;
+    line-height: 25px;
+    outline: none;
+    background: none;
+    border: none;
+}
+
+.navbarButton:hover{
+    color: #fff;
+}
+
+@media(min-width: 992px){
+    .navbarButton::after{
+        content: '';
+        height: 2px;
+        width: 100%;
+        background-color: #42C82C;
+        position: absolute;
+        left: 0px;
+        bottom: -8px;
+        opacity: 0;
+        transition: all 0.4s;
+        pointer-events: none;
+    }
+    
+    .navbarButton:hover::after{
+        opacity:1;
+    }
+}
+
+@media(max-width: 991px){
+    .navbarButton:hover{
+        color: #42C82C;
+    }
+
+    .fundoNavbarButton:hover{
+        background-color: #373738;
+        transition: all 0.4s;
+    }
+
+}
+
+.dropdownOptions{
+    left: -10px!important;
+    background-color: #373738!important;
+}
+
+.dropdownOptions button{
+    text-align: center;
+    color:rgba(255, 255, 255, 0.75);
+    transition: all 0.4s ease;
+}
+
+.dropdownOptions button:hover{
+    background-color: #252526;
+    color: #42C82C;
+}

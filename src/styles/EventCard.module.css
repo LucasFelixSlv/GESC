@@ -1,0 +1,37 @@
+.imageFit{
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-top-left-radius: 10px!important;
+    border-top-right-radius: 10px!important;
+}
+
+.roundCard{
+    border-radius: 10px!important;
+}
+
+.infoCard{
+    display: flex;
+    flex-direction: column;
+    background-color: #252526;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.textCard{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    color: #fff;
+}
+
+.textCard h3{
+    width: 100%;
+}
+
+.infoCard p{
+    color: #42C82C;
+    font-weight: bold;
+    font-size: 22px;
+}
