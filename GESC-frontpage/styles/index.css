@@ -12,6 +12,10 @@
 body {
     margin: 0;
     font-family: Poppins;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* NAVBAR */
@@ -358,11 +362,19 @@ body {
 
 .formData{
     margin: 0 auto;
-    width: 350px;
+    width: 330px;
     padding: 10px;
     border-radius: 10px;
     background-color: #42C82C;
     border: 2px solid gray;
+}
+
+
+@media(max-width:767px){
+    .formData{
+        width: 280px;
+
+    }
 }
 
 .nextEvents{
@@ -467,14 +479,13 @@ body {
 /* FOOTER */
 
 footer{
+    margin-top: 12px;
+    text-align: center;
+    background-color: #252526;
+    color: #42C82C;
+    padding: 20px;
     position: fixed;
-    height: 50px;
     bottom: 0;
     width: 100%;
-    background-color: #252526;
-    margin: 0 auto;
-    color: #42C82C;
-    padding: 15px;
-    font-weight: 300;
-    z-index: 150;
+    z-index: -1000;
 }
