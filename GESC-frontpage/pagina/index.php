@@ -30,11 +30,11 @@ include_once 'header.php';
     </div>
 </div>
 <div class="barDiv"></div>
-<div class="container d-flex">
-    <div class="p-relative formData">
+<div class="container mb-3">
+    <div class="p-relative">
         <h2 class="nextEvents">PRÓXIMOS EVENTOS</h2>
-        <div>
-            <form method="post" class="datePicker">
+        <div class="divDateSelect">
+            <form method="post" class="dateStyle">
                 <label for="dataSelecionada">Data: </label>
                 <input type="date" id="dataSelecionada" name="dataSelecionada" class="dataInput">
                 <button type="submit" class="dataButton">Pesquisar</button>
@@ -42,35 +42,45 @@ include_once 'header.php';
         </div>
     </div>
     <div class="row g-3 mobileCenter">
-        <!-- MODAL -->
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-            Launch demo modal
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+        <div class="col-10 col-md-6 col-lg-4 containerModal"> <!-- card de evento começa aqui !-->
+            <div class="roundCard card h-100">
+                <img class="imageFit card-img-top" src="../assets/im003.jpg" alt="imagem 3" />
+                <div class="infoCard card-body">
+                    <p class="m-0">Data</p>
+                    <div class="textCard">
+                        <h3 class="card-title">Titulo</h3>
                     </div>
-                    <div class="modal-body">
-                        ...
+                    <!-- MODAL -->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                        Mais detalhes
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+                    <!-- FIM MODAL -->
                 </div>
             </div>
         </div>
-        <!-- FIM MODAL -->
     </div>
-
-    <?php
-    include_once 'footer.php';
-    ?>
+</div>
+<?php
+include_once 'footer.php';
+?>

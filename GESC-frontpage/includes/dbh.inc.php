@@ -2,7 +2,7 @@
 
 $hostname="localhost";
 $username="root";
-$password="root";
+$password="";
 $dbname="gesc";
 
 $conexao = mysqli_connect($hostname, $username, $password, $dbname);
