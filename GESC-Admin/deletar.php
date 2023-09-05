@@ -12,10 +12,10 @@
 
         if($result->num_rows > 0){
 
-            $sqlDelete = "DELETE FROM eventos WHERE idEvento=$idEvento";
+            $sqlDelete = "DELETE FROM eventos WHERE idEvento = '".$_GET['idEvento']."'";
             $resultDelete = $conexao->query($sqlDelete);
         }
     }
-    header('Location: escolherEditar.php');
+   // header('Location: escolherEditar.php');
 
     ?>

@@ -147,9 +147,25 @@ include_once('connect.php');
             
             <div class="col text-end">
                 <input type="hidden" name="idEvento" value="<?php echo $idEvento ?>">
-                <button type="submit" name="update" id="update" class="btn btn-success mb-4">Salvar Alterações</button>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-success mb-4">Salvar Alterações</button>
             </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Deseja salvar alterações?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" name="update" class="btn btn btn-success">Salvar Alterações</button>
+            </div>
+            </div>
+        </div>
+        </div>
 
     </form>
 

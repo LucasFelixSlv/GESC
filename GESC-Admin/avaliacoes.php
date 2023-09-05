@@ -1,3 +1,19 @@
+<?php
+
+use LDAP\Result;
+
+    session_start();
+    include_once('connect.php');
+
+    // Buscar dados do evento
+
+    $sql = "SELECT nomeUsuario, comentario FROM `avaliacoes` ORDER BY idUser ASC";
+    $result = $conexao->query($sql);
+    $dadosComents = $result->fetch_assoc();
+    $result->data_seek(0)
+
+?>
+
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -56,36 +72,29 @@
             <h5 class="card-title">Avaliação do seu Evento</h5>
             
             <div class="rating">
-              <input type="radio" id="star5" name="rating" value="5">
-              <label for="star5"></label>
-              <input type="radio" id="star4" name="rating" value="4">
-              <label for="star4"></label>
-              <input type="radio" id="star3" name="rating" value="3">
-              <label for="star3"></label>
-              <input type="radio" id="star2" name="rating" value="2">
-              <label for="star2"></label>
-              <input type="radio" id="star1" name="rating" value="1">
-              <label for="star1"></label>
-            </div>
+        <span class="star" data-star="1">&#9733;</span>
+        <span class="star" data-star="2">&#9733;</span>
+        <span class="star" data-star="3">&#9733;</span>
+        <span class="star" data-star="4">&#9733;</span>
+        <span class="star" data-star="5">&#9733;</span>
+    </div>
+    <p>Média de Avaliação: <span id="media-avaliacao">0.0</span></p>
           </div>
         </div>
       </div>
 
-    <div class="container">
-        <div class="mb-3">
-            <label for="descricao" class="form-label">Comentários:</label>
-            <textarea class="form-control" id="descricao" rows="4"></textarea>
-        </div>
-    </div>
+    <?php
+        
+        while($dadosComents = mysqli_fetch_assoc($result)) {
 
-
-
-
-
-
-
-
-
+            echo "<div class='container'>
+            <div class='mb-3'>
+                <label for='descricao' class='form-label'>Nome: $dadosComents[nomeUsuario]</label>
+                <textarea class='form-control' id='descricao' rows='4'> $dadosComents[comentario]</textarea>
+            </div>
+        </div>'" ;
+        }
+    ?>
 
     <link rel="stylesheet" href="style.css"> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
@@ -93,3 +102,24 @@
 
 
 </html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        let rating = 0;
+        const $stars = $('.star');
+        const $mediaAvaliacao = $('#media-avaliacao');
+
+        // Manipula o clique nas estrelas
+        $stars.on('click', function () {
+            const selectedStar = $(this).data('star');
+            rating = selectedStar;
+            updateRating();
+        });
+
+        // Atualiza a média de avaliação
+        function updateRating() {
+            $mediaAvaliacao.text(rating.toFixed(1));
+        }
+    });
+</script>
