@@ -32,7 +32,7 @@ session_start();
                             echo "<a class='navbarBotao' href='../../GESC-Admin/adicionar.php'>CRIAR EVENTO</button>";
                             echo "</div>";
                             echo "<div class='fundoNavbarBotao col-lg-6 dropdown'>";
-                            echo "<button class='navbarBotao' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>MINHA CONTA</button>";
+                            echo "<a class='navbarBotao' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>MINHA CONTA</a>";
                             echo "<div class='dropdown-menu dropdownOptions'>";
                             echo "<button class='dropdown-item' type='button'>Dashboard</button>";
                             echo "<button class='dropdown-item' type='button'>Notificações</button>";
