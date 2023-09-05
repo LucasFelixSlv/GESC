@@ -5,7 +5,7 @@ $username="root";
 $password="";
 $dbname="gesc";
 
-$conexao = mysqli_connect($hostname,$username, $password);
+$conexao = mysqli_connect($hostname,$username, $password, $dbname);
 $sql = mysqli_select_db($conexao, $dbname);
 
 if(!$conexao) {

@@ -31,7 +31,7 @@
                         <a class="nav-link" href="adicionar.php">Adicionar novo Evento</a>
                     </li>
                     <li class="nav-item ps-5">
-                        <a class="nav-link" href="editar.php">Editar Evento</a>
+                        <a class="nav-link" href="escolherEditar.php">Editar Evento</a>
                     </li>
                     <li class="nav-item ps-5">
                         <a class="nav-link" href="avaliacoes.php">Ver Avaliações</a>
@@ -39,26 +39,16 @@
                     <li class="nav-item ps-5">
                         <a class="nav-link" href="solicitacoes.php">Aprovar Solicitações</a>
                     </li>
+                    <li class="nav-item ps-5">
+                        <a class="nav-link" href="../GESC-frontpage/pagina/index.php">Início</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-
-    
-            
             <!-- Conteúdo Principal -->
                 <img class="logo-first-page" src="imagens/logo.png" alt="">
-       
-
-
-
-
-
-
-
-
-
 
 
     <link rel="stylesheet" href="style.css"> 
