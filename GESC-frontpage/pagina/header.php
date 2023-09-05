@@ -29,7 +29,7 @@ session_start();
                     <div class="fundoNavbarBotao col-lg-6">
                         <?php
                         if (isset($_SESSION["usuariosId"])) {
-                            echo "<a class='navbarBotao' href='../../GESC-Admin/index.php'>CRIAR EVENTO</button>";
+                            echo "<a class='navbarBotao' href='../../GESC-Admin/adicionar.php'>CRIAR EVENTO</button>";
                             echo "</div>";
                             echo "<div class='fundoNavbarBotao col-lg-6 dropdown'>";
                             echo "<button class='navbarBotao' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>MINHA CONTA</button>";
