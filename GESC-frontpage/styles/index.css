@@ -425,8 +425,8 @@ body {
 
 /* Selecionar data */
 
-.divEventos{
-    margin-bottom: 50px;
+.divEvents{
+    margin-bottom: 125px;
 }
 
 .divDateSelect{
@@ -537,6 +537,24 @@ body {
     color: #42C82C;
     font-weight: bold;
     font-size: 22px;
+}
+
+.modalButton{
+    background-color: #42C82C;
+    color: #252526;
+    padding: 0.75rem 0.375rem;
+    /* font-size: 1rem;
+    font-weight: 400; */
+    border: 2px solid #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.modalButton:hover{
+    background-color: #2c8b1e;
 }
 
 /* FOOTER */

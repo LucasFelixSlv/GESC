@@ -30,7 +30,7 @@ include_once 'header.php';
     </div>
 </div>
 <div class="barDiv"></div>
-<div class="container mb-3">
+<div class="container divEvents">
     <div class="p-relative">
         <h2 class="nextEvents">PRÓXIMOS EVENTOS</h2>
         <div class="divDateSelect">
@@ -41,7 +41,7 @@ include_once 'header.php';
             </form>
         </div>
     </div>
-    <div class="row g-3 mobileCenter divEventos">
+    <div class="row g-3 mobileCenter">
         <div class="col-10 col-md-6 col-lg-4 containerModal"> <!-- card de evento começa aqui !-->
             <div class="roundCard card h-100">
                 <img class="imageFit card-img-top" src="../assets/im003.jpg" alt="imagem 3" />
@@ -50,7 +50,7 @@ include_once 'header.php';
                     <div class="textCard">
                         <h3 class="card-title">Titulo</h3>
                     </div>
-                    <a type="button" class="btn btn-primary" href="evento.php">
+                    <a type="button" class="modalButton" href="evento.php">
                         Mais detalhes
                     </a>
                 </div>
