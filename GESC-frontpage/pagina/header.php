@@ -34,8 +34,8 @@ session_start();
                             echo "<div class='fundoNavbarBotao col-lg-6 dropdown'>";
                             echo "<a class='navbarBotao' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>MINHA CONTA</a>";
                             echo "<div class='dropdown-menu dropdownOptions'>";
-                            echo "<button class='dropdown-item' type='button'>Dashboard</button>";
-                            echo "<button class='dropdown-item' type='button'>Notificações</button>";
+                            echo "<a class='dropdown-item' type='button' href='../../GESC-Admin/escolherEditar.php'>Dashboard</a>";
+                            echo "<a class='dropdown-item' type='button' href='../../GESC-Admin/solicitacoes.php'>Notificações</a>";
                             echo "<a href='../includes/logout.inc.php' class='dropdown-item'>Sair</a>";
                             echo "</div>";
                         } else {
