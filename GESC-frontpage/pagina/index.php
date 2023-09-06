@@ -41,7 +41,7 @@ include_once 'header.php';
             </form>
         </div>
     </div>
-    <div class="row g-3 mobileCenter">
+    <div class="row g-3 mobileCenter divEventos">
         <div class="col-10 col-md-6 col-lg-4 containerModal"> <!-- card de evento começa aqui !-->
             <div class="roundCard card h-100">
                 <img class="imageFit card-img-top" src="../assets/im003.jpg" alt="imagem 3" />

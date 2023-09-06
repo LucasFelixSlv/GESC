@@ -425,9 +425,12 @@ body {
 
 /* Selecionar data */
 
+.divEventos{
+    margin-bottom: 50px;
+}
+
 .divDateSelect{
     position: relative;
-    z-index: 1000!important;
     background-color: #42C82C;
     width: fit-content;
     margin: 0 auto;
@@ -544,8 +547,6 @@ footer{
     background-color: #252526;
     color: #42C82C;
     padding: 20px;
-    position: fixed;
     bottom: 0;
     width: 100%;
-    z-index: -1000;
 }
