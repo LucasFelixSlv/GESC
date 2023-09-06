@@ -1,8 +1,8 @@
 <?php
 
-$hostname="localhost";
+$hostname="127.0.0.1";
 $username="root";
-$password="";
+$password="root";
 $dbname="gesc";
 
 $conexao = mysqli_connect($hostname,$username, $password);
