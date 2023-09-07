@@ -1,6 +1,5 @@
 <?php
 
-
 //funções pra cadastro
 function emptyInputSignup($usuario, $senha, $repetirSenha)
 {

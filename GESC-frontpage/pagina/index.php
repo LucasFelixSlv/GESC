@@ -9,15 +9,25 @@ include_once 'header.php';
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="carouselIndicators" aria-label="Slide 3"></button>
         </div>
         <div class="carouselBorder carousel-inner">
+            <?php 
+            require '../includes/dbh.inc.php';
+            $sql = mysqli_query($conexao, "SELECT * FROM eventos ORDER BY dataEv ASC LIMIT 3;") or die(mysqli_error($conexao));
+            while ($aux = mysqli_fetch_assoc($sql)) {
+
+            ?>
             <div class="carousel-item active">
-                <img src="https://placehold.co/1920x1080" class="d-block w-100" alt="...">
+                <form action="evento.php" method="post">
+                    <input type="hidden" name="Titulo" value="<?= $aux["nome"] ?>" />
+                    <input type="image" src="https://placehold.co/1920x1080" class="d-block w-100" alt="..."/>
+                </form>
             </div>
-            <div class="carousel-item">
+            <?php } ?>
+            <!-- <div class="carousel-item">
                 <img src="https://placehold.co/1600x900" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
                 <img src="../assets/im002.jpg" class="d-block w-100" alt="...">
-            </div>
+            </div> -->
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carouselArrowPrev carousel-control-prev-icon" aria-hidden="true"></span>
@@ -37,25 +47,36 @@ include_once 'header.php';
             <form method="post" class="dateStyle">
                 <label for="dataSelecionada">Data: </label>
                 <input type="date" id="dataSelecionada" name="dataSelecionada" class="dataInput">
-                <button type="submit" class="dataButton">Pesquisar</button>
+                <button type="button" class="dataButton">Pesquisar</button>
             </form>
         </div>
     </div>
     <div class="row g-3 mobileCenter">
-        <div class="col-10 col-md-6 col-lg-4 containerModal"> <!-- card de evento começa aqui !-->
-            <div class="roundCard card h-100">
-                <img class="imageFit card-img-top" src="../assets/im003.jpg" alt="imagem 3" />
-                <div class="infoCard card-body">
-                    <p class="m-0">Data</p>
-                    <div class="textCard">
-                        <h3 class="card-title">Titulo</h3>
+        <?php
+        require '../includes/dbh.inc.php';
+        $sql = mysqli_query($conexao, "SELECT * FROM eventos ORDER BY dataEv ASC") or die(mysqli_error($conexao));
+
+
+        while ($aux = mysqli_fetch_assoc($sql)) {
+            $data = $aux["dataEv"];
+            $DataEspecifica = new DateTime($data);
+        ?>
+            <div class="col-10 col-md-6 col-lg-4 containerModal"> <!-- card de evento começa aqui !-->
+                <div class="roundCard card h-100">
+                    <img class="imageFit card-img-top" src="../assets/im003.jpg" alt="imagem 3" />
+                    <div class="infoCard card-body">
+                        <p class="m-0"><?= date_format($DataEspecifica, "d/m") ?></p>
+                        <div class="textCard">
+                            <h3 class="card-title"><?= $aux["nome"] ?></h3>
+                        </div>
+                        <form action="evento.php" method="post">
+                            <input type="hidden" name="Titulo" value="<?= $aux["nome"] ?>" />
+                            <button type="submit" class="modalButton" name="BotaoEvento">Mais detalhes</button>
+                        </form>
                     </div>
-                    <a type="button" class="modalButton" href="evento.php">
-                        Mais detalhes
-                    </a>
                 </div>
             </div>
-        </div>
+        <?php } ?>
     </div>
 </div>
 <?php
