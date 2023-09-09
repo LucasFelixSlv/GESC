@@ -2,7 +2,7 @@
 
     if(!empty($_GET['idEvento'])){
 
-        include_once('connect.php');
+        include_once('../includes/dbh.inc.php');
 
         $idEvento = $_GET['idEvento'];
 
@@ -17,5 +17,3 @@
         }
     }
    // header('Location: escolherEditar.php');
-
-    ?>
