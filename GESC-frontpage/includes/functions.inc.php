@@ -58,7 +58,7 @@ function userExists($conexao, $usuario)
     $sql = "SELECT * FROM usuarios WHERE usuariosNome = ?;";
     $stmt = mysqli_stmt_init($conexao);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../pagina/index.php?error=stmtfalhou");
+        header("location: ../pagina_principal/index.php?error=stmtfalhou");
         exit();
     }
 
@@ -82,7 +82,7 @@ function createUser($conexao, $usuario, $senha)
     $sql = "INSERT INTO usuarios (usuariosNome, usuariosSenha) VALUES (?, ?);";
     $stmt = mysqli_stmt_init($conexao);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../pagina/index.php?error=stmtfailed");
+        header("location: ../pagina_principal/index.php?error=stmtfailed");
         exit();
     }
 
@@ -112,7 +112,7 @@ function loginUser($conexao, $usuario, $senha){
     $usuarioExiste = userExists($conexao, $usuario);
 
     if($usuarioExiste === false){
-        header("location: ../pagina/index.php?erro=loginerrado");
+        header("location: ../pagina_principal/index.php?erro=loginerrado");
         exit();
     }
 
@@ -120,13 +120,13 @@ function loginUser($conexao, $usuario, $senha){
     $verificarSenha = password_verify($senha, $hashedSenha);
 
     if ($verificarSenha === false){
-        header("location: ../pagina/index.php?erro=loginerrado");
+        header("location: ../pagina_principal/index.php?erro=loginerrado");
         exit();
     }else if($verificarSenha === true){
         session_start();
         $_SESSION["usuariosId"] = $usuarioExiste["usuariosId"];
         $_SESSION["usuariosNome"] = $usuarioExiste["usuariosNome"];
-        header("location: ../pagina/index.php");
+        header("location: ../pagina_principal/index.php");
         exit();
     }
 

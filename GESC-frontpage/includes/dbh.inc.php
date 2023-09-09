@@ -6,6 +6,7 @@ $password="";
 $dbname="gesc";
 
 $conexao = new mysqli($hostname,$username,$password,$dbname);
+$sql = mysqli_select_db($conexao, $dbname);
 
 // Check connection
 if ($conexao -> connect_errno) {
