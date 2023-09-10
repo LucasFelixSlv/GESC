@@ -1,5 +1,9 @@
 <?php
 include_once 'header.php';
+require '../includes/dbh.inc.php';
+$contentCheck = mysqli_query($conexao,"SELECT * FROM eventos LIMIT 1;") or die(mysqli_error($conexao));
+$queryResult = mysqli_num_rows($contentCheck);
+if($queryResult > 0){
 ?>
 <div class="carouselMargin">
     <div id="carouselExampleIndicators" class="carousel slide carouselContent" data-bs-ride="carousel">
@@ -10,7 +14,7 @@ include_once 'header.php';
         </div>
         <div class="carouselBorder carousel-inner">
             <?php 
-            require '../includes/dbh.inc.php';
+            // require '../includes/dbh.inc.php';
             $sql = mysqli_query($conexao, "SELECT * FROM eventos ORDER BY dataEv ASC LIMIT 3;") or die(mysqli_error($conexao));
             while ($aux = mysqli_fetch_assoc($sql)) {
 
@@ -44,10 +48,10 @@ include_once 'header.php';
     <div class="p-relative">
         <h2 class="nextEvents">PRÓXIMOS EVENTOS</h2>
         <div class="divDateSelect">
-            <form method="post" class="dateStyle">
+            <form action="search.php" method="post" class="dateStyle">
                 <label for="dataSelecionada">Data: </label>
                 <input type="date" id="dataSelecionada" name="dataSelecionada" class="dataInput">
-                <button type="button" class="dataButton">Pesquisar</button>
+                <button type="submit" class="dataButton">Pesquisar</button>
             </form>
         </div>
     </div>
@@ -79,6 +83,13 @@ include_once 'header.php';
         <?php } ?>
     </div>
 </div>
+<?php }else{
+    echo "
+    <div class='containerSemEvento'>
+    <p class='semEvento'>Nenhum evento registrado!</p>
+    </div>
+    ";
+} ?>
 <?php
 include_once 'footer.php';
 ?>

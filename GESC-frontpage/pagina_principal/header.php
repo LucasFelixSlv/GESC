@@ -23,7 +23,9 @@ session_start();
                 GESC
             </a>
             <div class="form-outline col-4 col-md-8 col-lg-5">
-                <input type="search" id="form1" class="form-control" placeholder="Pesquisar evento" aria-label="Search" />
+                <form action="search.php" method="post">
+                    <input type="search" id="search" name="pesquisarEvento" class="form-control" placeholder="Pesquisar evento" aria-label="Search" />
+                </form>
             </div>
             <button class="navbarBotaoMob navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon format-button"></span>

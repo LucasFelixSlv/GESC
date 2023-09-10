@@ -90,6 +90,24 @@ body {
 
 }
 
+.form-control{
+    background-color: #252526;
+    border-color: #42C82C;
+    color: #fff;
+    border-width: 2px;
+}
+
+.form-control::placeholder{
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form-control:focus{
+    background-color: #252526;
+    outline: none;
+    border-color: #42C82C;
+    color: #fff;
+}
+
 /* LOGIN/SIGNUP */
 
 .wrapperBackground{
@@ -374,6 +392,21 @@ body {
 
 /* CARROSSEL */
 
+.containerSemEvento{
+    position: absolute;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.semEvento{
+    
+    margin: 12px auto;
+    font-size: 32px;
+    
+}
+
 .carouselMargin{
     margin: 16px 16px 16px;
 }
@@ -558,6 +591,13 @@ body {
 
 .modalButton:hover{
     background-color: #2c8b1e;
+}
+
+/* PÁGINA DE PESQUISA */
+
+.textoPesquisa{
+    margin: 12px auto;
+    font-size: 24px;
 }
 
 /* FOOTER */
