@@ -9,13 +9,13 @@ if (isset($_POST["entrar"])){
     require_once 'functions.inc.php';
 
     if(emptyInputLogin($usuario, $senha) !== false){
-        header("location: ../pagina/index.php?error=campovazio");
+        header("location: ../pagina_principal/index.php?error=campovazio");
         exit();
     }
 
     loginUser($conexao, $usuario, $senha);
 
 }else{
-    header("location: ../index.php");
+    header("location: ../pagina_principal/index.php");
     exit();
 }

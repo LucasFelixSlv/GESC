@@ -1,5 +1,5 @@
 <?php
-    include_once('connect.php');
+    include_once('../includes/dbh.inc.php');
 
     if(isset($_POST['update'])){
 
@@ -18,6 +18,4 @@
         $result = $conexao->query($sqlUpdate);
 
     }
-    header('Location: escolherEditar.php')
-
-?>
+    header('Location: escolherEditar.php');

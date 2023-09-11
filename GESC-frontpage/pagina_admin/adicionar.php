@@ -1,29 +1,33 @@
 <?php
 
-include_once ('connect.php');
+include_once('../includes/dbh.inc.php');
 
-    if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
-        $nome = $_POST['nome'];
-        $descricao = $_POST['descricao'];
-        $localEv = $_POST['localEv'];
-        $dataEv = $_POST['dataEv'];
-        $inicio = $_POST['inicio'];
-        $termino = $_POST['termino'];
-        $imagem = $_POST['imagem'];
+    $nome = $_POST['nome'];
+    $descricao = $_POST['descricao'];
+    $localEv = $_POST['localEv'];
+    $dataEv = $_POST['dataEv'];
+    $inicio = $_POST['inicio'];
+    $termino = $_POST['termino'];
+    $imagem = $_POST['imagem'];
 
-        $sql = "INSERT INTO `eventos` (nome, descricao, localEv, dataEv, inicio, termino, imagem) VALUES ('$nome', '$descricao', '$localEv', '$dataEv', '$inicio', '$termino', '$imagem')";
+    $sql = "INSERT INTO `eventos` (nome, descricao, localEv, dataEv, inicio, termino, imagem) VALUES ('$nome', '$descricao', '$localEv', '$dataEv', '$inicio', '$termino', '$imagem')";
     $rs = mysqli_query($conexao, $sql);
-
-    }
+}
 ?>
 
 <!doctype html>
 <html lang="pt-br">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GESC - Admin</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/icon/site.webmanifest">
     <script src="modal.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -32,13 +36,13 @@ include_once ('connect.php');
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
-  </head>
+</head>
 
-  <body>
-    
+<body>
+
     <header class="bg-black text-white text-center">
         <div class="container">
-            <div class="row"> 
+            <div class="row">
                 <div class="col-md-12">
                     <h1>Administração</h1>
                 </div>
@@ -66,21 +70,21 @@ include_once ('connect.php');
                         <a class="nav-link" href="solicitacoes.php">Aprovar Solicitações</a>
                     </li>
                     <li class="nav-item ps-5">
-                        <a class="nav-link" href="../GESC-frontpage/pagina/index.php">Início</a>
+                        <a class="nav-link" href="../pagina_principal/index.php">Início</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-            
+
     <!-- Conteúdo Principal -->
 
     <div id="message" style="display: none;">
-    Evento com sucesso!
+        Evento com sucesso!
     </div>
 
     <form id="myform" action="adicionar.php" role="form" method="POST">
-        
+
         <div class="container">
             <h1 class="display-5 text-center">Novo Evento</h1>
         </div>
@@ -139,28 +143,27 @@ include_once ('connect.php');
                 <button type="button" name="submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-success mb-4">Salvar</button>
             </div>
         </div>
-   
+
 
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Deseja salvar?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Deseja salvar?</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" name="submit" class="btn btn btn-success">Salvar Evento</button>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                <button type="submit" name="submit" class="btn btn btn-success">Salvar Evento</button>
-            </div>
-            </div>
-        </div>
         </div>
     </form>
 
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="styleAdmin.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-  </body>
+</body>
 
 </html>
-

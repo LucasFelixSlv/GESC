@@ -90,6 +90,24 @@ body {
 
 }
 
+.form-control{
+    background-color: #252526;
+    border-color: #42C82C;
+    color: #fff;
+    border-width: 2px;
+}
+
+.form-control::placeholder{
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form-control:focus{
+    background-color: #252526;
+    outline: none;
+    border-color: #42C82C;
+    color: #fff;
+}
+
 /* LOGIN/SIGNUP */
 
 .wrapperBackground{
@@ -374,6 +392,21 @@ body {
 
 /* CARROSSEL */
 
+.containerSemEvento{
+    position: absolute;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.semEvento{
+    
+    margin: 12px auto;
+    font-size: 32px;
+    
+}
+
 .carouselMargin{
     margin: 16px 16px 16px;
 }
@@ -488,8 +521,10 @@ body {
 }
 
 /* CARD DE EVENTO */
+
 @media(max-width:767px){
     .containerModal{
+        margin-bottom: 25px;
         width: 300px;
         height: 280px;
     }
@@ -545,16 +580,24 @@ body {
     padding: 0.75rem 0.375rem;
     /* font-size: 1rem;
     font-weight: 400; */
-    border: 2px solid #fff;
     border-radius: 5px;
     font-weight: bold;
     display: inline-block;
     text-decoration: none;
     transition: all 0.2s ease;
+    border: none;
+    width: 100%;
 }
 
 .modalButton:hover{
     background-color: #2c8b1e;
+}
+
+/* PÁGINA DE PESQUISA */
+
+.textoPesquisa{
+    margin: 12px auto;
+    font-size: 24px;
 }
 
 /* FOOTER */
