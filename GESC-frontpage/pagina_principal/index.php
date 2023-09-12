@@ -50,7 +50,7 @@ if($queryResult > 0){
         <div class="divDateSelect">
             <form action="search.php" method="post" class="dateStyle">
                 <label for="dataSelecionada">Data: </label>
-                <input type="date" id="dataSelecionada" name="dataSelecionada" class="dataInput">
+                <input type="date" id="dataSelecionada" name="dataSelecionada" class="dataInput" required>
                 <button type="submit" class="dataButton">Pesquisar</button>
             </form>
         </div>
