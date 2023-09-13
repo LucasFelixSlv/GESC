@@ -1,43 +1,15 @@
-const wrapper = document.querySelector('.wrapper');
-const loginLink = document.querySelector('.loginLink');
-const signupLink = document.querySelector('.signupLink');
-const acessarConta = document.querySelector('.acessarConta');
-const criarConta = document.querySelector('.criarConta');
-const wrapperBackground = document.querySelector('.wrapperBackground');
-const iconClose = document.querySelector('.iconClose');
-const confirmarMsg = document.querySelector('.confirmarMsg');
+const confirmarMsgCadastro = document.querySelector('.erroCadastro');
+const confirmarMsgLogin = document.querySelector('.erroLogin');
 
-signupLink.addEventListener('click', () => {
-    wrapper.classList.add('active');
-});
-
-loginLink.addEventListener('click', () => {
-    wrapper.classList.remove('active');
-});
-
-if (criarConta != null) {
-    criarConta.addEventListener('click', () => {
-        wrapper.classList.add('active');
-        wrapperBackground.classList.add('active');
-    });
+if (confirmarMsgCadastro != null) {
+    confirmarMsgCadastro.addEventListener('click', () => {
+        location.replace('cadastro.php');
+    })
 }
 
-if (acessarConta != null) {
-    acessarConta.addEventListener('click', () => {
-        wrapper.classList.remove('active');
-        wrapperBackground.classList.add('active');
-    });
-}
-
-
-iconClose.addEventListener('click', () => {
-    wrapper.classList.remove('active');
-    wrapperBackground.classList.remove('active');
-})
-
-if (confirmarMsg != null) {
-    confirmarMsg.addEventListener('click', () => {
-        location.replace('index.php');
+if (confirmarMsgLogin != null) {
+    confirmarMsgLogin.addEventListener('click', () => {
+        location.replace('login.php');
     })
 }
 
