@@ -7,7 +7,7 @@ include_once('../includes/dbh.inc.php');
 
 // Buscar dados do evento
 
-$sql = "SELECT nomeUsuario, comentario FROM `avaliacoes` ORDER BY idUser ASC";
+$sql = "SELECT usuarios.usuariosNome, comentario FROM `avaliacoes` INNER JOIN participacao_eventos ON avaliacoes.participacaoId = participacao_eventos.participacaoId INNER JOIN usuarios ON participacao_eventos.usuariosId = usuarios.usuariosId ORDER BY avaliacoesId ASC";
 $result = $conexao->query($sql);
 $dadosComents = $result->fetch_assoc();
 $result->data_seek(0)

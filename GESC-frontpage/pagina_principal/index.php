@@ -67,7 +67,7 @@ if($queryResult > 0){
         ?>
             <div class="col-10 col-md-6 col-lg-4 containerModal"> <!-- card de evento começa aqui !-->
                 <div class="roundCard card h-100">
-                    <img class="imageFit card-img-top" src="../assets/im003.jpg" alt="imagem 3" />
+                    <img class="imageFit card-img-top" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
                     <div class="infoCard card-body">
                         <p class="m-0"><?= date_format($DataEspecifica, "d/m") ?></p>
                         <div class="textCard">
