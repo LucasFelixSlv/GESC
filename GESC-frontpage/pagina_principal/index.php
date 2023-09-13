@@ -90,10 +90,7 @@ if ($queryResult > 0) {
                                 <div class="textCard">
                                     <h3 class="card-title"><?= $aux["nome"] ?></h3>
                                 </div>
-                                <form action="evento.php" method="post">
-                                    <input type="hidden" name="Titulo" value="<?= $aux["nome"] ?>" />
-                                    <button type="submit" class="modalButton" name="BotaoEvento">Mais detalhes</button>
-                                </form>
+                                    <a href="evento.php?id=<?= $aux["link"] ?>" class="modalButton" name="BotaoEvento">Mais detalhes</a>
                             </div>
                         </div>
                     </div>
