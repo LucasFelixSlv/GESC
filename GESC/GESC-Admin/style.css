@@ -116,3 +116,29 @@
   #checkboxes label:hover {
     background-color: #1e90ff;
   }
+
+  .evento{
+    padding: 50%;
+  }
+
+  /*página card evento area texto*/
+
+  body {
+    font: 1.25rem serif, system-ui;
+    line-height: 150%;
+    margin: 5rem;
+  }
+  
+  .quote {
+    max-width: 60ch;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    border-radius: .5em;
+    background: hsl(260, 60%, 96%);
+    border: 1px solid hsl(260, 60%, 92%);
+  }
+  
+  .quote figcaption,
+  .quote blockquote {
+    margin: 1rem;
+  }
