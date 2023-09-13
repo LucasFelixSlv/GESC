@@ -11,9 +11,20 @@ if (isset($_POST['submit'])) {
     $dataEv = $_POST['dataEv'];
     $inicio = $_POST['inicio'];
     $termino = $_POST['termino'];
-    $imagem = $_POST['imagem'];
+    $imagem = $_FILES['imagem'];
 
-    $sql = "INSERT INTO `eventos` (usuariosId, nome, descricao, localEv, dataEv, inicio, termino, imagem) VALUES ('$usuario', '$nome', '$descricao', '$localEv', '$dataEv', '$inicio', '$termino', '$imagem')";
+    $pasta = "../assets/imagensEventos/";
+    $nomeDaImagem = $imagem['name'];
+    $novoNomeDaImagem = uniqid();
+    $extensao = strtolower(pathinfo($nomeDaImagem,PATHINFO_EXTENSION));
+    
+    if($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg"){
+        die("Tipo de arquivo não aceito");
+    }
+    $caminho = $pasta . $novoNomeDaImagem . "." . $extensao;
+    $imagemUpload = move_uploaded_file($imagem["tmp_name"], $caminho);
+
+    $sql = "INSERT INTO `eventos` (usuariosId, nome, descricao, localEv, dataEv, inicio, termino, imagem) VALUES ('$usuario', '$nome', '$descricao', '$localEv', '$dataEv', '$inicio', '$termino', '$caminho')";
     $rs = mysqli_query($conexao, $sql);
 }
 ?>
@@ -84,7 +95,7 @@ if (isset($_POST['submit'])) {
         Evento com sucesso!
     </div>
 
-    <form id="myform" action="adicionar.php" role="form" method="POST">
+    <form enctype="multipart/form-data" id="myform" action="adicionar.php" role="form" method="POST">
 
         <div class="container">
             <h1 class="display-5 text-center">Novo Evento</h1>
