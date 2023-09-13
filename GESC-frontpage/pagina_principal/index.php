@@ -8,7 +8,7 @@ if ($queryResult > 0) {
     <div class="carouselMargin">
         <div id="carouselExampleIndicators" class="carousel slide carouselContent" data-bs-ride="carousel">
             <?php
-            $sql = mysqli_query($conexao, "SELECT * FROM eventos ORDER BY dataEv ASC LIMIT 4;") or die(mysqli_error($conexao));
+            $sql = mysqli_query($conexao, "SELECT * FROM eventos ORDER BY dataInicio ASC LIMIT 10;") or die(mysqli_error($conexao));
             ?>
             <div class="carousel-indicators">
                 <?php
@@ -29,7 +29,7 @@ if ($queryResult > 0) {
             </div>
             <div class="carouselBorder carousel-inner">
                 <?php
-                $sql = mysqli_query($conexao, "SELECT * FROM eventos ORDER BY dataEv ASC LIMIT 4;") or die(mysqli_error($conexao));
+                $sql = mysqli_query($conexao, "SELECT * FROM eventos ORDER BY dataInicio ASC LIMIT 10;") or die(mysqli_error($conexao));
                 $carouselNum = 0;
                 while ($aux = mysqli_fetch_assoc($sql)) {
                     if ($carouselNum === 0) {
@@ -75,18 +75,19 @@ if ($queryResult > 0) {
             <div class="row g-3 mobileCenter">
                 <?php
                 require '../includes/dbh.inc.php';
-                $sql = mysqli_query($conexao, "SELECT * FROM eventos ORDER BY dataEv ASC") or die(mysqli_error($conexao));
-
+                $sql = mysqli_query($conexao, "SELECT * FROM eventos ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
 
                 while ($aux = mysqli_fetch_assoc($sql)) {
-                    $data = $aux["dataEv"];
-                    $DataEspecifica = new DateTime($data);
+                    $dataInicio = $aux["dataInicio"];
+                    $DataEspecificaInicio = new DateTime($dataInicio);
+                    $dataTermino = $aux["dataTermino"];
+                    $DataEspecificaTermino = new DateTime($dataTermino);
                 ?>
                     <div class="col-10 col-md-6 col-lg-4 containerModal"> <!-- card de evento começa aqui !-->
                         <div class="roundCard card h-100">
                             <img class="imageFit card-img-top" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
                             <div class="infoCard card-body">
-                                <p class="m-0"><?= date_format($DataEspecifica, "d/m") ?></p>
+                                <p class="m-0"><?= date_format($DataEspecificaInicio, "d/m/Y") ?> - <?= date_format($DataEspecificaTermino, "d/m/Y") ?></p>
                                 <div class="textCard">
                                     <h3 class="card-title"><?= $aux["nome"] ?></h3>
                                 </div>
