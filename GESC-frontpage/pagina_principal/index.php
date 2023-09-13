@@ -35,7 +35,7 @@ if ($queryResult > 0) {
                     <div class="carousel-item active">
                         <form action="evento.php" method="post">
                             <input type="hidden" name="Titulo" value="<?= $aux["nome"] ?>" />
-                            <input type="image" src="https://placehold.co/1920x1080" class="d-block w-100" alt="..." />
+                            <input type="image" src="<?= $aux["imagem"] ?>" class="d-block w-100" alt="..." />
                         </form>
                     </div>
                 <?php }
