@@ -24,7 +24,13 @@ if (isset($_POST['submit'])) {
     $caminho = $pasta . $novoNomeDaImagem . "." . $extensao;
     $imagemUpload = move_uploaded_file($imagem["tmp_name"], $caminho);
 
-    $sql = "INSERT INTO `eventos` (usuariosId, nome, descricao, localEv, dataEv, inicio, termino, imagem) VALUES ('$usuario', '$nome', '$descricao', '$localEv', '$dataEv', '$inicio', '$termino', '$caminho')";
+    $link = mt_rand(0, 999999);
+    $linkCheck = mysqli_query($conexao, "SELECT * FROM eventos WHERE link = $link");
+    while(mysqli_num_rows($linkCheck)>0){
+        $link = mt_rand(0, 999999);
+    }
+
+    $sql = "INSERT INTO `eventos` (usuariosId, nome, descricao, localEv, dataEv, inicio, termino, imagem, link) VALUES ('$usuario', '$nome', '$descricao', '$localEv', '$dataEv', '$inicio', '$termino', '$caminho', '$link')";
     $rs = mysqli_query($conexao, $sql);
 }
 ?>
