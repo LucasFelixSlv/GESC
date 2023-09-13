@@ -5,7 +5,7 @@ include_once('../includes/dbh.inc.php');
 
 // Buscar dados do evento
 
-$sql = "SELECT nomeUsuario, email, telefone, COUNT(aprovado) AS somaTotal FROM `aceiteEvento`;";
+$sql = "SELECT nomeUsuario, COUNT(aprovado) AS somaTotal FROM `aceiteEvento`;";
 $result = $conexao->query($sql);
 $dadosSolicitacao = $result->fetch_assoc();
 
@@ -144,8 +144,6 @@ $dadosSolicitacao = $result->fetch_assoc();
           // echo "<td>" . $dadosSolicitacao["nome"] . "</td>";
           echo "<td>" . $dadosSolicitacao["somaTotal"] . "</td>";
           echo "<td>" . $dadosSolicitacao["nomeUsuario"] . "</td>";
-          echo "<td>" . $dadosSolicitacao["email"] . "</td>";
-          echo "<td>" . $dadosSolicitacao["telefone"] . "</td>";
           /* echo "<td>
                                     <a class='btn btn-sm btn-primary' href='editar.php?idEvento=$dadosSolicitacao[idEvento]'>
                                     <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pencil' viewBox='0 0 16 16'>

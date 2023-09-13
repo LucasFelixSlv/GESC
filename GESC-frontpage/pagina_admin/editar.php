@@ -3,11 +3,11 @@
 session_start();
 include_once('../includes/dbh.inc.php');
 
-if (!empty($_GET['idEvento'])) {
+if (!empty($_GET['eventosId'])) {
 
-    $idEvento = $_GET['idEvento'];
+    $eventosId = $_GET['eventosId'];
 
-    $sqlSelect = "SELECT * FROM `eventos` WHERE idEvento='$idEvento'";
+    $sqlSelect = "SELECT * FROM `eventos` WHERE eventosId='$eventosId'";
 
     $result = $conexao->query($sqlSelect);
 
@@ -15,7 +15,7 @@ if (!empty($_GET['idEvento'])) {
 
         while ($dadosEvento = mysqli_fetch_assoc($result)) {
 
-            $idEvento = $dadosEvento['idEvento'];
+            $eventosId = $dadosEvento['eventosId'];
             $nome = $dadosEvento['nome'];
             $descricao = $dadosEvento['descricao'];
             $localEv = $dadosEvento['localEv'];
@@ -152,7 +152,7 @@ if (!empty($_GET['idEvento'])) {
         <div class="container">
 
             <div class="col text-end">
-                <input type="hidden" name="idEvento" value="<?php echo $idEvento ?>">
+                <input type="hidden" name="idEvento" value="<?php echo $eventosId ?>">
                 <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-success mb-4">Salvar Alterações</button>
             </div>
         </div>

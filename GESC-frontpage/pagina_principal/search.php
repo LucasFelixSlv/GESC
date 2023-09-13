@@ -17,12 +17,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php
             if(isset($pesquisarEvento)){
                 ?>
-                <p class="textoPesquisa">Mostrando resultados para: "<?= $pesquisarEvento?>"</p>
+                <p class="textoPesquisa">Exibindo resultados para: "<?= $pesquisarEvento?>"</p>
                 <?php
             }else{
                 $dataEnviada = new DateTime($pesquisarData);
                 ?>
-                <p class="textoPesquisa">Mostrando eventos do dia <?= date_format($dataEnviada, "d/m") ?> </p>
+                <p class="textoPesquisa">Exibindo eventos do dia <?= date_format($dataEnviada, "d/m") ?> </p>
                 <?php
             }
             ?>

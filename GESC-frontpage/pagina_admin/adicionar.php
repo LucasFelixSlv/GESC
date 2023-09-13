@@ -1,9 +1,10 @@
 <?php
+session_start();
+$usuario = $_SESSION["usuariosId"];
 
 include_once('../includes/dbh.inc.php');
 
 if (isset($_POST['submit'])) {
-
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];
     $localEv = $_POST['localEv'];
@@ -12,7 +13,7 @@ if (isset($_POST['submit'])) {
     $termino = $_POST['termino'];
     $imagem = $_POST['imagem'];
 
-    $sql = "INSERT INTO `eventos` (nome, descricao, localEv, dataEv, inicio, termino, imagem) VALUES ('$nome', '$descricao', '$localEv', '$dataEv', '$inicio', '$termino', '$imagem')";
+    $sql = "INSERT INTO `eventos` (usuariosId, nome, descricao, localEv, dataEv, inicio, termino, imagem) VALUES ('$usuario', '$nome', '$descricao', '$localEv', '$dataEv', '$inicio', '$termino', '$imagem')";
     $rs = mysqli_query($conexao, $sql);
 }
 ?>

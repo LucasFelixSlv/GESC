@@ -3,7 +3,7 @@
 
     if(isset($_POST['update'])){
 
-        $idEvento = $_POST['idEvento'];
+        $eventosId = $_POST['idEvento'];
         $nome = $_POST['nome'];
         $descricao = $_POST['descricao'];
         $localEv = $_POST['localEv'];
@@ -13,7 +13,7 @@
         $imagem = $_POST['imagem'];
 
         $sqlUpdate = "UPDATE eventos SET nome='$nome', descricao='$descricao', localEv='$localEv', 
-                        dataEv='$dataEv', inicio='$inicio', termino='$termino', imagem='$imagem' WHERE idEvento='$idEvento'";
+                        dataEv='$dataEv', inicio='$inicio', termino='$termino', imagem='$imagem' WHERE eventosId='$eventosId'";
 
         $result = $conexao->query($sqlUpdate);
 
