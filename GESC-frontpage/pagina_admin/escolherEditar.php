@@ -5,7 +5,7 @@ include_once('../includes/dbh.inc.php');
 
 // Buscar dados do evento
 
-$sql = "SELECT eventosId, nome, localEv,  dataEv FROM `eventos`";
+$sql = "SELECT eventosId, nome, localEv,  dataInicio FROM `eventos`";
 $result = $conexao->query($sql);
 $dadosEvento = $result->fetch_assoc();
 
@@ -87,7 +87,7 @@ $dadosEvento = $result->fetch_assoc();
                     echo "<td>" . $dadosEvento['eventosId'] . "</td>";
                     echo "<td class='text-break'>" . $dadosEvento["nome"] . "</td>";
                     echo "<td>" . $dadosEvento["localEv"] . "</td>";
-                    echo "<td>" . $dadosEvento["dataEv"] . "</td>";
+                    echo "<td>" . $dadosEvento["dataInicio"] . "</td>";
                     echo "<td>
                                     <a class='btn btn-sm btn-primary' href='editar.php?eventosId=$dadosEvento[eventosId]'>
                                     <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pencil' viewBox='0 0 16 16'>

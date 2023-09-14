@@ -8,9 +8,10 @@ if (isset($_POST['submit'])) {
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];
     $localEv = $_POST['localEv'];
-    $dataEv = $_POST['dataEv'];
-    $inicio = $_POST['inicio'];
-    $termino = $_POST['termino'];
+    $dataInicio = $_POST['dataInicio'];
+    $dataTermino = $_POST['dataTermino'];
+    $horaInicio = $_POST['horaInicio'];
+    $horaTermino = $_POST['horaTermino'];
     $imagem = $_FILES['imagem'];
 
     $pasta = "../assets/imagensEventos/";
@@ -24,7 +25,13 @@ if (isset($_POST['submit'])) {
     $caminho = $pasta . $novoNomeDaImagem . "." . $extensao;
     $imagemUpload = move_uploaded_file($imagem["tmp_name"], $caminho);
 
-    $sql = "INSERT INTO `eventos` (usuariosId, nome, descricao, localEv, dataEv, inicio, termino, imagem) VALUES ('$usuario', '$nome', '$descricao', '$localEv', '$dataEv', '$inicio', '$termino', '$caminho')";
+    $link = mt_rand(0, 999999);
+    $linkCheck = mysqli_query($conexao, "SELECT * FROM eventos WHERE link = $link");
+    while(mysqli_num_rows($linkCheck)>0){
+        $link = mt_rand(0, 999999);
+    }
+
+    $sql = "INSERT INTO `eventos` (usuariosId, nome, descricao, localEv, dataInicio, dataTermino, horaInicio, horaTermino, imagem, link) VALUES ('$usuario', '$nome', '$descricao', '$localEv', '$dataInicio', '$dataTermino', '$horaInicio', '$horaTermino', '$caminho', '$link')";
     $rs = mysqli_query($conexao, $sql);
 }
 ?>
@@ -124,22 +131,29 @@ if (isset($_POST['submit'])) {
 
         <div class="container">
             <div class="mb-3">
-                <label for="data" class="form-label">Data:</label>
-                <input type="date" class="form-control" id="data" name="dataEv">
+                <label for="data" class="form-label">Data começo:</label>
+                <input type="date" class="form-control" id="data" name="dataInicio">
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="mb-3">
+                <label for="data" class="form-label">Data fim:</label>
+                <input type="date" class="form-control" id="data" name="dataTermino">
             </div>
         </div>
 
         <div class="container">
             <div class="mb-3">
                 <label for="horario-inicio" class="form-label">Início do Evento:</label>
-                <input type="time" class="form-control" id="horario-inicio" name="inicio">
+                <input type="time" class="form-control" id="horario-inicio" name="horaInicio">
             </div>
         </div>
 
         <div class="container">
             <div class="mb-3">
                 <label for="horario-termino" class="form-label">Término do Evento:</label>
-                <input type="time" class="form-control" id="horario-termino" name="termino">
+                <input type="time" class="form-control" id="horario-termino" name="horaTermino">
             </div>
         </div>
 

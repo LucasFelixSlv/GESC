@@ -113,8 +113,8 @@ body {
 .wrapperAll{
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
+    top: 53%;
+    transform: translate(-50%,-51%) scale(0.9);
 }
 
 .wrapper{
@@ -133,14 +133,17 @@ body {
 
 .acesso{
     margin: 0 auto;
-    height: 400px;
+    max-height: 400px;
 }
 
 .cadastro{
-    height: 520px;
+    height: 500px;
+    transform: scale(0.9);
 }
 
 .formBox {
+    padding-top: 30px;
+    padding-bottom: 30px;
     width: 360px;
 }
 
@@ -148,11 +151,9 @@ body {
     .wrapper{
         width: 330px;
     }
-    .acesso{
-        height: 400px;
-    }
     .cadastro{
         height: 440px;
+        transform: scale(1);
     }
     .formBox{
         width: 260px;
