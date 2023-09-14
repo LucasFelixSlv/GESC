@@ -5,7 +5,7 @@ include_once 'header.php';
 
 <div>
     <div> 
-        <img src="https://placehold.co/800x400" class="img-fluid" alt="...">
+        <img src="https://placehold.co/1000x500" class="img-fluid" alt="...">
         <section>
             <p class="descricao">Nome do EVENTO.</p>
             <figure class="quote">

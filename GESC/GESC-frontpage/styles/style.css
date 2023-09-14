@@ -90,6 +90,24 @@ body {
 
 }
 
+.form-control{
+    background-color: #252526;
+    border-color: #42C82C;
+    color: #fff;
+    border-width: 2px;
+}
+
+.form-control::placeholder{
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form-control:focus{
+    background-color: #252526;
+    outline: none;
+    border-color: #42C82C;
+    color: #fff;
+}
+
 /* LOGIN/SIGNUP */
 
 .wrapperBackground{
@@ -374,6 +392,21 @@ body {
 
 /* CARROSSEL */
 
+.containerSemEvento{
+    position: absolute;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.semEvento{
+    
+    margin: 12px auto;
+    font-size: 32px;
+    
+}
+
 .carouselMargin{
     margin: 16px 16px 16px;
 }
@@ -551,6 +584,8 @@ body {
     display: inline-block;
     text-decoration: none;
     transition: all 0.2s ease;
+    border: none;
+    width: 100%;
 }
 
 .modalButton:hover{
@@ -586,6 +621,18 @@ footer{
 
 body{text-align: center; padding-top: 50px}
 
-.container{
-    padding-bottom: 75%;
+/*Estrelas de avaliação do evento*/
+
+.estrelas input[type=radio] {
+  display: none;
+}
+.estrelas label i.fa{
+  font-size: 2.5em
+}
+.estrelas label i.fa:before {
+  content:'\f005';
+  color: #FC0;
+}
+.estrelas input[type=radio]:checked ~ label i.fa:before {
+  color: #CCC;
 }

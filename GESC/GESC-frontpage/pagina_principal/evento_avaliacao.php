@@ -5,14 +5,14 @@ include_once 'header.php';
 
 <div>
     <div> 
-        <img src="https://placehold.co/1920x1080" class="img-fluid" alt="...">
+        <img src="https://placehold.co/1000x600" class="img-fluid" alt="...">
         <section>
-            <h1>Nome do evento.</p>
+            <p>Nome do evento.</p>
             <figure class="quote">
             <div class="container">
                 <div class="card">
                 <div class="card-body">
-            <h5 class="card-title">Avalie este evento</h5>
+            <p class="card-title">Avalie este evento</p>
             
             <div class="divAvaliacao">
 

@@ -1,0 +1,148 @@
+/* Navbar */
+.img-logo {
+    width: 15%;
+}
+
+.nav-link {
+    justify-content: center;
+    align-items: center;
+}
+
+
+.sidebar {
+    height: 100vh;
+}
+
+.nav-link {
+    color: white;
+    font-weight: bold;
+}
+
+/* Conteúdo Central */
+
+.display-5 {
+    font-weight: 700;
+}
+
+.btn-success {
+    background-color: rgb(3, 239, 3);
+    color: black;
+
+
+}
+
+.btn-danger {
+    background-color: rgb(246, 7, 7);
+    color: black;
+
+}
+
+.form-label {
+    font-weight: 700;
+}
+
+.background-image {
+    background-image: url('imagens/logo.png') rgba(76, 175, 80, 0.3);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 50%;
+    margin-top: 10%;
+}
+
+.logo-first-page {
+    width: 100%;
+}
+
+.rating {
+    display: inline-block;
+    font-size: 1.5rem;
+}
+
+.rating .fas {
+    color: gold;
+}
+
+.rating .far {
+    color: lightgray;
+}
+
+/* Aprovar Solicitações */
+
+.img-fluid {
+    width: 100%;
+}
+
+.form-check-input {
+    width: 1.5em;
+    height: 1.5em;
+    margin: 1%;
+}
+
+.form-check-label {
+    font-weight: bold;
+}
+
+.multiselect {
+    width: 200px;
+}
+
+.selectBox {
+    position: relative;
+}
+
+.selectBox select {
+    width: 100%;
+    font-weight: bold;
+}
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#checkboxes {
+    display: none;
+    border: 1px #dadada solid;
+}
+
+#checkboxes label {
+    display: block;
+}
+
+#checkboxes label:hover {
+    background-color: #1e90ff;
+<<<<<<< HEAD:GESC/GESC-Admin/style.css
+  }
+
+  .evento{
+    padding: 50%;
+  }
+
+  /*página card evento area texto*/
+
+  body {
+    font: 1.25rem serif, system-ui;
+    line-height: 150%;
+    margin: 5rem;
+  }
+  
+  .quote {
+    max-width: 60ch;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    border-radius: .5em;
+    background: hsl(260, 60%, 96%);
+    border: 1px solid hsl(260, 60%, 92%);
+  }
+  
+  .quote figcaption,
+  .quote blockquote {
+    margin: 1rem;
+  }
+=======
+}
+>>>>>>> a7c151ff946258a412ca8d8dd158520f872d6651:GESC/GESC-frontpage/pagina_admin/styleAdmin.css
