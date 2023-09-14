@@ -20,6 +20,8 @@ if (isset($_GET['id'])){
         if($dataAtual < $dataTermino){
             //o usuário ainda pode solicitar participação
             echo '<br>Você pode solicitar participação!';
+
+
         }else if($dataAtual >= $dataTermino){
             //o usuário não pode mais solicitar participação
             echo '<br>Você não pode solicitar participação!';

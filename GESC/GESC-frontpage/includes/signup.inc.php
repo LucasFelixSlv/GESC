@@ -10,33 +10,33 @@ if (isset($_POST["cadastrar"])){
     require_once 'functions.inc.php';
 
     if(emptyInputSignup($usuario, $senha, $repetirSenha) !== false){
-        header("location: ../pagina/index.php?error=campovazio");
+        header("location: ../pagina_principal/cadastro.php?error=campovazio");
         exit();
     }
 
     if(invalidUser($usuario) !== false){
-        header("location: ../pagina/index.php?error=usuarioinvalido");
+        header("location: ../pagina_principal/cadastro.php?error=usuarioinvalido");
         exit();
     }
 
     if(passwordMatch($senha, $repetirSenha) !== false){
-        header("location: ../pagina/index.php?error=senhadiferente");
+        header("location: ../pagina_principal/cadastro.php?error=senhadiferente");
         exit();
     }
 
     if(weakPassword($senha) !== false){
-        header("location: ../pagina/index.php?error=senhafraca");
+        header("location: ../pagina_principal/cadastro.php?error=senhafraca");
         exit();
     }
 
     if(userExists($conexao, $usuario) !== false){
-        header("location: ../pagina/index.php?error=usuarioexistente");
+        header("location: ../pagina_principal/cadastro.php?error=usuarioexistente");
         exit();
     }
 
     createUser($conexao, $usuario, $senha);
 
 }else{
-    header("location: ../pagina/index.php");
+    header("location: ../pagina_principal/index.php");
     exit();
 }
