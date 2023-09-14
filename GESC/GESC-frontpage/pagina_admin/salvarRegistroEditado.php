@@ -7,13 +7,14 @@
         $nome = $_POST['nome'];
         $descricao = $_POST['descricao'];
         $localEv = $_POST['localEv'];
-        $dataEv = $_POST['dataEv'];
-        $inicio = $_POST['inicio'];
-        $termino = $_POST['termino'];
+        $dataInicio = $_POST['dataInicio'];
+        $dataTermino = $_POST['dataTermino'];
+        $horaInicio = $_POST['horaInicio'];
+        $horaTermino = $_POST['horaTermino'];
         $imagem = $_POST['imagem'];
 
         $sqlUpdate = "UPDATE eventos SET nome='$nome', descricao='$descricao', localEv='$localEv', 
-                        dataEv='$dataEv', inicio='$inicio', termino='$termino', imagem='$imagem' WHERE eventosId='$eventosId'";
+                        dataInicio='$dataInicio', dataTermino='$dataTermino', horaInicio='$horaInicio', horaTermino='$horaTermino', imagem='$imagem' WHERE eventosId='$eventosId'";
 
         $result = $conexao->query($sqlUpdate);
 

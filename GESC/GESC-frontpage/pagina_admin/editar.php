@@ -19,9 +19,10 @@ if (!empty($_GET['eventosId'])) {
             $nome = $dadosEvento['nome'];
             $descricao = $dadosEvento['descricao'];
             $localEv = $dadosEvento['localEv'];
-            $dataEv = $dadosEvento['dataEv'];
-            $inicio = $dadosEvento['inicio'];
-            $termino = $dadosEvento['termino'];
+            $dataInicio = $dadosEvento['dataInicio'];
+            $dataTermino = $dadosEvento['dataTermino'];
+            $horaInicio = $dadosEvento['horaInicio'];
+            $horaTermino = $dadosEvento['horaTermino'];
             $imagem = $dadosEvento['imagem'];
         }
     } else {
@@ -121,22 +122,29 @@ if (!empty($_GET['eventosId'])) {
 
         <div class="container">
             <div class="mb-3">
-                <label for="data" class="form-label">Data:</label>
-                <input type="date" class="form-control" id="data" name="dataEv" value="<?php echo $dataEv ?>">
+                <label for="data" class="form-label">Data começo:</label>
+                <input type="date" class="form-control" id="data" name="dataInicio" value="<?php echo $dataInicio ?>">
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="mb-3">
+                <label for="data" class="form-label">Data fim:</label>
+                <input type="date" class="form-control" id="data" name="dataTermino" value="<?php echo $dataTermino ?>">
             </div>
         </div>
 
         <div class="container">
             <div class="mb-3">
                 <label for="horario-inicio" class="form-label">Início do Evento:</label>
-                <input type="time" class="form-control" id="horario-inicio" name="inicio" value="<?php echo $inicio ?>">
+                <input type="time" class="form-control" id="horario-inicio" name="horaInicio" value="<?php echo $horaInicio ?>">
             </div>
         </div>
 
         <div class="container">
             <div class="mb-3">
                 <label for="horario-termino" class="form-label">Término do Evento:</label>
-                <input type="time" class="form-control" id="horario-termino" name="termino" value="<?php echo $termino ?>">
+                <input type="time" class="form-control" id="horario-termino" name="horaTermino" value="<?php echo $horaTermino ?>">
             </div>
         </div>
 
