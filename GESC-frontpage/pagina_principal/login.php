@@ -12,7 +12,7 @@ include_once 'header.php';
                     <label>Usuário</label>
                 </div>
                 <div class="inputBox">
-                    <span class="icon"><i class="fa fa-eye-slash" aria-hidden="true" id="olhoLogin" onclick="toggle()"></i></span>
+                    <span class="icon"><i class="fa fa-eye-slash" aria-hidden="true" id="olhoLogin" onclick="toggleSenhaLogin()"></i></span>
                     <input type="password" name="senhaUsuario" id="senhaLogin" placeholder=" " required>
                     <label>Senha</label>
                 </div>

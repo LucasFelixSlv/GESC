@@ -70,11 +70,14 @@ if ($queryResult > 0) {
                         <button type="submit" class="dataButton">Pesquisar</button>
                     </form>
                 </div>
-                <h2 class="nextPastEvents">PRÓXIMOS EVENTOS</h2>
+                <h2 class="nextEvents">PRÓXIMOS EVENTOS</h2>
             </div>
-            <div class="row g-3 mobileCenter mb-3">
+            <div class="row g-3 mobileCenter">
                 <?php
+                require '../includes/dbh.inc.php';
                 $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE dataTermino > NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
+                // $sql = mysqli_query($conexao, "SELECT * FROM eventos ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
+
                 while ($aux = mysqli_fetch_assoc($sql)) {
                     $dataInicio = $aux["dataInicio"];
                     $DataEspecificaInicio = new DateTime($dataInicio);
@@ -85,36 +88,15 @@ if ($queryResult > 0) {
                         <div class="roundCard card h-100">
                             <img class="imageFit card-img-top" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
                             <div class="infoCard card-body">
-                                <p class="m-0 dataEvento"><?= date_format($DataEspecificaInicio, "d/m/Y") ?><span style="color: white;"> - </span><?= date_format($DataEspecificaTermino, "d/m/Y") ?></p>
+                                <p class="m-0 dataEvento"><?= date_format($DataEspecificaInicio, "d/m/Y") ?> - <?= date_format($DataEspecificaTermino, "d/m/Y") ?></p>
                                 <div class="textCard">
-                                    <h3 class="card-title"><?= $aux["nome"] ?></h3>
-                                </div>
-                                <a href="evento.php?id=<?= $aux["link"] ?>" class="modalButton" name="BotaoEvento">Mais detalhes</a>
-                            </div>
-                        </div>
-                    </div>
-                <?php } ?>
-            </div>
-            <div class="barDiv"></div>
-            <div class="p-relative">
-                <h2 class="nextPastEvents">EVENTOS FINALIZADOS</h2>
-            </div>
-            <div class="row g-3 mobileCenter mb-3">
-                <?php
-                $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE dataTermino < NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
-                while ($aux = mysqli_fetch_assoc($sql)) {
-                    $dataInicio = $aux["dataInicio"];
-                    $DataEspecificaInicio = new DateTime($dataInicio);
-                    $dataTermino = $aux["dataTermino"];
-                    $DataEspecificaTermino = new DateTime($dataTermino);
-                ?>
-                    <div class="col-10 col-md-6 col-lg-4 containerModal">
-                        <div class="roundCard card h-100">
-                            <img class="imageFit card-img-top" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
-                            <div class="infoCard card-body">
-                                <p class="m-0 dataEvento"><?= date_format($DataEspecificaInicio, "d/m/Y") ?><span style="color: white;"> - </span><?= date_format($DataEspecificaTermino, "d/m/Y") ?></p>
-                                <div class="textCard">
-                                    <p class="eventoFinalizado">[Finalizado]</p>
+                                    <?php
+                                    if (date('d/m/Y') > date_format($DataEspecificaTermino, "d/m/Y")) {
+                                    ?>
+                                        <p class="eventoFinalizado">[Finalizado]</p>
+                                    <?php
+                                    }
+                                    ?>
                                     <h3 class="card-title"><?= $aux["nome"] ?></h3>
                                 </div>
                                 <a href="evento.php?id=<?= $aux["link"] ?>" class="modalButton" name="BotaoEvento">Mais detalhes</a>
