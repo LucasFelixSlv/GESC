@@ -547,3 +547,26 @@ footer{
     width: 100%;
     position: fixed;
 }
+
+#divFormSolicitacao
+{
+  position:relative;
+  left:37%;
+  top:29%;
+  width:320px;
+  height:270px;
+}
+#divFormSolicitacao #formSolicitacao
+{
+  position:absolute;
+  display:block;
+}
+#fieldsetSolicitacao
+{
+  width:300px;
+  height:250px;
+}
+
+.centralizado {
+    margin: 0 auto;
+}

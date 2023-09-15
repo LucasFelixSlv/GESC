@@ -21,11 +21,43 @@ if (isset($_GET['id'])){
             //o usuário ainda pode solicitar participação
             echo '<br>Você pode solicitar participação!';
 
+            ?>
+            <div >
+                <h1>Formulário de Registro de Evento</h1>
+                <p>Preencha o formulário abaixo para se registrar para o evento:</p>
+                
+                <form id="formSolicitacao" action="aceiteEvento.php" method="POST">
+                    <div class="d-flex flex-column justify-content-center">
+                        <div class="row">
+                                <div class="col-md-7">
+                                    <label class="form-label" for="nome">Nome:</label>
+                                    <input type="text" class="form-control"  id="nomeUsuario" name="nomeUsuario" required><br><br>
+                                </div>
 
+                                <div class="col-md-7">
+                                    <label class="form-label" for="email">Email:</label>
+                                    <input type="text"  class="form-control"  id="email" name="email"><br><br>
+                                </div>
+                                
+                                <div class="col-md-7">
+                                    <label class="form-label" for="telefone">Telefone:</label>
+                                    <input type="text" class="form-control"  id="telefone" name="telefone"><br><br>
+                                </div>
+                        </div>
+                    </div>
+                        <input type="hidden" class="form-control"  id="aprovado" name="aprovado" value="Não"><br><br>
+
+                    <button type="submit" name="aceitar" class="btn btn btn-success ">Salvar Evento</button>
+                </form>
+            </div>
+
+        <?php 
+        }
+       
         }else if($dataAtual >= $dataTermino){
             //o usuário não pode mais solicitar participação
             echo '<br>Você não pode solicitar participação!';
-        }
+           
 
     } else{
         echo "Nenhum evento registrado com este link.";
