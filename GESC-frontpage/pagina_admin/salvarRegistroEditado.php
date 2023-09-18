@@ -1,7 +1,10 @@
 <?php
+session_start();
+if (isset($_SESSION["usuariosId"])) {
+
     include_once('../includes/dbh.inc.php');
 
-    if(isset($_POST['update'])){
+    if (isset($_POST['update'])) {
 
         $eventosId = $_POST['idEvento'];
         $nome = $_POST['nome'];
@@ -17,6 +20,8 @@
                         dataInicio='$dataInicio', dataTermino='$dataTermino', horaInicio='$horaInicio', horaTermino='$horaTermino', imagem='$imagem' WHERE eventosId='$eventosId'";
 
         $result = $conexao->query($sqlUpdate);
-
     }
     header('Location: escolherEditar.php');
+} else {
+    header("location: ../pagina_principal/index.php");
+}

@@ -4,10 +4,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = null;
     if (isset($_POST["pesquisarEvento"])) {
         $pesquisarEvento = mysqli_real_escape_string($conexao, $_POST["pesquisarEvento"]);
-        $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE nome LIKE '%$pesquisarEvento%' OR localEv LIKE '%$pesquisarEvento%' ORDER BY dataInicio ASC");
+        $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE nome LIKE '%$pesquisarEvento%' OR localEv LIKE '%$pesquisarEvento%' ORDER BY dataTermino DESC");
     } else if (isset($_POST["dataSelecionada"])) {
         $pesquisarData = mysqli_real_escape_string($conexao, $_POST["dataSelecionada"]);
-        $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE '$pesquisarData' BETWEEN dataInicio AND dataTermino ORDER BY dataInicio ASC");
+        $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE '$pesquisarData' BETWEEN dataInicio AND dataTermino ORDER BY dataTermino DESC");
     }
     $queryResult = mysqli_num_rows($sql);
     include_once 'header.php';

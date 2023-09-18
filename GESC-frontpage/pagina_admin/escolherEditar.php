@@ -1,14 +1,17 @@
 <?php
 
 session_start();
-include_once('../includes/dbh.inc.php');
+if (isset($_SESSION["usuariosId"])) {
+    include_once('../includes/dbh.inc.php');
 
-// Buscar dados do evento
+    // Buscar dados do evento
 
-$sql = "SELECT eventosId, nome, localEv,  dataInicio FROM `eventos`";
-$result = $conexao->query($sql);
-$dadosEvento = $result->fetch_assoc();
-
+    $sql = "SELECT eventosId, nome, localEv,  dataInicio FROM `eventos`";
+    $result = $conexao->query($sql);
+    $dadosEvento = $result->fetch_assoc();
+} else {
+    header("location: ../pagina_principal/index.php");
+}
 ?>
 
 <!doctype html>

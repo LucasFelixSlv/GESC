@@ -1,14 +1,20 @@
 <?php
+session_start();
 
-include '../includes/dbh.inc.php';
+if (isset($_SESSION["usuariosId"])) {
 
-if (isset($_POST['aceitar'])) {
+    include '../includes/dbh.inc.php';
 
-    $nomeUsuario = $_POST['nomeUsuario'];
-    $aprovado = $_POST['aprovado'];
+    if (isset($_POST['aceitar'])) {
 
-    $sql = "INSERT INTO `aceiteEvento` (nomeUsuario, aprovado) VALUES ('$nomeUsuario', '$aprovado')";
-    $rs = mysqli_query($conexao, $sql);
+        $nomeUsuario = $_POST['nomeUsuario'];
+        $aprovado = $_POST['aprovado'];
+
+        $sql = "INSERT INTO `aceiteEvento` (nomeUsuario, aprovado) VALUES ('$nomeUsuario', '$aprovado')";
+        $rs = mysqli_query($conexao, $sql);
+    }
+} else {
+    header("location: ../pagina_principal/index.php");
 }
 
 ?>
