@@ -18,6 +18,15 @@ body {
     min-height: 100vh;
 }
 
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
 /* NAVBAR */
 
 .navbarBg {
@@ -569,4 +578,10 @@ footer{
 
 .centralizado {
     margin: 0 auto;
+}
+.content{
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

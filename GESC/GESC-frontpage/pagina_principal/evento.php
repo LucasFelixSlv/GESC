@@ -22,33 +22,35 @@ if (isset($_GET['id'])){
             echo '<br>Você pode solicitar participação!';
 
             ?>
-            <div >
-                <h1>Formulário de Registro de Evento</h1>
-                <p>Preencha o formulário abaixo para se registrar para o evento:</p>
+            <div class="container">
+                <h2>Formulário de Registro de Evento</h2>
+                <h4>Preencha o formulário abaixo para se registrar para o evento:</h4>
                 
+            <div class="content">
                 <form id="formSolicitacao" action="aceiteEvento.php" method="POST">
-                    <div class="d-flex flex-column justify-content-center">
-                        <div class="row">
-                                <div class="col-md-7">
-                                    <label class="form-label" for="nome">Nome:</label>
-                                    <input type="text" class="form-control"  id="nomeUsuario" name="nomeUsuario" required><br><br>
-                                </div>
+                        <div class="d-flex flex-column justify-content-center">
+                            <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="form-label" for="nome">Nome:</label>
+                                        <input type="text" class="form-control"  id="nomeUsuario" name="nomeUsuario" required><br><br>
+                                    </div>
 
-                                <div class="col-md-7">
-                                    <label class="form-label" for="email">Email:</label>
-                                    <input type="text"  class="form-control"  id="email" name="email"><br><br>
-                                </div>
-                                
-                                <div class="col-md-7">
-                                    <label class="form-label" for="telefone">Telefone:</label>
-                                    <input type="text" class="form-control"  id="telefone" name="telefone"><br><br>
-                                </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label" for="email">Email:</label>
+                                        <input type="text"  class="form-control"  id="email" name="email"><br><br>
+                                    </div>
+                                    
+                                    <div class="col-md-12">
+                                        <label class="form-label" for="telefone">Telefone:</label>
+                                        <input type="text" class="form-control"  id="telefone" name="telefone"><br><br>
+                                    </div>
+                            </div>
                         </div>
-                    </div>
-                        <input type="hidden" class="form-control"  id="aprovado" name="aprovado" value="Não"><br><br>
+                            <input type="hidden" class="form-control"  id="aprovado" name="aprovado" value="Não"><br><br>
 
-                    <button type="submit" name="aceitar" class="btn btn btn-success ">Salvar Evento</button>
-                </form>
+                        <button type="submit" name="aceitar" class="btn btn btn-success ">Salvar Evento</button>
+                    </form>
+            </div>
             </div>
 
         <?php 
