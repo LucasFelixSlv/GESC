@@ -40,7 +40,7 @@ function weakPassword($senha)
     $uppercase = preg_match('@[A-Z]@', $senha);
     $lowercase = preg_match('@[a-z]@', $senha);
     $number    = preg_match('@[0-9]@', $senha);
-    $specialChars = preg_match('@[^\w]@', $senha);   
+    $specialChars = preg_match('@[^\w]@', $senha);
 
 
 
@@ -73,7 +73,6 @@ function userExists($conexao, $usuario)
         $result = false;
         return $result;
     }
-    
 }
 
 function createUser($conexao, $usuario, $senha)
@@ -90,7 +89,7 @@ function createUser($conexao, $usuario, $senha)
     mysqli_stmt_bind_param($stmt, "ss", $usuario, $hashedSenha);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    
+
     loginUser($conexao, $usuario, $senha);
 }
 
@@ -107,10 +106,11 @@ function emptyInputLogin($usuario, $senha)
     return $result;
 }
 
-function loginUser($conexao, $usuario, $senha){
+function loginUser($conexao, $usuario, $senha)
+{
     $usuarioExiste = userExists($conexao, $usuario);
 
-    if($usuarioExiste === false){
+    if ($usuarioExiste === false) {
         header("location: ../pagina_principal/login.php?error=loginerrado");
         exit();
     }
@@ -118,15 +118,28 @@ function loginUser($conexao, $usuario, $senha){
     $hashedSenha = $usuarioExiste["usuariosSenha"];
     $verificarSenha = password_verify($senha, $hashedSenha);
 
-    if ($verificarSenha === false){
+    if ($verificarSenha === false) {
         header("location: ../pagina_principal/login.php?error=loginerrado");
         exit();
-    }else if($verificarSenha === true){
+    } else if ($verificarSenha === true) {
         session_start();
         $_SESSION["usuariosId"] = $usuarioExiste["usuariosId"];
         $_SESSION["usuariosNome"] = $usuarioExiste["usuariosNome"];
         header("location: ../pagina_principal/index.php");
         exit();
     }
+}
 
+function userParticipation($usuariosId, $eventosId)
+{
+    include_once('dbh.inc.php');
+    $sql = "INSERT INTO participacao_eventos (usuariosId, eventosId) VALUES ('$usuariosId', '$eventosId')";
+    mysqli_query($conexao, $sql);
+}
+
+function userComment($participacaoId, $comentario)
+{
+    include_once('dbh.inc.php');
+    $sql = "INSERT INTO avaliacoes (participacaoId, comentario) VALUES ('$participacaoId', '$comentario')";
+    mysqli_query($conexao, $sql);
 }

@@ -35,7 +35,7 @@ if (isset($_SESSION["usuariosId"])) {
         }
 
         $sql = "INSERT INTO `eventos` (usuariosId, nome, descricao, localEv, dataInicio, dataTermino, horaInicio, horaTermino, imagem, link) VALUES ('$usuario', '$nome', '$descricao', '$localEv', '$dataInicio', '$dataTermino', '$horaInicio', '$horaTermino', '$caminho', '$link')";
-        $rs = mysqli_query($conexao, $sql);
+        mysqli_query($conexao, $sql);
     }
 } else {
     header("location: ../pagina_principal/index.php");
