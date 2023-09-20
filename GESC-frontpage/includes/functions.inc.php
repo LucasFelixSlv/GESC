@@ -133,13 +133,13 @@ function loginUser($conexao, $usuario, $senha)
 function userParticipation($usuariosId, $eventosId)
 {
     include_once('dbh.inc.php');
-    $sql = "INSERT INTO participacao_eventos (usuariosId, eventosId) VALUES ('$usuariosId', '$eventosId')";
+    $sql = "INSERT INTO solicitacao (usuariosId, eventosId) VALUES ('$usuariosId', '$eventosId')";
     mysqli_query($conexao, $sql);
 }
 
-function userComment($participacaoId, $comentario)
+function userComment($participacaoId, $comentario, $nota)
 {
     include_once('dbh.inc.php');
-    $sql = "INSERT INTO avaliacoes (participacaoId, comentario) VALUES ('$participacaoId', '$comentario')";
+    $sql = "INSERT INTO avaliacoes (participacaoId, comentario, nota) VALUES ('$participacaoId', '$comentario', '$nota')";
     mysqli_query($conexao, $sql);
 }

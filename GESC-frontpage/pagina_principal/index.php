@@ -70,6 +70,11 @@ if ($queryResult > 0) {
                         <button type="submit" class="dataButton">Pesquisar</button>
                     </form>
                 </div>
+                <?php
+                $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE dataTermino > NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
+                if (mysqli_num_rows($sql) > 0) {
+                
+                ?>
                 <h2 class="nextPastEvents">PRÓXIMOS EVENTOS</h2>
             </div>
             <div class="row g-3 mobileCenter mb-3">
@@ -95,11 +100,14 @@ if ($queryResult > 0) {
                     </div>
                 <?php } ?>
             </div>
+            <div class="barDiv"></div>
             <?php
+                }else{
+                    echo '</div>';
+                }
             $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE dataTermino < NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
             if (mysqli_num_rows($sql) > 0) {
             ?>
-                <div class="barDiv"></div>
                 <div class="p-relative">
                     <h2 class="nextPastEvents">EVENTOS FINALIZADOS</h2>
                 </div>
