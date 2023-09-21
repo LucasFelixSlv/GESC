@@ -99,34 +99,74 @@ body {
 
 }
 
-.form-control{
+.form-control {
     background-color: #252526;
     border-color: #42C82C;
     color: #fff;
     border-width: 2px;
 }
 
-.form-control::placeholder{
+.form-control::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
 
-.form-control:focus{
+.form-control:focus {
     background-color: #252526;
     outline: none;
     border-color: #42C82C;
     color: #fff;
 }
 
+.dropdown-menu {
+    background-color: #242426;
+    border-color: #42C82C;
+    border-width: 2px;
+}
+
+.dropdown-item {
+    color: #fff;
+    transition: all 0.2s ease;
+}
+
+/* SEM EVENTO */
+
+.containerSemEvento {
+    background-color: #252526;
+    padding: 30px;
+    border-radius: 10px;
+    color: white;
+    position: absolute;
+    margin: 0 auto;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+}
+
+.containerSemEvento p{
+    font-size: 18px;
+}
+
+.noEvent{
+    text-decoration: none;
+    color: #42C82C;
+    transition: all 0.1s ease;
+}
+
+.noEvent:hover{
+    border-bottom: 3px solid #42C82C;
+}
+
 /* LOGIN/SIGNUP */
 
-.wrapperAll{
+.wrapperAll {
     position: absolute;
     left: 50%;
     top: 53%;
-    transform: translate(-50%,-51%) scale(0.9);
+    transform: translate(-50%, -51%) scale(0.9);
 }
 
-.wrapper{
+.wrapper {
     position: relative;
     z-index: 101;
     margin: 0 auto;
@@ -140,12 +180,12 @@ body {
     align-items: center;
 }
 
-.acesso{
+.acesso {
     margin: 0 auto;
     max-height: 400px;
 }
 
-.cadastro{
+.cadastro {
     height: 500px;
     transform: scale(0.9);
 }
@@ -157,26 +197,28 @@ body {
 }
 
 @media (max-width:767px) {
-    .wrapper{
+    .wrapper {
         width: 330px;
     }
-    .cadastro{
+
+    .cadastro {
         height: 440px;
         transform: scale(1);
     }
-    .formBox{
+
+    .formBox {
         width: 260px;
     }
 }
 
-.formBox h2{
+.formBox h2 {
     font-size: 2em;
     color: #42C82C;
     text-align: center;
     font-weight: bold;
 }
 
-.inputBox{
+.inputBox {
     position: relative;
     width: 100%;
     height: 50px;
@@ -185,11 +227,12 @@ body {
     transition: all 0.2s ease;
 }
 
-.inputBox:hover, .inputBox:focus-within{
-    border-color:#42C82C;
+.inputBox:hover,
+.inputBox:focus-within {
+    border-color: #42C82C;
 }
 
-.inputBox label{
+.inputBox label {
     position: absolute;
     top: 50%;
     left: 5px;
@@ -201,14 +244,14 @@ body {
     transition: all 0.1s ease;
 }
 
-.inputBox input{
+.inputBox input {
     width: 100%;
     height: 100%;
     background: none;
     border: none;
     outline: none;
     font-size: 1em;
-    color:#fff;
+    color: #fff;
     font-weight: 200;
     padding: 0 35px 0 5px;
 }
@@ -218,7 +261,7 @@ body {
     top: -5px;
 }
 
-.inputBox .icon{
+.inputBox .icon {
     position: absolute;
     right: 8px;
     font-size: 1.2em;
@@ -226,7 +269,7 @@ body {
     line-height: 57px;
 }
 
-.loginBtn{
+.loginBtn {
     width: 100%;
     height: 45px;
     background: #252526;
@@ -240,13 +283,14 @@ body {
     transition: all 0.2s ease;
 }
 
-.loginBtn:hover, .loginBtn:focus{
+.loginBtn:hover,
+.loginBtn:focus {
     border: none;
     background: #42C82C;
     color: #252526;
 }
 
-.loginSignup{
+.loginSignup {
     font-size: 0.9em;
     color: #fff;
     text-align: center;
@@ -254,7 +298,8 @@ body {
     margin: 25px 0 10px;
 }
 
-.signupLink, .loginLink{
+.signupLink,
+.loginLink {
     background: none;
     outline: none;
     border: none;
@@ -264,13 +309,17 @@ body {
     transition: all 0.2s ease;
 }
 
-.signupLink:hover, .signupLink:focus, .loginLink:hover, .loginLink:focus{
+.signupLink:hover,
+.signupLink:focus,
+.loginLink:hover,
+.loginLink:focus {
     text-decoration: underline;
     color: #42C82C;
 }
+
 /* MENSAGEM DE ERRO/SUCESSO */
 
-.wrapperMsgErro{
+.wrapperMsgErro {
     border-radius: 10px;
     width: 100%;
     height: 100%;
@@ -283,17 +332,17 @@ body {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-@media(max-width:767px){
-    .wrapperMsgErro{
-    width: 117%;
-    height: 100%;
-    top: 0%;
-    left: -25px;
-    position: fixed;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    background-color: rgba(0, 0, 0, 0.8);
+@media(max-width:767px) {
+    .wrapperMsgErro {
+        width: 117%;
+        height: 100%;
+        top: 0%;
+        left: -25px;
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        background-color: rgba(0, 0, 0, 0.8);
     }
 }
 
@@ -315,7 +364,7 @@ body {
     flex-direction: column;
 }
 
-.confirmarMsg{
+.confirmarMsg {
     border-radius: 5px;
     border: 2px solid #fff;
     background-color: #252526;
@@ -328,71 +377,60 @@ body {
     transition: all 0.2s ease;
 }
 
-.confirmarMsg:hover{
+.confirmarMsg:hover {
     border-color: gray;
     background: #42C82C;
     color: #252526;
 }
 
+.inputError{
+    border-color: red;
+}
+
 /* CARROSSEL */
 
-.containerSemEvento{
-    position: absolute;
-    margin: 0 auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-
-.semEvento{
-    
-    margin: 12px auto;
-    font-size: 32px;
-    
-}
-
-.carouselMargin{
+.carouselMargin {
     margin: 16px 16px 16px;
 }
 
-.carouselContent{
+.carouselContent {
     margin: 0 auto;
     max-height: 337.5px;
     max-width: 600px;
 }
 
-.carouselBorder{
+.carouselBorder {
     border-radius: 10px;
 }
 
-.carouselIndicators{
-    background-color: #42C82C!important;
-    width: 10px!important;
-    height: 10px!important;
+.carouselIndicators {
+    background-color: #42C82C !important;
+    width: 10px !important;
+    height: 10px !important;
     border-radius: 100%;
-    border: 2px solid #fff!important;
+    border: 2px solid #fff !important;
 }
 
-.carouselArrowPrev{
-    background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%2342C82C%27%3e%3cpath d=%27M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z%27/%3e%3c/svg%3e")!important;
+.carouselArrowPrev {
+    background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%2342C82C%27%3e%3cpath d=%27M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z%27/%3e%3c/svg%3e") !important;
     border: 2px solid #fff;
     border-radius: 100%;
 }
 
-.carouselArrowNext{
-    background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%2342C82C%27%3e%3cpath d=%27M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z%27/%3e%3c/svg%3e")!important;
+.carouselArrowNext {
+    background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%2342C82C%27%3e%3cpath d=%27M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z%27/%3e%3c/svg%3e") !important;
     border: 2px solid #fff;
     border-radius: 100%;
 }
 
-.carousel-item img{
+.carousel-item img {
     aspect-ratio: 16 / 9;
     object-fit: cover;
 }
 
 /* Barra que divide o site */
 
-.barDiv{
+.barDiv {
     width: 90%;
     border: 2px solid #42C82C;
     border-radius: 100%;
@@ -402,11 +440,11 @@ body {
 
 /* Selecionar data */
 
-.divEvents{
+.divEvents {
     margin-bottom: 125px;
 }
 
-.divDateSelect{
+.divDateSelect {
     position: relative;
     background-color: #42C82C;
     width: fit-content;
@@ -417,16 +455,16 @@ body {
     border: 2px solid #94ea89;
 }
 
-.nextEvents{
+.nextPastEvents {
     font-weight: bold;
 }
 
-.dateStyle label{
+.dateStyle label {
     font-weight: bold;
-    font-size:18px;
+    font-size: 18px;
 }
 
-.dataInput{
+.dataInput {
     border: none;
     border-radius: 5px;
     background: #fff;
@@ -435,7 +473,7 @@ body {
     font-weight: bold;
 }
 
-.dataButton{
+.dataButton {
     border: 2px solid gray;
     border-radius: 5px;
     background-color: #252526;
@@ -444,20 +482,22 @@ body {
     transition: all 0.2s ease;
 }
 
-@media(max-width:767px){
-    .divDateSelect{
+@media(max-width:767px) {
+    .divDateSelect {
         width: 280px;
     }
-    .dateStyle input{
+
+    .dateStyle input {
         width: 50%;
     }
-    .dataButton{
+
+    .dataButton {
         width: 75px;
         font-size: 12px;
     }
 }
 
-.dataButton:hover{
+.dataButton:hover {
     border-color: #fff;
     background-color: #242426;
     color: #42C82C;
@@ -466,18 +506,16 @@ body {
 
 /* CARD DE EVENTO */
 
-@media(max-width:767px){
-    .containerModal{
-        margin-bottom: 25px;
+@media(max-width:767px) {
+    .containerModal {
         width: 300px;
-        height: 280px;
     }
 }
 
 @media(max-width:767px) {
-    .mobileCenter{
-        justify-content: center!important;
-    }    
+    .mobileCenter {
+        justify-content: center !important;
+    }
 }
 
 .imageEvent{
@@ -491,15 +529,15 @@ body {
 .imageFit{
     aspect-ratio: 16 / 9;
     object-fit: cover;
-    border-top-left-radius: 10px!important;
-    border-top-right-radius: 10px!important;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
 }
 
-.roundCard{
-    border-radius: 10px!important;
+.roundCard {
+    border-radius: 10px !important;
 }
 
-.infoCard{
+.infoCard {
     display: flex;
     flex-direction: column;
     background-color: #252526;
@@ -507,8 +545,8 @@ body {
     border-bottom-right-radius: 10px;
 }
 
-.textCard{
-    display:flex;
+.textCard {
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -516,17 +554,23 @@ body {
     color: #fff;
 }
 
-.textCard h3{
+.textCard h3 {
     width: 100%;
 }
 
-.infoCard p{
+.dataEvento {
     color: #42C82C;
     font-weight: bold;
     font-size: 22px;
 }
 
-.modalButton{
+.eventoFinalizado {
+    font-size: 20px;
+    color: rgb(255, 42, 42);
+    margin-bottom: 0;
+}
+
+.modalButton {
     background-color: #42C82C;
     color: #252526;
     padding: 0.75rem 0.375rem;
@@ -548,14 +592,14 @@ body {
 
 /* PÁGINA DE PESQUISA */
 
-.textoPesquisa{
+.textoPesquisa {
     margin: 12px auto;
     font-size: 24px;
 }
 
 /* FOOTER */
 
-footer{
+footer {
     margin-top: 12px;
     text-align: center;
     background-color: #252526;

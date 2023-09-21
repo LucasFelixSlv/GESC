@@ -1,35 +1,38 @@
 <?php
 
 session_start();
-include_once('../includes/dbh.inc.php');
+if (isset($_SESSION["usuariosId"])) {
+    include_once('../includes/dbh.inc.php');
 
-if (!empty($_GET['eventosId'])) {
+    if (!empty($_GET['eventosId'])) {
 
-    $eventosId = $_GET['eventosId'];
+        $eventosId = $_GET['eventosId'];
 
-    $sqlSelect = "SELECT * FROM `eventos` WHERE eventosId='$eventosId'";
+        $sqlSelect = "SELECT * FROM `eventos` WHERE eventosId='$eventosId'";
 
-    $result = $conexao->query($sqlSelect);
+        $result = $conexao->query($sqlSelect);
 
-    if ($result->num_rows > 0) {
+        if ($result->num_rows > 0) {
 
-        while ($dadosEvento = mysqli_fetch_assoc($result)) {
+            while ($dadosEvento = mysqli_fetch_assoc($result)) {
 
-            $eventosId = $dadosEvento['eventosId'];
-            $nome = $dadosEvento['nome'];
-            $descricao = $dadosEvento['descricao'];
-            $localEv = $dadosEvento['localEv'];
-            $dataInicio = $dadosEvento['dataInicio'];
-            $dataTermino = $dadosEvento['dataTermino'];
-            $horaInicio = $dadosEvento['horaInicio'];
-            $horaTermino = $dadosEvento['horaTermino'];
-            $imagem = $dadosEvento['imagem'];
+                $eventosId = $dadosEvento['eventosId'];
+                $nome = $dadosEvento['nome'];
+                $descricao = $dadosEvento['descricao'];
+                $localEv = $dadosEvento['localEv'];
+                $dataInicio = $dadosEvento['dataInicio'];
+                $dataTermino = $dadosEvento['dataTermino'];
+                $horaInicio = $dadosEvento['horaInicio'];
+                $horaTermino = $dadosEvento['horaTermino'];
+                $imagem = $dadosEvento['imagem'];
+            }
+        } else {
+            header('Location: editar.php');
         }
-    } else {
-        header('Location: editar.php');
     }
+} else {
+    header("location: ../pagina_principal/index.php");
 }
-
 ?>
 
 <!doctype html>

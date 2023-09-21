@@ -1,38 +1,44 @@
 <?php
 session_start();
-$usuario = $_SESSION["usuariosId"];
 
-include_once('../includes/dbh.inc.php');
+if (isset($_SESSION["usuariosId"])) {
 
-if (isset($_POST['submit'])) {
-    $nome = $_POST['nome'];
-    $descricao = $_POST['descricao'];
-    $localEv = $_POST['localEv'];
-    $dataInicio = $_POST['dataInicio'];
-    $dataTermino = $_POST['dataTermino'];
-    $horaInicio = $_POST['horaInicio'];
-    $horaTermino = $_POST['horaTermino'];
-    $imagem = $_FILES['imagem'];
+    $usuario = $_SESSION["usuariosId"];
 
-    $pasta = "../assets/imagensEventos/";
-    $nomeDaImagem = $imagem['name'];
-    $novoNomeDaImagem = uniqid();
-    $extensao = strtolower(pathinfo($nomeDaImagem,PATHINFO_EXTENSION));
-    
-    if($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg"){
-        die("Tipo de arquivo não aceito");
-    }
-    $caminho = $pasta . $novoNomeDaImagem . "." . $extensao;
-    $imagemUpload = move_uploaded_file($imagem["tmp_name"], $caminho);
+    include_once('../includes/dbh.inc.php');
 
-    $link = mt_rand(0, 999999);
-    $linkCheck = mysqli_query($conexao, "SELECT * FROM eventos WHERE link = $link");
-    while(mysqli_num_rows($linkCheck)>0){
+    if (isset($_POST['submit'])) {
+        $nome = $_POST['nome'];
+        $descricao = $_POST['descricao'];
+        $localEv = $_POST['localEv'];
+        $dataInicio = $_POST['dataInicio'];
+        $dataTermino = $_POST['dataTermino'];
+        $horaInicio = $_POST['horaInicio'];
+        $horaTermino = $_POST['horaTermino'];
+        $imagem = $_FILES['imagem'];
+
+        $pasta = "../assets/imagensEventos/";
+        $nomeDaImagem = $imagem['name'];
+        $novoNomeDaImagem = uniqid();
+        $extensao = strtolower(pathinfo($nomeDaImagem, PATHINFO_EXTENSION));
+
+        if ($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg") {
+            die("Tipo de arquivo não aceito");
+        }
+        $caminho = $pasta . $novoNomeDaImagem . "." . $extensao;
+        $imagemUpload = move_uploaded_file($imagem["tmp_name"], $caminho);
+
         $link = mt_rand(0, 999999);
-    }
+        $linkCheck = mysqli_query($conexao, "SELECT * FROM eventos WHERE link = $link");
+        while (mysqli_num_rows($linkCheck) > 0) {
+            $link = mt_rand(0, 999999);
+        }
 
-    $sql = "INSERT INTO `eventos` (usuariosId, nome, descricao, localEv, dataInicio, dataTermino, horaInicio, horaTermino, imagem, link) VALUES ('$usuario', '$nome', '$descricao', '$localEv', '$dataInicio', '$dataTermino', '$horaInicio', '$horaTermino', '$caminho', '$link')";
-    $rs = mysqli_query($conexao, $sql);
+        $sql = "INSERT INTO `eventos` (usuariosId, nome, descricao, localEv, dataInicio, dataTermino, horaInicio, horaTermino, imagem, link) VALUES ('$usuario', '$nome', '$descricao', '$localEv', '$dataInicio', '$dataTermino', '$horaInicio', '$horaTermino', '$caminho', '$link')";
+        mysqli_query($conexao, $sql);
+    }
+} else {
+    header("location: ../pagina_principal/index.php");
 }
 ?>
 

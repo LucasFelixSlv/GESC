@@ -40,7 +40,7 @@ session_start();
                             echo "<div class='fundoNavbarBotao col-lg-6 dropdown'>";
                             echo "<a class='navbarBotao' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>MINHA CONTA</a>";
                             echo "<div class='dropdown-menu dropdownOptions'>";
-                            echo "<a class='dropdown-item' type='button' href='../pagina_admin/escolherEditar.php'>Dashboard</a>";
+                            echo "<a class='dropdown-item' type='button' href='../pagina_admin/escolherEditar.php'>Painel de controle</a>";
                             echo "<a class='dropdown-item' type='button' href='../pagina_admin/solicitacoes.php'>Notificações</a>";
                             echo "<a href='../includes/logout.inc.php' class='dropdown-item'>Sair</a>";
                             echo "</div>";

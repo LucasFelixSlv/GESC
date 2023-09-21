@@ -1,14 +1,18 @@
 <?php
 
 session_start();
-include_once('../includes/dbh.inc.php');
+if (isset($_SESSION["usuariosId"])) {
 
-// Buscar dados do evento
+  include_once('../includes/dbh.inc.php');
 
-$sql = "SELECT nomeUsuario, COUNT(aprovado) AS somaTotal FROM `aceiteEvento`;";
-$result = $conexao->query($sql);
-$dadosSolicitacao = $result->fetch_assoc();
+  // Buscar dados do evento
 
+  $sql = "SELECT nomeUsuario, COUNT(aprovado) AS somaTotal FROM `aceiteEvento`;";
+  $result = $conexao->query($sql);
+  $dadosSolicitacao = $result->fetch_assoc();
+} else {
+  header("location: ../pagina_principal/index.php");
+}
 ?>
 
 <!doctype html>

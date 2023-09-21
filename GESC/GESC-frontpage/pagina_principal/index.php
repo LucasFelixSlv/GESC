@@ -63,7 +63,6 @@ if ($queryResult > 0) {
         <div class="barDiv"></div>
         <div class="container divEvents">
             <div class="p-relative">
-                <h2 class="nextEvents">PRÓXIMOS EVENTOS</h2>
                 <div class="divDateSelect">
                     <form action="search.php" method="post" class="dateStyle">
                         <label for="dataSelecionada">Data: </label>
@@ -71,39 +70,83 @@ if ($queryResult > 0) {
                         <button type="submit" class="dataButton">Pesquisar</button>
                     </form>
                 </div>
-            </div>
-            <div class="row g-3 mobileCenter">
                 <?php
-                require '../includes/dbh.inc.php';
-                $sql = mysqli_query($conexao, "SELECT * FROM eventos ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
-
+                $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE dataTermino > NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
+                if (mysqli_num_rows($sql) > 0) {
+                
+                ?>
+                <h2 class="nextPastEvents">PRÓXIMOS EVENTOS</h2>
+            </div>
+            <div class="row g-3 mobileCenter mb-3">
+                <?php
+                $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE dataTermino > NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
                 while ($aux = mysqli_fetch_assoc($sql)) {
                     $dataInicio = $aux["dataInicio"];
                     $DataEspecificaInicio = new DateTime($dataInicio);
                     $dataTermino = $aux["dataTermino"];
                     $DataEspecificaTermino = new DateTime($dataTermino);
                 ?>
-                    <div class="col-10 col-md-6 col-lg-4 containerModal"> <!-- card de evento começa aqui !-->
+                    <div class="col-10 col-md-6 col-lg-4 containerModal">
                         <div class="roundCard card h-100">
                             <img class="imageFit card-img-top" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
                             <div class="infoCard card-body">
-                                <p class="m-0"><?= date_format($DataEspecificaInicio, "d/m/Y") ?> - <?= date_format($DataEspecificaTermino, "d/m/Y") ?></p>
+                                <p class="m-0 dataEvento"><?= date_format($DataEspecificaInicio, "d/m/Y") ?><span style="color: white;"> - </span><?= date_format($DataEspecificaTermino, "d/m/Y") ?></p>
                                 <div class="textCard">
                                     <h3 class="card-title"><?= $aux["nome"] ?></h3>
                                 </div>
-                                    <a href="evento.php?id=<?= $aux["link"] ?>" class="modalButton" name="BotaoEvento">Mais detalhes</a>
+                                <a href="evento.php?id=<?= $aux["link"] ?>" class="modalButton" name="BotaoEvento">Mais detalhes</a>
                             </div>
                         </div>
                     </div>
                 <?php } ?>
             </div>
+            <div class="barDiv"></div>
+            <?php
+                }else{
+                    echo '</div>';
+                }
+            $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE dataTermino < NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
+            if (mysqli_num_rows($sql) > 0) {
+            ?>
+                <div class="p-relative">
+                    <h2 class="nextPastEvents">EVENTOS FINALIZADOS</h2>
+                </div>
+                <div class="row g-3 mobileCenter mb-3">
+
+                    <?php
+                    while ($aux = mysqli_fetch_assoc($sql)) {
+                        $dataInicio = $aux["dataInicio"];
+                        $DataEspecificaInicio = new DateTime($dataInicio);
+                        $dataTermino = $aux["dataTermino"];
+                        $DataEspecificaTermino = new DateTime($dataTermino);
+                    ?>
+                        <div class="col-10 col-md-6 col-lg-4 containerModal">
+                            <div class="roundCard card h-100">
+                                <img class="imageFit card-img-top" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
+                                <div class="infoCard card-body">
+                                    <p class="m-0 dataEvento"><?= date_format($DataEspecificaInicio, "d/m/Y") ?><span style="color: white;"> - </span><?= date_format($DataEspecificaTermino, "d/m/Y") ?></p>
+                                    <div class="textCard">
+                                        <p class="eventoFinalizado">[Finalizado]</p>
+                                        <h3 class="card-title"><?= $aux["nome"] ?></h3>
+                                    </div>
+                                    <a href="evento.php?id=<?= $aux["link"] ?>" class="modalButton" name="BotaoEvento">Mais detalhes</a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }
+                    ?>
+                </div>
+            <?php } ?>
         </div>
     <?php } else {
-    echo "
-    <div class='containerSemEvento'>
-    <p class='semEvento'>Nenhum evento registrado!</p>
+    ?>
+    
+    <div class="containerSemEvento">
+    <h1>Nenhum evento registrado!</h1>
+    <p>Para criar um evento realize seu <a href="cadastro.php" class="noEvent">cadastro</a> ou <a href="login.php" class="noEvent">acesse sua conta</a>.</p>
+    <p>Em seguida, clique em <a href="../pagina_admin/adicionar.php" class="noEvent">criar evento!</a></p>
     </div>
-    ";
+    <?php
 } ?>
     <?php
     include_once 'footer.php';
