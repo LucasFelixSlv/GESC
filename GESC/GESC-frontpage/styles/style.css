@@ -519,6 +519,8 @@ body {
 }
 
 .imageEvent{
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
     max-width: 50%;
     border-top-left-radius: 5px!important;
     border-top-right-radius: 5px!important;
