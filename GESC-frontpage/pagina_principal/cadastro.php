@@ -12,12 +12,12 @@ include_once 'header.php';
                     <label>Usuário</label>
                 </div>
                 <div class="inputBox">
-                    <span class="icon"><i class="fa fa-eye-slash" aria-hidden="true" id="olhoSignup" onclick="toggle()"></i></span>
+                    <span class="icon"><i class="fa fa-eye-slash" aria-hidden="true" id="olhoSignup" onclick="toggleSenhaCadastro()"></i></span>
                     <input type="password" name="senhaUsuario" id="senhaSignup" placeholder=" " required>
                     <label>Senha</label>
                 </div>
                 <div class="inputBox">
-                    <span class="icon"><i class="fa fa-eye-slash" aria-hidden="true" id="olhoConfirmar" onclick="toggle()"></i></span>
+                    <span class="icon"><i class="fa fa-eye-slash" aria-hidden="true" id="olhoConfirmar" onclick="toggleSenhaCadastro()"></i></span>
                     <input type="password" name="repetirSenhaUsuario" id="senhaConfirmar" placeholder=" " required>
                     <label>Confirmar senha</label>
                 </div>

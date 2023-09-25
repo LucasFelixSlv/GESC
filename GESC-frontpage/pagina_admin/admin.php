@@ -47,6 +47,9 @@
                     <li class="nav-item ps-5">
                         <a class="nav-link" href="../pagina_principal/index.php">Início</a>
                     </li>
+                    <li class="nav-item ps-5">
+                        <a class="nav-link" href="../pagina_principal/index.php">Início</a>
+                    </li>
                 </ul>
             </div>
         </div>

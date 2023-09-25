@@ -1,7 +1,7 @@
 <?php 
 require('../includes/dbh.inc.php');
 
-if (isset($_POST['EventosIdUpdate'])) {
+if (isset($_POST['submit'])) {
     $eventosId      = $_POST['eventosId'];
     $usuariosId     = $_POST['usuariosId'];
     $nome           = $_POST['nome'];
@@ -59,16 +59,28 @@ if (isset($_POST['EventosIdUpdate'])) {
             // Faz o upload da imagem para seu respectivo caminho 
             move_uploaded_file($foto["tmp_name"], $caminho_imagem); 
         } 
-    }
+    } 
 
+    // Define o nome da imagem como vazio caso não tenha sido enviada 
     if (!isset($nome_imagem)) { 
         $nome_imagem = ''; 
     } 
 
-    $sql = "UPDATE eventos SET nome='$nome', descricao='$descricao', localEv='$localEv', dataInicio='$dataInicio', dataTermino='$dataTermino', horaInicio='$horaInicio', horaTermino='$horaTermino', imagem='$caminho_imagem' WHERE eventosId='$eventosId'";
+    $link = mt_rand(0, 999999);
+    $linkCheck = mysqli_query($conexao, "SELECT * FROM eventos WHERE link = $link");
     
-    $result = $conexao->query($sql);
+    while(mysqli_num_rows($linkCheck)>0){
+        $link = mt_rand(0, 999999);
+    }
+
+ 
+    $sql = "INSERT INTO gesc.eventos(usuariosId, nome, descricao, localEv, dataInicio, dataTermino, horaInicio, horaTermino, imagem, link) VALUES  
+    ('".$idUser."',  '".$nome."', '".$descricao."', '".$localEv."', '".$dataInicio."', '".$dataTermino."', '".$horaInicio."','".$horaTermino."','".$caminho_imagem."','".$link."');"; 
    
+
+    $result = $conexao->query($sql);
     } 
 
-    header("Location: escolherEditar.php");
+    header('Location: escolherEditar.php');
+
+?>
