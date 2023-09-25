@@ -9,7 +9,7 @@ if (isset($_SESSION["usuariosId"])) {
 
     // Buscar dados do evento
 
-    $sql = "SELECT usuarios.usuariosNome, comentario FROM `avaliacoes` INNER JOIN participacao_eventos ON avaliacoes.participacaoId = participacao_eventos.participacaoId INNER JOIN usuarios ON participacao_eventos.usuariosId = usuarios.usuariosId ORDER BY avaliacoesId ASC";
+    $sql = "SELECT usuarios.usuariosNome, avaliacoes.comentario FROM `avaliacoes` INNER JOIN participacao_eventos ON avaliacoes.participacaoId = participacao_eventos.participacaoId INNER JOIN usuarios ON participacao_eventos.usuariosId = usuarios.usuariosId ORDER BY avaliacoesId ASC";
     $result = $conexao->query($sql);
     $dadosComents = $result->fetch_assoc();
     $result->data_seek(0);
@@ -101,8 +101,7 @@ if (isset($_SESSION["usuariosId"])) {
 
         echo "<div class='container'>
             <div class='mb-3'>
-                <label for='descricao' class='form-label'>Nome: $dadosComents[nomeUsuario]</label>
-                <textarea class='form-control' id='descricao' rows='4'> $dadosComents[comentario]</textarea>
+                <textarea class='form-control mt-4' id='descricao' rows='4'> $dadosComents[comentario]</textarea>
             </div>
         </div>'";
     }

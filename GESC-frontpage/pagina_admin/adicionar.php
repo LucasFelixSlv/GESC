@@ -2,41 +2,7 @@
 session_start();
 
 if (isset($_SESSION["usuariosId"])) {
-
     $usuario = $_SESSION["usuariosId"];
-
-    include_once('../includes/dbh.inc.php');
-
-    if (isset($_POST['submit'])) {
-        $nome = $_POST['nome'];
-        $descricao = $_POST['descricao'];
-        $localEv = $_POST['localEv'];
-        $dataInicio = $_POST['dataInicio'];
-        $dataTermino = $_POST['dataTermino'];
-        $horaInicio = $_POST['horaInicio'];
-        $horaTermino = $_POST['horaTermino'];
-        $imagem = $_FILES['imagem'];
-
-        $pasta = "../assets/imagensEventos/";
-        $nomeDaImagem = $imagem['name'];
-        $novoNomeDaImagem = uniqid();
-        $extensao = strtolower(pathinfo($nomeDaImagem, PATHINFO_EXTENSION));
-
-        if ($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg") {
-            die("Tipo de arquivo não aceito");
-        }
-        $caminho = $pasta . $novoNomeDaImagem . "." . $extensao;
-        $imagemUpload = move_uploaded_file($imagem["tmp_name"], $caminho);
-
-        $link = mt_rand(0, 999999);
-        $linkCheck = mysqli_query($conexao, "SELECT * FROM eventos WHERE link = $link");
-        while (mysqli_num_rows($linkCheck) > 0) {
-            $link = mt_rand(0, 999999);
-        }
-
-        $sql = "INSERT INTO `eventos` (usuariosId, nome, descricao, localEv, dataInicio, dataTermino, horaInicio, horaTermino, imagem, link) VALUES ('$usuario', '$nome', '$descricao', '$localEv', '$dataInicio', '$dataTermino', '$horaInicio', '$horaTermino', '$caminho', '$link')";
-        mysqli_query($conexao, $sql);
-    }
 } else {
     header("location: ../pagina_principal/index.php");
 }
@@ -59,8 +25,6 @@ if (isset($_SESSION["usuariosId"])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-
 </head>
 
 <body>
@@ -108,7 +72,9 @@ if (isset($_SESSION["usuariosId"])) {
         Evento com sucesso!
     </div>
 
-    <form enctype="multipart/form-data" id="myform" action="adicionar.php" role="form" method="POST">
+    <form id="myform" action="salvaEvento.php" role="form" method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" name="usuarioId" value="<?= $usuario; ?>">
 
         <div class="container">
             <h1 class="display-5 text-center">Novo Evento</h1>
@@ -117,56 +83,64 @@ if (isset($_SESSION["usuariosId"])) {
         <div class="container">
             <div class="mb-3">
                 <label for="nome" class="form-label">Evento:</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do seu Evento">
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do seu Evento" required>
             </div>
         </div>
 
         <div class="container">
             <div class="mb-3">
                 <label for="descricao" class="form-label">Descrição:</label>
-                <textarea class="form-control" id="descricao" name="descricao" rows="2" placeholder="Digite a descrição do Evento"></textarea>
+                <textarea class="form-control" id="descricao" name="descricao" rows="2" placeholder="Digite a descrição do Evento" required></textarea>
             </div>
         </div>
 
         <div class="container">
             <div class="mb-3">
                 <label for="local" class="form-label">Local:</label>
-                <input type="text" class="form-control" id="local" name="localEv" placeholder="Digite o local do Evento">
+                <input type="text" class="form-control" id="local" name="localEv" placeholder="Digite o local do Evento" required>
+            </div>
+        </div>
+
+        <?php
+
+        date_default_timezone_set('America/Sao_Paulo');
+        $dataAtual = date('d/m/y');
+
+        ?>
+
+
+        <div class="container">
+            <div class="mb-3">
+                <label for="dataInicio" class="form-label md-input-wrapper">Data de Inicio:</label>
+                <input type="date" class="form-control" id="dataInicio" name="dataInicio" min="<?php echo  date('Y-m-d'); ?>" required>
             </div>
         </div>
 
         <div class="container">
             <div class="mb-3">
-                <label for="data" class="form-label">Data começo:</label>
-                <input type="date" class="form-control" id="data" name="dataInicio">
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="mb-3">
-                <label for="data" class="form-label">Data fim:</label>
-                <input type="date" class="form-control" id="data" name="dataTermino">
+                <label for="dataTermino" class="form-label md-input-wrapper">Data de Término:</label>
+                <input type="date" class="form-control" id="dataTermino" name="dataTermino" min="<?php echo  date('Y-m-d'); ?>" required>
             </div>
         </div>
 
         <div class="container">
             <div class="mb-3">
                 <label for="horario-inicio" class="form-label">Início do Evento:</label>
-                <input type="time" class="form-control" id="horario-inicio" name="horaInicio">
+                <input type="time" class="form-control" id="horario-inicio" name="horaInicio" required>
             </div>
         </div>
 
         <div class="container">
             <div class="mb-3">
                 <label for="horario-termino" class="form-label">Término do Evento:</label>
-                <input type="time" class="form-control" id="horario-termino" name="horaTermino">
+                <input type="time" class="form-control" id="horario-termino" name="horaTermino" required>
             </div>
         </div>
 
         <div class="container">
             <div class="mb-3">
                 <label for="imageInput" class="form-label">Inserir imagem do Evento:</label>
-                <input type="file" class="form-control-file" id="imageInput" name="imagem">
+                <input type="file" class="form-control-file" id="imageInput" name="imagem" required>
             </div>
         </div>
 
@@ -199,3 +173,16 @@ if (isset($_SESSION["usuariosId"])) {
 </body>
 
 </html>
+
+<script>
+    $("#myform").submit(function(e) {
+
+        var agendamento = $("#data").val().split('T');
+        agendamento = new Date(agendamento[0]).setHours(24);
+        var hoje = new Date();
+        if (agendamento <= hoje) {
+            alert('Por favor, insira uma data válida!');
+            e.preventDefault();
+        }
+    });
+</script>

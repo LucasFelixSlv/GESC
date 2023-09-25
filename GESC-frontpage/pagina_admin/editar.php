@@ -4,9 +4,9 @@ session_start();
 if (isset($_SESSION["usuariosId"])) {
     include_once('../includes/dbh.inc.php');
 
-    if (!empty($_GET['eventosId'])) {
+    if (!empty($_POST['eventosId'])) {
 
-        $eventosId = $_GET['eventosId'];
+        $eventosId = $_POST['eventosId'];
 
         $sqlSelect = "SELECT * FROM `eventos` WHERE eventosId='$eventosId'";
 
@@ -17,6 +17,7 @@ if (isset($_SESSION["usuariosId"])) {
             while ($dadosEvento = mysqli_fetch_assoc($result)) {
 
                 $eventosId = $dadosEvento['eventosId'];
+                $usuariosId = $dadosEvento['usuariosId'];
                 $nome = $dadosEvento['nome'];
                 $descricao = $dadosEvento['descricao'];
                 $localEv = $dadosEvento['localEv'];
@@ -25,6 +26,7 @@ if (isset($_SESSION["usuariosId"])) {
                 $horaInicio = $dadosEvento['horaInicio'];
                 $horaTermino = $dadosEvento['horaTermino'];
                 $imagem = $dadosEvento['imagem'];
+                $link = $dadosEvento['link'];
             }
         } else {
             header('Location: editar.php');
@@ -72,7 +74,7 @@ if (isset($_SESSION["usuariosId"])) {
                         <a class="nav-link" href="adicionar.php">Adicionar novo Evento</a>
                     </li>
                     <li class="nav-item ps-5">
-                        <a class="nav-link" href="escolherEditar.php">Editar Evento</a>
+                        <a class="nav-link" href="editar.php">Editar Evento</a>
                     </li>
                     <li class="nav-item ps-5">
                         <a class="nav-link" href="avaliacoes.php">Ver Avaliações</a>
@@ -90,7 +92,7 @@ if (isset($_SESSION["usuariosId"])) {
 
     <!-- Conteúdo Principal -->
 
-    <form action="salvarRegistroEditado.php" method="POST">
+    <form action="salvarRegistroEditado.php" method="POST" enctype="multipart/form-data">
 
         <div class="container">
             <div class="row">
@@ -102,7 +104,6 @@ if (isset($_SESSION["usuariosId"])) {
             <div class="mb-3">
                 <label for="nome" class="form-label">Evento:</label>
                 <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $nome ?>">
-
             </div>
         </div>
 
@@ -123,17 +124,25 @@ if (isset($_SESSION["usuariosId"])) {
             </div>
         </div>
 
+        <?php
+
+        date_default_timezone_set('America/Sao_Paulo');
+        $dataAtual = date('d/m/y');
+
+        ?>
+
+
         <div class="container">
             <div class="mb-3">
-                <label for="data" class="form-label">Data começo:</label>
-                <input type="date" class="form-control" id="data" name="dataInicio" value="<?php echo $dataInicio ?>">
+                <label for="dataInicio" class="form-label md-input-wrapper">Data de Inicio:</label>
+                <input type="date" class="form-control" id="dataInicio" name="dataInicio" value="<?php echo $dataInicio ?>" min="<?php echo  date('Y-m-d'); ?>">
             </div>
         </div>
 
         <div class="container">
             <div class="mb-3">
-                <label for="data" class="form-label">Data fim:</label>
-                <input type="date" class="form-control" id="data" name="dataTermino" value="<?php echo $dataTermino ?>">
+                <label for="dataTermino" class="form-label md-input-wrapper">Data de Término:</label>
+                <input type="date" class="form-control" id="dataTermino" name="dataTermino" value="<?php echo $dataTermino ?>" min="<?php echo  date('Y-m-d'); ?>">
             </div>
         </div>
 
@@ -151,19 +160,18 @@ if (isset($_SESSION["usuariosId"])) {
             </div>
         </div>
 
-        <input type="hidden" name="idEvento" value="<?php echo $idEvento ?>">
-
         <div class="container">
             <div class="mb-3">
                 <label for="imageInput" class="form-label">Alterar imagem do Evento:</label>
-                <input type="file" class="form-control-file" id="imageInput" name="imagem" value="<?php echo $imagem ?>">
+                <input type="file" class="form-control-file" id="imageInput" name="imagem" required>
             </div>
         </div>
 
-        <div class="container">
+        <input type="hidden" name="eventosId" value="<?php echo $eventosId ?>">
 
+        <div class="container">
             <div class="col text-end">
-                <input type="hidden" name="idEvento" value="<?php echo $eventosId ?>">
+                <input type="hidden" name="eventosId" value="<?php echo $eventosId ?>">
                 <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-success mb-4">Salvar Alterações</button>
             </div>
         </div>
@@ -178,6 +186,7 @@ if (isset($_SESSION["usuariosId"])) {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <input type="hidden" name="EventosIdUpdate" value="<?= $dadosEvento['eventosId'] ?>">
                         <button type="submit" name="update" class="btn btn btn-success">Salvar Alterações</button>
                     </div>
                 </div>
