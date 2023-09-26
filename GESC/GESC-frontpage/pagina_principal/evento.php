@@ -26,59 +26,22 @@ if (isset($_GET['id'])) {
         //Aqui fica os detalhes do evento
         //
 
-?>
-
-
-        <div class="pagina">
-            <div class="container">
-                <div>
-                    <img class="imageEvent" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
-                </div>
-
-                <div class="card text-center">
-                    <div class="card-header">
-                        <h5 class="card-title">Nome do evento</h5>
-                    </div>
-                    <div class="card-body">
-
-                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet adipisci repellat
-                            quis, a fugit aut. Saepe minima eius ab repellendus facere modi quisquam, sed officia laborum
-                            similique id ipsa vitae.</p>
-
-                    </div>
-                    <div class="card-footer text-body-secondary">
-                        <P> <?= $aux["dataInicio"] ?> <span style="color:black;"> - </span> <?= $aux["dataTermino"] ?></p>
-                    </div>
-                    <div class="card-footer text-body-secondary">
-                        <?= $aux["localEv"] ?>
-                    </div>
-
-                </div>
-
-            </div>
-        
-
-        <?php
-
         $sqlSolicitacao = mysqli_query($conexao, "SELECT usuariosId FROM solicitacao WHERE eventosId = '$eventosId'");
 
-        if ($dataAtual < $dataTermino) { //o usuário ainda pode solicitar participação
+        if ($dataAtual < $dataTermino) {
+            //o usuário ainda pode solicitar participação
             echo '<br>Você pode solicitar participação!';
             if (isset($usuariosId)) {
                 if (mysqli_num_rows($sqlSolicitacao) > 0) {
                     echo '<p>Solicitação enviada!</p>'; //mensagem dizendo que a solicitação ja foi enviada
                 } else { //se a solicitação ainda nao foi enviada, será mostrado um botão para solicitar
-        ?>
-                    <div class="container text-center">
-                        <form action="../includes/eventParticipation.inc.php" method="post">
-                            <input type="hidden" name="usuariosId" value="<?= $usuariosId ?>">
-                            <input type="hidden" name="eventosId" value="<?= $aux["eventosId"] ?>">
-                            <input type="hidden" name="linkEvento" value="<?= $linkEvento ?>">
-                            <button class="modalButton w-60 mt-4" type="submit" name="participar">Solicitar participação</button>
-
-                        </form>
-                    </div>
-
+?>
+                    <form action="../includes/eventParticipation.inc.php" method="post">
+                        <input type="hidden" name="usuariosId" value="<?= $usuariosId ?>">
+                        <input type="hidden" name="eventosId" value="<?= $aux["eventosId"] ?>">
+                        <input type="hidden" name="linkEvento" value="<?= $linkEvento ?>">
+                        <button type="submit" name="participar">Solicitar participação</button>
+                    </form>
                 <?php
                 }
             }
@@ -110,25 +73,51 @@ if (isset($_GET['id'])) {
             <?php
                 }
             }
+            //mostrando todos os comentários do evento passado
+            $sqlMostraComentarios = mysqli_query($conexao, "SELECT usuarios.usuariosNome, avaliacoes.comentario, avaliacoes.nota FROM avaliacoes INNER JOIN participacao_eventos ON avaliacoes.participacaoId = participacao_eventos.participacaoId INNER JOIN usuarios ON participacao_eventos.usuariosId = usuarios.usuariosId WHERE eventosId = '$eventosId'");
+            if (mysqli_num_rows($sqlMostraComentarios) > 0) {
+                ?>
+                <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8 col-lg-6">
+                        <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+                            <div class="card-body p-4 containerComentarios">
+                                <?php
+    
+                                while ($comentarios = mysqli_fetch_assoc($sqlMostraComentarios)) {
+                                    //html com os comentarios abaixo
+                                ?>
+    
+                                    <div class="card mb-0 mt-2">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <i class="fa-solid fa-user" style="color: #42c82c;"></i>
+                                                    <p class="small mb-0 ms-2" style="font-weight: bold;"><?= $comentarios["usuariosNome"] ?></p>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <p class="small text-muted mb-0" style="font-weight: bold;">Nota:&nbsp;</p>
+                                                    <p class="small text-muted mb-0" style="font-weight: bold;"><?= $comentarios["nota"] ?></p>
+                                                    <i class="far fa-solid fa-star mx-2 fa-xs" style="color: #42c82c;"></i>
+                                                </div>
+                                            </div>
+                                            <p class="comentario mb-0"><?= $comentarios["comentario"] ?></p>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                ?>
+    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    <?php
+            }
         }
-        //mostrando todos os comentários do evento passado
-        $sqlMostraComentarios = mysqli_query($conexao, "SELECT usuarios.usuariosNome, avaliacoes.comentario, avaliacoes.nota FROM avaliacoes INNER JOIN participacao_eventos ON avaliacoes.participacaoId = participacao_eventos.participacaoId INNER JOIN usuarios ON participacao_eventos.usuariosId = usuarios.usuariosId WHERE eventosId = '$eventosId'");
-        while ($comentarios = mysqli_fetch_assoc($sqlMostraComentarios)) {
-            //html com os comentarios abaixo
-            ?>
-            <p>Usuário: <?= $comentarios["usuariosNome"] ?></p>
-            <p>Nota: <?= $comentarios["nota"] ?></p>
-            <p>Comentário: <?= $comentarios["comentario"] ?></p>
-<?php
-        }
-?>
-        </div>
-<?php
-
     } else {
         echo "Nenhum evento registrado com este link.";
     }
-
 } else {
     header('Location: index.php');
 }
