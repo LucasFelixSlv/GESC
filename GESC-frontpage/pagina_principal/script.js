@@ -48,3 +48,15 @@ function toggleSenhaCadastro() {
         senhaStatus = true;
     }
 }
+
+function checkNota(){
+    nota = document.querySelector('#notaAvaliacao');
+    botaoAvaliacao = document.querySelector('#enviar');
+
+    if(nota.value <= 5 && nota.value >= 1 && (nota.value % 1 === 0)){
+        botaoAvaliacao.removeAttribute("disabled");
+    }else{
+        botaoAvaliacao.setAttribute("disabled", "");
+    }
+
+}
