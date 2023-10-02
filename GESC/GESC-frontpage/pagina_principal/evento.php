@@ -66,9 +66,9 @@ if (isset($_GET['id'])) {
                     <form action="../includes/eventComment.inc.php" method="post">
                         <input type="hidden" name="participacaoId" value="<?= $participacaoId["participacaoId"] ?>">
                         <input type="hidden" name="linkEvento" value="<?= $linkEvento ?>">
-                        <input type="number" name="nota" min="1" max="5" step="0.5" value="0">
+                        <input type="number" name="nota" min="1" max="5" step="1" id="notaAvaliacao" onchange="checkNota()">
                         <textarea name="comentario" rows="4" cols="50"></textarea>
-                        <button type="submit" name="enviar">Enviar</button>
+                        <button type="submit" name="enviar" id="enviar" disabled>Enviar</button>
                     </form>
             <?php
                 }

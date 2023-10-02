@@ -5,7 +5,7 @@ include_once 'header.php';
     <div class="wrapper cadastro">
         <div class="formBox signup">
             <h2>Cadastro</h2>
-            <form method="post" action="../includes/signup.inc.php">
+            <form method="post" action="../includes/signup.inc.php" id="formCadastro">
                 <div class="inputBox">
                     <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
                     <input type="text" name="nomeUsuario" placeholder=" " required>

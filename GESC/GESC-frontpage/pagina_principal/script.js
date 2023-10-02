@@ -48,3 +48,33 @@ function toggleSenhaCadastro() {
         senhaStatus = true;
     }
 }
+
+function checkNota(){
+    nota = document.querySelector('#notaAvaliacao');
+    botaoAvaliacao = document.querySelector('#enviar');
+
+    if(nota.value <= 5 && nota.value >= 1 && (nota.value % 1 === 0)){
+        botaoAvaliacao.removeAttribute("disabled");
+    }else{
+        botaoAvaliacao.setAttribute("disabled", "");
+    }
+
+}
+
+//Testes abaixo
+
+// function alerta(){
+//     Swal.fire('Any fool can use a computer');
+// }
+
+// alerta();
+
+// const formCadastro = document.getElementById("formCadastro");
+
+// if(formCadastro){
+//     formCadastro.addEventListener("submit", async (e) => {
+//         e.preventDefault()
+//         console.log('cadastrar');
+//     });
+// }
+// video: https://www.youtube.com/watch?v=alkxnTI8K7g
