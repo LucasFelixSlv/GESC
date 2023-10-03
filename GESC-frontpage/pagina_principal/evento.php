@@ -17,14 +17,21 @@ if (isset($_GET['id'])) {
         $eventosId = $aux["eventosId"];
 
         date_default_timezone_set('America/Sao_Paulo');
-        $dataAtual = date('d/m/Y');
-
+        $dataAtual = new DateTime();
         $dataTermino = new DateTime($aux["dataTermino"]);
-        $dataTermino = date_format($dataTermino, "d/m/Y");
+        $dataAtualFormat = date_format($dataAtual, "d/m/Y");
+        $dataTerminoFormat = date_format($dataTermino, "d/m/Y");
+        
+        $dataInicio = new DateTime($aux["dataInicio"]);
+        $dataInicio = date_format($dataInicio, "d/m/Y");
 
         //
         //Aqui fica os detalhes do evento
         //
+
+        ?>
+            <img src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
+        <?php
 
         $sqlSolicitacao = mysqli_query($conexao, "SELECT usuariosId FROM solicitacao WHERE eventosId = '$eventosId'");
 
@@ -48,6 +55,10 @@ if (isset($_GET['id'])) {
         } else if ($dataAtual >= $dataTermino) {
             //o usuário não pode mais solicitar participação
             echo '<br>Você não pode solicitar participação!';
+            $sqlMedia = mysqli_query($conexao, "SELECT AVG(avaliacoes.nota) AS mediaEvento FROM avaliacoes INNER JOIN participacao_eventos ON avaliacoes.participacaoId = participacao_eventos.participacaoId WHERE participacao_eventos.eventosId = '$eventosId'");
+            $media = mysqli_fetch_assoc($sqlMedia);
+            $media["mediaEvento"] = number_format($media["mediaEvento"], 1);
+            echo "<br>Média das notas do evento: ".$media["mediaEvento"];
             if (isset($usuariosId)) {
                 $sqlAceito = mysqli_query($conexao, "SELECT * FROM solicitacao WHERE usuariosId = '$usuariosId' AND eventosId = '$eventosId' AND aprovado = 'SIM'");
                 if (mysqli_num_rows($sqlAceito) === 1) { //se a solicitação foi aceita, colocá-lo na tabela participacao_eventos e retirar da solicitacao
@@ -66,7 +77,7 @@ if (isset($_GET['id'])) {
                     <form action="../includes/eventComment.inc.php" method="post">
                         <input type="hidden" name="participacaoId" value="<?= $participacaoId["participacaoId"] ?>">
                         <input type="hidden" name="linkEvento" value="<?= $linkEvento ?>">
-                        <input type="number" name="nota" min="1" max="5" step="1" id="notaAvaliacao" onchange="checkNota()">
+                        <input type="number" name="nota" min="1" max="5" step="1" id="notaAvaliacao">
                         <textarea name="comentario" rows="4" cols="50"></textarea>
                         <button type="submit" name="enviar" id="enviar" disabled>Enviar</button>
                     </form>
