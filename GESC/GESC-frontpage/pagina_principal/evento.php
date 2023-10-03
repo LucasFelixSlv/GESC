@@ -17,14 +17,33 @@ if (isset($_GET['id'])) {
         $eventosId = $aux["eventosId"];
 
         date_default_timezone_set('America/Sao_Paulo');
-        $dataAtual = date('d/m/Y');
+
+        $dataAtual = new DateTime();
 
         $dataTermino = new DateTime($aux["dataTermino"]);
-        $dataTermino = date_format($dataTermino, "d/m/Y");
+
+        $dataAtualFormat = date_format($dataAtual,"d/m/Y");
+        $dataTerminoFormat = date_format($dataTermino,"d/m/Y");
+        $dataInicio = new DateTime($aux["dataInicio"]);
+        $dataInicio = date_format($dataInicio, "d/m/Y");
 
         //
         //Aqui fica os detalhes do evento
         //
+
+        ?>
+        <div>
+             <img src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
+        </div>
+            <h3><?=$aux["nome"] ?></h3>
+            <P ><?=$aux["descricao"] ?></p>
+            <p><?=$dataInicio ?><span style="color: white;"> - </span><?= $dataTerminoFormat ?></p>
+        
+
+<?php
+
+
+        //aqui os detalhes do evento
 
         $sqlSolicitacao = mysqli_query($conexao, "SELECT usuariosId FROM solicitacao WHERE eventosId = '$eventosId'");
 
