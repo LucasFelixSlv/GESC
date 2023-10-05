@@ -1,11 +1,7 @@
 <?php
 session_start();
+$usuario = $_SESSION["usuariosId"];
 
-if (isset($_SESSION["usuariosId"])) {
-    $usuario = $_SESSION["usuariosId"];
-} else {
-    header("location: ../pagina_principal/index.php");
-}
 ?>
 
 <!doctype html>
@@ -72,7 +68,7 @@ if (isset($_SESSION["usuariosId"])) {
         Evento com sucesso!
     </div>
 
-    <form id="myform" action="salvaEvento.php" role="form" method="POST" enctype="multipart/form-data">
+    <form id="myform" action="salvaEvento.php" role="form" method="POST">
 
         <input type="hidden" name="usuarioId" value="<?= $usuario; ?>">
 

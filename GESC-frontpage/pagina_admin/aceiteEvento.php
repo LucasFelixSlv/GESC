@@ -28,7 +28,7 @@ include '../includes/dbh.inc.php';
     <p>Preencha o formulário abaixo para se registrar para o evento:</p>
 
     <form action="aceiteEvento.php" method="POST">
-        <label for="nome">Nomee:</label>
+        <label for="nome">Nome:</label>
         <input type="text" id="nomeUsuario" name="nomeUsuario" required><br><br>
        
         <input type="hidden" id="aprovado" name="aprovado" value="Não"><br><br>

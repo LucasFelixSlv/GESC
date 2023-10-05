@@ -1,14 +1,18 @@
-<?php 
-     include_once('../includes/dbh.inc.php');
+<?php
+include_once('../includes/dbh.inc.php');
 
-     if(isset($_POST['atualizar'])){
+if (isset($_POST['solicitacaoId'])) {
 
-        $idUser = $_POST['idUser'];
-        $aprovado = $_POST['aprovado'];
+   $solicitacaoId = $_POST['solicitacaoId'];
+   $usuariosId = $_POST['usuariosId'];
+   $eventosId = $_POST['eventosId'];
+   $aprovado = $_POST['aprovado'];
 
-        $sqlUpdateSolicitacao = "UPDATE aceiteEvento SET aprovado='Sim'";
+   $sqlUpdateSolicitacao = "UPDATE solicitacao 
+                                 SET aprovado = 'Sim'
+                                 WHERE solicitacaoId='$solicitacaoId';";
 
-        $resultado = $conexao->query($sqlUpdateSolicitacao);
+   $result = $conexao->query($sqlUpdateSolicitacao);
+}
 
-     }
-     header('Location: solicitacoes.php');
+header("Location: solicitacoes.php");

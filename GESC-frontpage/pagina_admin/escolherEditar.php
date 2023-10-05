@@ -1,17 +1,16 @@
 <?php
 
 session_start();
-if (isset($_SESSION["usuariosId"])) {
-    include_once('../includes/dbh.inc.php');
-    $usuariosId = $_SESSION["usuariosId"];
-    // Buscar dados do evento
+$usuariosId = $_SESSION["usuariosId"];
 
-    $sql = "SELECT * FROM `eventos` WHERE usuariosId ='$usuariosId'";
-    $result = $conexao->query($sql);
-    $dadosEvento = $result->fetch_assoc();
-} else {
-    header("location: ../pagina_principal/index.php");
-}
+include_once('../includes/dbh.inc.php');
+
+// Buscar dados do evento
+
+$sql = "SELECT eventosId, nome, localEv, DATE_FORMAT(dataInicio, '%d/%m/%Y') AS data_formatada FROM `eventos` WHERE usuariosId ='$usuariosId'";
+$result = $conexao->query($sql);
+$dadosEvento = $result->fetch_assoc();
+
 ?>
 
 <!DOCTYPE html>
@@ -31,10 +30,10 @@ if (isset($_SESSION["usuariosId"])) {
 </head>
 
 <body>
-
+    
     <header class="bg-black text-white text-center">
         <div class="container">
-            <div class="row">
+            <div class="row"> 
                 <div class="col-md-12">
                     <h1>Administração</h1>
                 </div>
@@ -68,80 +67,78 @@ if (isset($_SESSION["usuariosId"])) {
             </div>
         </div>
     </nav>
-
-    <!-- Conteúdo Principal -->
-    <div class="table-responsive m-4">
-        <form action="editar.php" method="POST">
+            
+            <!-- Conteúdo Principal -->
+        <div class="table-responsive m-4">
+            <form action="editar.php" method="POST">
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col" class="w-50">Nome do Evento</th>
-                        <th scope="col">Local</th>
-                        <th scope="col">Data</th>
-                        <th scope="col">...</th>
+                    <th scope="col">#</th>
+                    <th scope="col" class="w-50">Nome do Evento</th>
+                    <th scope="col">Local</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">...</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
 
-                    $result->data_seek(0);
+                        $result->data_seek(0);
+        
+                            while($dadosEvento = mysqli_fetch_assoc($result)) {
 
-                    while ($dadosEvento = mysqli_fetch_assoc($result)) {
+                        ?>
 
-                    ?>
-
-                        <tr>
-                            <td><?= $dadosEvento['eventosId'] ?> </td>
-                            <td class='text-break'><?= $dadosEvento["nome"] ?></td>
-                            <td><?= $dadosEvento["localEv"] ?></td>
-                            <td><?= $dadosEvento["dataInicio"] ?></td>
-                            <td>
-
-
-                                <button type="submit" name="eventosId" value="<?= $dadosEvento['eventosId'] ?>" class="btn btn-default btnEdit">
+                                <tr>
+                                    <td><?= $dadosEvento['eventosId'] ?> </td>
+                                    <td class='text-break'><?= $dadosEvento["nome"] ?></td>
+                                    <td><?= $dadosEvento["localEv"] ?></td>
+                                    <td><?= $dadosEvento["data_formatada"] ?></td>
+                                <td>
+                               
+                                <button type="submit" name="eventosId" value="<?=$dadosEvento['eventosId']?>" class="btn btn-default btnEdit">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
 
-
                                 <button type="button" name="eventosId" class="btn btn-default btnDelete" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $dadosEvento['eventosId'] ?>">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                <i class="fa fa-trash" aria-hidden="true"></i>
                                 </button>
 
                             </td>
-                        </tr>
+                            </tr>
                 </tbody>
-        </form>
+            </form>
 
-
-        <!--modal edit start-->
-        <div class="modal fade" id="modalDelete<?= $dadosEvento['eventosId'] ?>" tabindex="-1" aria-labelledby="modalDelete<?= $dadosEvento['eventosId'] ?>" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
+            
+             <!--modal edit start-->
+             <div class="modal fade" id="modalDelete<?= $dadosEvento['eventosId'] ?>" tabindex="-1" aria-labelledby="modalDelete<?= $dadosEvento['eventosId'] ?>" aria-hidden="true">
+              <div class="modal-dialog">
+              <div class="modal-content">
+                        <div class="modal-header">
                         <form action="deletar.php" method="POST">
                             <input type="hidden" name='EventoIdDeletar' value="<?= $dadosEvento['eventosId'] ?>">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Deseja excluir esse evento?</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Deseja excluir esse evento?</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-                    <div class='modal-footer'>
-                        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Fechar</button>
-                        <button type='submit' class='btn btn btn-danger'>Excluir</button>
-                    </div>
-                    </form>
+            <div class='modal-footer'>
+                <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Fechar</button>
+                <button type='submit' class='btn btn btn-danger'>Excluir</button>
+            </div>
+        </form>
+        
+        <input type="hidden"  value="<?= $idExclusao?>">
 
-                    <input type="hidden" value="<?= $idExclusao ?>">
+        <?php }?>
 
-                <?php } ?>
-
-                </div>
             </div>
         </div>
-
-        <link rel="stylesheet" href="styleAdmin.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</body>
+        </div>
+       
+    <link rel="stylesheet" href="styleAdmin.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
 
 
 </html>
