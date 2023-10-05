@@ -68,7 +68,7 @@ $usuario = $_SESSION["usuariosId"];
         Evento com sucesso!
     </div>
 
-    <form id="myform" action="salvaEvento.php" role="form" method="POST">
+    <form id="myform" action="salvaEvento.php" role="form" method="POST" enctype="multipart/form-data">
 
         <input type="hidden" name="usuarioId" value="<?= $usuario; ?>">
 
