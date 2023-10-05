@@ -37,13 +37,14 @@ if (isset($_GET['id'])) {
 
         if ($dataAtual < $dataTermino) {
             //o usuário ainda pode solicitar participação
+            
             echo '<br>Você pode solicitar participação!';
             //verifica se o usuário está logado e se o usuário não é o criador do evento
             if (isset($usuariosId) && $usuariosId != $aux["usuariosId"]) {
                 if (mysqli_num_rows($sqlSolicitacao) > 0) {
                     echo '<p>Solicitação enviada!</p>'; //mensagem dizendo que a solicitação ja foi enviada
                 } else { //se a solicitação ainda nao foi enviada, será mostrado um botão para solicitar
-        ?>
+        ?>  
                     <form action="../includes/eventParticipation.inc.php" method="post">
                         <input type="hidden" name="usuariosId" value="<?= $usuariosId ?>">
                         <input type="hidden" name="eventosId" value="<?= $aux["eventosId"] ?>">
@@ -131,6 +132,9 @@ if (isset($_GET['id'])) {
 <?php
             }
         }
+        ?>
+        <div class="empurrarFooter"></div>
+        <?php
     } else {
         echo "Nenhum evento registrado com este link.";
     }
