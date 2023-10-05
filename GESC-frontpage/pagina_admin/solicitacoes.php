@@ -9,6 +9,8 @@ include_once('../includes/dbh.inc.php');
 $sql = "SELECT 
                 solicitacao.solicitacaoId,
                 usuarios.usuariosNome,
+                usuarios.usuariosId,
+                eventos.eventosId,
                 solicitacao.aprovado,
                 eventos.nome 
               FROM usuarios
@@ -16,7 +18,7 @@ $sql = "SELECT
               ON usuarios.usuariosId = solicitacao.usuariosId
               INNER JOIN eventos
               ON solicitacao.eventosId = eventos.eventosId
-              WHERE solicitacao.aprovado = 'Não' AND eventos.usuariosId ='$usuariosId';";
+              WHERE solicitacao.aprovado = 'NÃO' AND eventos.usuariosId ='$usuariosId';";
 
 $result = $conexao->query($sql);
 $dadosSolicitacao = $result->fetch_assoc();
@@ -26,7 +28,7 @@ $sqlCount = "SELECT
             FROM solicitacao
             INNER JOIN eventos
             ON solicitacao.eventosId = eventos.eventosId
-            WHERE aprovado = 'Sim' AND eventos.usuariosId ='$usuariosId';";
+            WHERE aprovado = 'SIM' AND eventos.usuariosId ='$usuariosId';";
 
 $resultCount = $conexao->query($sqlCount);
 $dadosCount = $resultCount->fetch_assoc();
@@ -126,6 +128,8 @@ $dadosCount = $resultCount->fetch_assoc();
               <td><?= $dadosSolicitacao['nome'] ?></td>
               <form action="salvarSolicitacao.php">
                 <td>
+                  <input type="hidden" name="usuariosId" value=<?=$dadosSolicitacao["usuariosId"]?>>
+                  <input type="hidden" name="eventosId" value=<?=$dadosSolicitacao["eventosId"]?>>
                   <button type="submit" name="solicitacaoId" class="btn btn-success" value="<?= $dadosSolicitacao['solicitacaoId'] ?>">Aprovar</button>
                 </td>
               </form>

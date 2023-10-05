@@ -9,8 +9,9 @@ if (isset($_POST['solicitacaoId'])) {
    $aprovado = $_POST['aprovado'];
 
    $sqlUpdateSolicitacao = "UPDATE solicitacao 
-                                 SET aprovado = 'Sim'
+                                 SET aprovado = 'SIM'
                                  WHERE solicitacaoId='$solicitacaoId';";
+   mysqli_query($conexao, "INSERT INTO participacao_eventos (usuariosId, eventosId) VALUES ('$usuariosId', '$eventosId')");
 
    $result = $conexao->query($sqlUpdateSolicitacao);
 }

@@ -67,12 +67,6 @@ if (isset($_GET['id'])) {
             echo "<br>Média das notas do evento: " . $media["mediaEvento"];
             if (isset($usuariosId)) {
                 $sqlAceito = mysqli_query($conexao, "SELECT * FROM solicitacao WHERE usuariosId = '$usuariosId' AND eventosId = '$eventosId' AND aprovado = 'SIM'");
-                if (mysqli_num_rows($sqlAceito) === 1) { //se a solicitação foi aceita, colocá-lo na tabela participacao_eventos e retirar da solicitacao
-                    //essa parte será colocada na parte de admin
-                    //para aceitar a solicitação precisa ir no banco de dados e na coluna "aprovado" da tabela "solicitacao" e digitar SIM;
-                    mysqli_query($conexao, "INSERT INTO participacao_eventos (usuariosId, eventosId) VALUES ('$usuariosId', '$eventosId')");
-                    mysqli_query($conexao, "DELETE FROM solicitacao WHERE usuariosId = '$usuariosId' AND eventosId = '$eventosId'");
-                }
                 //verifica se o usuário está participando e se ainda não avaliou o evento
                 $sqlParticipacao = mysqli_query($conexao, "SELECT * FROM participacao_eventos WHERE eventosId = '$eventosId' AND usuariosId='$usuariosId'");
                 $sqlComentarios = mysqli_query($conexao, "SELECT * FROM avaliacoes INNER JOIN participacao_eventos ON avaliacoes.participacaoId = participacao_eventos.participacaoId WHERE participacao_eventos.usuariosId = '$usuariosId' AND participacao_eventos.eventosId = '$eventosId'");
