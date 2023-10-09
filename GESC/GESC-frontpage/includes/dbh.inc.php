@@ -13,4 +13,3 @@ if ($conexao -> connect_errno) {
   echo "falha ao conectar: " . $conexao -> connect_error;
   exit();
 }
-?>

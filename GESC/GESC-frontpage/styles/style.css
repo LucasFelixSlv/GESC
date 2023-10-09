@@ -134,17 +134,17 @@ body {
     width: 70%;
 }
 
-.containerSemEvento p{
+.containerSemEvento p {
     font-size: 18px;
 }
 
-.noEvent{
+.noEvent {
     text-decoration: none;
     color: #42C82C;
     transition: all 0.1s ease;
 }
 
-.noEvent:hover{
+.noEvent:hover {
     border-bottom: 3px solid #42C82C;
 }
 
@@ -374,7 +374,7 @@ body {
     color: #252526;
 }
 
-.inputError{
+.inputError {
     border-color: red;
 }
 
@@ -572,24 +572,24 @@ body {
     background-color: #2c8b1e;
 }
 
-.containerComentarios{
-    padding-bottom: 32px!important;
+.containerComentarios {
+    padding-bottom: 32px !important;
 }
 
-.comentario{
+.comentario {
     text-align: justify;
 }
 
 /* PÁGINA DE PESQUISA */
 
 .textoPesquisa {
-    margin: 12px auto;
+    margin: 10px auto;
     font-size: 24px;
 }
 
 /* FOOTER */
 
-.empurrarFooter{
+.empurrarFooter {
     margin-bottom: 85px;
 }
 

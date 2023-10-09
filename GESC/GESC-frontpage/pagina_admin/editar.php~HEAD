@@ -2,19 +2,19 @@
 
 session_start();
 
-    include_once('../includes/dbh.inc.php');
+include_once('../includes/dbh.inc.php');
 
-    if (!empty($_POST['eventosId'])) {
+if (!empty($_POST['eventosId'])) {
 
-        $eventosId = $_POST['eventosId'];
+    $eventosId = $_POST['eventosId'];
 
-        $sqlSelect = "SELECT * FROM `eventos` WHERE eventosId='$eventosId'";
+    $sqlSelect = "SELECT * FROM `eventos` WHERE eventosId='$eventosId'";
 
-        $result = $conexao->query($sqlSelect);
+    $result = $conexao->query($sqlSelect);
 
-        if($result->num_rows > 0){
-            
-            while($dadosEvento = mysqli_fetch_assoc($result)){
+    if ($result->num_rows > 0) {
+
+        while ($dadosEvento = mysqli_fetch_assoc($result)) {
 
             $eventosId = $dadosEvento['eventosId'];
             $usuariosId = $dadosEvento['usuariosId'];
@@ -27,12 +27,11 @@ session_start();
             $horaTermino = $dadosEvento['horaTermino'];
             $imagem = $dadosEvento['imagem'];
             $link = $dadosEvento['link'];
-
         }
-        } else {
-            header('Location: editar.php');
-        }
+    } else {
+        header('Location: editar.php');
     }
+}
 ?>
 
 <!doctype html>
@@ -92,104 +91,104 @@ session_start();
 
     <form action="salvarRegistroEditado.php" method="POST" enctype="multipart/form-data">
 
-    <div class="container">
-        <div class="row">
-            <h1 class="display-5 text-center">Editar Evento</h1>
+        <div class="container">
+            <div class="row">
+                <h1 class="display-5 text-center">Editar Evento</h1>
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="mb-3">
-            <label for="nome" class="form-label">Evento:</label>
-            <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $nome ?>">
-                
+        <div class="container">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Evento:</label>
+                <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $nome ?>">
+
+            </div>
         </div>
-    </div>
 
 
-    <div class="container">
-        <div class="mb-3">
-            <label for="descricao" class="form-label">Descrição:</label>
-            <textarea class="form-control" id="descricao" name="descricao" rows="2"><?php echo $descricao ?></textarea>
+        <div class="container">
+            <div class="mb-3">
+                <label for="descricao" class="form-label">Descrição:</label>
+                <textarea class="form-control" id="descricao" name="descricao" rows="2"><?php echo $descricao ?></textarea>
+            </div>
         </div>
-    </div>
 
 
-    <div class="container">
-        <div class="mb-3">
-            <label for="local" class="form-label">Local:</label>
-            <input type="text" class="form-control" id="localEv" name="localEv" value="<?php echo $localEv ?>">
-                
+        <div class="container">
+            <div class="mb-3">
+                <label for="local" class="form-label">Local:</label>
+                <input type="text" class="form-control" id="localEv" name="localEv" value="<?php echo $localEv ?>">
+
+            </div>
         </div>
-    </div>
 
-    <?php
+        <?php
 
         date_default_timezone_set('America/Sao_Paulo');
         $dataAtual = date('d/m/y');
 
-    ?>
+        ?>
 
 
-    <div class="container">
-        <div class="mb-3">
-            <label for="dataInicio" class="form-label md-input-wrapper">Data de Inicio:</label>
-            <input type="date" class="form-control" id="dataInicio" name="dataInicio" value="<?php echo $dataInicio?>" min="<?php echo  date('Y-m-d'); ?>" >
+        <div class="container">
+            <div class="mb-3">
+                <label for="dataInicio" class="form-label md-input-wrapper">Data de Inicio:</label>
+                <input type="date" class="form-control" id="dataInicio" name="dataInicio" value="<?php echo $dataInicio ?>" min="<?php echo  date('Y-m-d'); ?>">
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="mb-3">
-            <label for="dataTermino" class="form-label md-input-wrapper">Data de Término:</label>
-            <input type="date" class="form-control" id="dataTermino" name="dataTermino" value="<?php echo $dataTermino?>" min="<?php echo  date('Y-m-d'); ?>" >
+        <div class="container">
+            <div class="mb-3">
+                <label for="dataTermino" class="form-label md-input-wrapper">Data de Término:</label>
+                <input type="date" class="form-control" id="dataTermino" name="dataTermino" value="<?php echo $dataTermino ?>" min="<?php echo  date('Y-m-d'); ?>">
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="mb-3">
-            <label for="horario-inicio" class="form-label">Início do Evento:</label>
-            <input type="time" class="form-control" id="horario-inicio" name="horaInicio" value="<?php echo $horaInicio ?>">
+        <div class="container">
+            <div class="mb-3">
+                <label for="horario-inicio" class="form-label">Início do Evento:</label>
+                <input type="time" class="form-control" id="horario-inicio" name="horaInicio" value="<?php echo $horaInicio ?>">
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="mb-3">
-            <label for="horario-termino" class="form-label">Término do Evento:</label>
-            <input type="time" class="form-control" id="horario-termino" name="horaTermino" value="<?php echo $horaTermino ?>">
+        <div class="container">
+            <div class="mb-3">
+                <label for="horario-termino" class="form-label">Término do Evento:</label>
+                <input type="time" class="form-control" id="horario-termino" name="horaTermino" value="<?php echo $horaTermino ?>">
+            </div>
         </div>
-    </div>
 
-    <div class="container">
+        <div class="container">
             <div class="mb-3">
                 <label for="imageInput" class="form-label">Alterar imagem do Evento:</label>
                 <input type="file" class="form-control-file" id="imageInput" name="imagem" required>
             </div>
         </div>
 
-    <input type="hidden" name="eventosId" value="<?php echo $eventosId ?>">
+        <input type="hidden" name="eventosId" value="<?php echo $eventosId ?>">
 
-    <div class="container">     
-        <div class="col text-end">
-            <input type="hidden" name="eventosId" value="<?php echo $eventosId ?>">
-            <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-success mb-4">Salvar Alterações</button>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Deseja salvar alterações?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                <input type="hidden" name="EventosIdUpdate" value="<?= $dadosEvento['eventosId'] ?>">
-                <button type="submit" name="update" class="btn btn btn-success">Salvar Alterações</button>
-            </div>
+        <div class="container">
+            <div class="col text-end">
+                <input type="hidden" name="eventosId" value="<?php echo $eventosId ?>">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-success mb-4">Salvar Alterações</button>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Deseja salvar alterações?</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <input type="hidden" name="EventosIdUpdate" value="<?= $dadosEvento['eventosId'] ?>">
+                        <button type="submit" name="update" class="btn btn btn-success">Salvar Alterações</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </form>
@@ -201,4 +200,5 @@ session_start();
     <link rel="stylesheet" href="styleAdmin.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
+
 </html>

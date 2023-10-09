@@ -128,8 +128,8 @@ $dadosCount = $resultCount->fetch_assoc();
               <td><?= $dadosSolicitacao['nome'] ?></td>
               <form action="salvarSolicitacao.php">
                 <td>
-                  <input type="hidden" name="usuariosId" value=<?=$dadosSolicitacao["usuariosId"]?>>
-                  <input type="hidden" name="eventosId" value=<?=$dadosSolicitacao["eventosId"]?>>
+                  <input type="hidden" name="usuariosId" value=<?= $dadosSolicitacao["usuariosId"] ?>>
+                  <input type="hidden" name="eventosId" value=<?= $dadosSolicitacao["eventosId"] ?>>
                   <button type="submit" name="solicitacaoId" class="btn btn-success" value="<?= $dadosSolicitacao['solicitacaoId'] ?>">Aprovar</button>
                 </td>
               </form>

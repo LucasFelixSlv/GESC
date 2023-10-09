@@ -2,11 +2,11 @@
 
 use LDAP\Result;
 
-    session_start();
-    $usuariosId = $_SESSION['usuariosId'];
-    include_once('../includes/dbh.inc.php');
+session_start();
+$usuariosId = $_SESSION['usuariosId'];
+include_once('../includes/dbh.inc.php');
 
-    // Buscar dados do evento
+// Buscar dados do evento
 
 $sql = "SELECT 
 avaliacoes.comentario,
@@ -35,8 +35,8 @@ $sqlMedia = "SELECT
     ON participacao_eventos.eventosId = eventos.eventosId
     WHERE eventos.usuariosId ='$usuariosId'";
 
-    $resultado = $conexao->query($sqlMedia);
-    $MediaNotas = $resultado->fetch_assoc();
+$resultado = $conexao->query($sqlMedia);
+$MediaNotas = $resultado->fetch_assoc();
 
 ?>
 
@@ -55,10 +55,10 @@ $sqlMedia = "SELECT
 </head>
 
 <body>
-    
+
     <header class="bg-black text-white text-center">
         <div class="container">
-            <div class="row"> 
+            <div class="row">
                 <div class="col-md-12">
                     <h1>Administração</h1>
                 </div>
@@ -101,47 +101,47 @@ $sqlMedia = "SELECT
 
     <div class="container">
         <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Avaliação Geral dos seus Eventos</h5>
-            
-            <div class="rating">
-        <span class="star" data-star="1">&#9733; <?= $MediaNotas['media_nota']?></span>
-    </div>
-    
-          </div>
+            <div class="card-body">
+                <h5 class="card-title">Avaliação Geral dos seus Eventos</h5>
+
+                <div class="rating">
+                    <span class="star" data-star="1">&#9733; <?= $MediaNotas['media_nota'] ?></span>
+                </div>
+
+            </div>
         </div>
-      </div>
+    </div>
 
     <?php
-        
-        while($dadosComents = mysqli_fetch_assoc($result)) {
 
-            echo 
-            "<div class='container'>
+    while ($dadosComents = mysqli_fetch_assoc($result)) {
+
+        echo
+        "<div class='container'>
             <div class='mb-3'>
                 <label class='mt-4'><b>Evento:</b> $dadosComents[nome] </label>
                 <textarea class='form-control ' id='descricao' rows='4'> $dadosComents[comentario]</textarea>
             </div>
-        </div>'" ;
-        }
+        </div>'";
+    }
     ?>
 
-<link rel="stylesheet" href="styleAdmin.css">
+    <link rel="stylesheet" href="styleAdmin.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-  </body>
+</body>
 
 
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         let rating = 0;
         const $stars = $('.star');
         const $mediaAvaliacao = $('#media-avaliacao');
 
         // Manipula o clique nas estrelas
-        $stars.on('click', function () {
+        $stars.on('click', function() {
             const selectedStar = $(this).data('star');
             rating = selectedStar;
             updateRating();

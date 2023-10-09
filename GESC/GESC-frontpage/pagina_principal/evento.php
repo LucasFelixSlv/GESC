@@ -49,14 +49,14 @@ if (isset($_GET['id'])) {
 
         if ($dataAtual < $dataTermino) {
             //o usuário ainda pode solicitar participação
-            
+
             echo '<br>Você pode solicitar participação!';
             //verifica se o usuário está logado e se o usuário não é o criador do evento
             if (isset($usuariosId) && $usuariosId != $aux["usuariosId"]) {
                 if (mysqli_num_rows($sqlSolicitacao) > 0) {
                     echo '<p>Solicitação enviada!</p>'; //mensagem dizendo que a solicitação ja foi enviada
                 } else { //se a solicitação ainda nao foi enviada, será mostrado um botão para solicitar
-        ?>  
+        ?>
                     <form action="../includes/eventParticipation.inc.php" method="post">
                         <input type="hidden" name="usuariosId" value="<?= $usuariosId ?>">
                         <input type="hidden" name="eventosId" value="<?= $aux["eventosId"] ?>">
@@ -65,7 +65,7 @@ if (isset($_GET['id'])) {
                     </form>
                 <?php
                 }
-            } else if(!isset($usuariosId)) {
+            } else if (!isset($usuariosId)) {
                 ?>
                 <p>Para solicitar participação realize seu <a href="cadastro.php" class="noEvent">cadastro</a> ou <a href="login.php" class="noEvent">acesse sua conta</a>.</p>
                 <?php
@@ -76,7 +76,9 @@ if (isset($_GET['id'])) {
             $sqlMedia = mysqli_query($conexao, "SELECT AVG(avaliacoes.nota) AS mediaEvento FROM avaliacoes INNER JOIN participacao_eventos ON avaliacoes.participacaoId = participacao_eventos.participacaoId WHERE participacao_eventos.eventosId = '$eventosId'");
             $media = mysqli_fetch_assoc($sqlMedia);
             $media["mediaEvento"] = number_format($media["mediaEvento"], 1);
-            echo "<br>Média das notas do evento: " . $media["mediaEvento"];
+            if ($media["mediaEvento"] > 0) {
+                echo "<br>Média das notas do evento: " . $media["mediaEvento"];
+            }
             if (isset($usuariosId)) {
                 $sqlAceito = mysqli_query($conexao, "SELECT * FROM solicitacao WHERE usuariosId = '$usuariosId' AND eventosId = '$eventosId' AND aprovado = 'SIM'");
                 //verifica se o usuário está participando e se ainda não avaliou o evento
@@ -135,12 +137,10 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
                 </div>
-<?php
+        <?php
             }
         }
-        ?>
-        <div class="empurrarFooter"></div>
-        <?php
+        echo "<div class='empurrarFooter'></div>";
     } else {
         echo "Nenhum evento registrado com este link.";
     }
