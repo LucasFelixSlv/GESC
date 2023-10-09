@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST["entrar"])){
+if (isset($_POST["entrar"])) {
 
     $usuario = $_POST["nomeUsuario"];
     $senha = $_POST["senhaUsuario"];
@@ -8,14 +8,13 @@ if (isset($_POST["entrar"])){
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    if(emptyInputLogin($usuario, $senha) !== false){
+    if (emptyInputLogin($usuario, $senha) !== false) {
         header("location: ../pagina_principal/login.php?error=campovazio");
         exit();
     }
 
     loginUser($conexao, $usuario, $senha);
-
-}else{
+} else {
     header("location: ../pagina_principal/index.php");
     exit();
 }

@@ -10,7 +10,7 @@ if (isset($_POST["enviar"])) {
         header("location: ../pagina_principal/evento.php?id=$linkEvento");
         die;
     }
-    if (empty($comentario)){
+    if (empty($comentario)) {
         header("location: ../pagina_principal/evento.php?id=$linkEvento");
         die;
     }
