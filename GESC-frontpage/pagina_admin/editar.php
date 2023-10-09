@@ -1,39 +1,36 @@
 <?php
 
 session_start();
-if (isset($_SESSION["usuariosId"])) {
-    include_once('../includes/dbh.inc.php');
 
-    if (!empty($_POST['eventosId'])) {
+include_once('../includes/dbh.inc.php');
 
-        $eventosId = $_POST['eventosId'];
+if (!empty($_POST['eventosId'])) {
 
-        $sqlSelect = "SELECT * FROM `eventos` WHERE eventosId='$eventosId'";
+    $eventosId = $_POST['eventosId'];
 
-        $result = $conexao->query($sqlSelect);
+    $sqlSelect = "SELECT * FROM `eventos` WHERE eventosId='$eventosId'";
 
-        if ($result->num_rows > 0) {
+    $result = $conexao->query($sqlSelect);
 
-            while ($dadosEvento = mysqli_fetch_assoc($result)) {
+    if ($result->num_rows > 0) {
 
-                $eventosId = $dadosEvento['eventosId'];
-                $usuariosId = $dadosEvento['usuariosId'];
-                $nome = $dadosEvento['nome'];
-                $descricao = $dadosEvento['descricao'];
-                $localEv = $dadosEvento['localEv'];
-                $dataInicio = $dadosEvento['dataInicio'];
-                $dataTermino = $dadosEvento['dataTermino'];
-                $horaInicio = $dadosEvento['horaInicio'];
-                $horaTermino = $dadosEvento['horaTermino'];
-                $imagem = $dadosEvento['imagem'];
-                $link = $dadosEvento['link'];
-            }
-        } else {
-            header('Location: editar.php');
+        while ($dadosEvento = mysqli_fetch_assoc($result)) {
+
+            $eventosId = $dadosEvento['eventosId'];
+            $usuariosId = $dadosEvento['usuariosId'];
+            $nome = $dadosEvento['nome'];
+            $descricao = $dadosEvento['descricao'];
+            $localEv = $dadosEvento['localEv'];
+            $dataInicio = $dadosEvento['dataInicio'];
+            $dataTermino = $dadosEvento['dataTermino'];
+            $horaInicio = $dadosEvento['horaInicio'];
+            $horaTermino = $dadosEvento['horaTermino'];
+            $imagem = $dadosEvento['imagem'];
+            $link = $dadosEvento['link'];
         }
+    } else {
+        header('Location: editar.php');
     }
-} else {
-    header("location: ../pagina_principal/index.php");
 }
 ?>
 
@@ -104,6 +101,7 @@ if (isset($_SESSION["usuariosId"])) {
             <div class="mb-3">
                 <label for="nome" class="form-label">Evento:</label>
                 <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $nome ?>">
+
             </div>
         </div>
 

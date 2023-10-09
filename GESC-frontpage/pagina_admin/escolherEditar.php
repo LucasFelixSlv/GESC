@@ -1,17 +1,16 @@
 <?php
 
 session_start();
-if (isset($_SESSION["usuariosId"])) {
-    include_once('../includes/dbh.inc.php');
-    $usuariosId = $_SESSION["usuariosId"];
-    // Buscar dados do evento
+$usuariosId = $_SESSION["usuariosId"];
 
-    $sql = "SELECT * FROM `eventos` WHERE usuariosId ='$usuariosId'";
-    $result = $conexao->query($sql);
-    $dadosEvento = $result->fetch_assoc();
-} else {
-    header("location: ../pagina_principal/index.php");
-}
+include_once('../includes/dbh.inc.php');
+
+// Buscar dados do evento
+
+$sql = "SELECT eventosId, nome, localEv, DATE_FORMAT(dataInicio, '%d/%m/%Y') AS data_formatada FROM `eventos` WHERE usuariosId ='$usuariosId'";
+$result = $conexao->query($sql);
+$dadosEvento = $result->fetch_assoc();
+
 ?>
 
 <!DOCTYPE html>
@@ -95,14 +94,12 @@ if (isset($_SESSION["usuariosId"])) {
                             <td><?= $dadosEvento['eventosId'] ?> </td>
                             <td class='text-break'><?= $dadosEvento["nome"] ?></td>
                             <td><?= $dadosEvento["localEv"] ?></td>
-                            <td><?= $dadosEvento["dataInicio"] ?></td>
+                            <td><?= $dadosEvento["data_formatada"] ?></td>
                             <td>
-
 
                                 <button type="submit" name="eventosId" value="<?= $dadosEvento['eventosId'] ?>" class="btn btn-default btnEdit">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
-
 
                                 <button type="button" name="eventosId" class="btn btn-default btnDelete" data-bs-toggle="modal" data-bs-target="#modalDelete<?= $dadosEvento['eventosId'] ?>">
                                     <i class="fa fa-trash" aria-hidden="true"></i>

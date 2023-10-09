@@ -3,19 +3,41 @@
 use LDAP\Result;
 
 session_start();
-if (isset($_SESSION["usuariosId"])) {
+$usuariosId = $_SESSION['usuariosId'];
+include_once('../includes/dbh.inc.php');
 
-    include_once('../includes/dbh.inc.php');
+// Buscar dados do evento
 
-    // Buscar dados do evento
+$sql = "SELECT 
+avaliacoes.comentario,
+eventos.nome
+FROM avaliacoes 
+INNER JOIN
+participacao_eventos
+ON avaliacoes.participacaoId = participacao_eventos.participacaoId
+INNER JOIN
+eventos 
+ON participacao_eventos.eventosId = eventos.eventosId
+WHERE eventos.usuariosId ='$usuariosId'";
 
-    $sql = "SELECT usuarios.usuariosNome, avaliacoes.comentario FROM `avaliacoes` INNER JOIN participacao_eventos ON avaliacoes.participacaoId = participacao_eventos.participacaoId INNER JOIN usuarios ON participacao_eventos.usuariosId = usuarios.usuariosId ORDER BY avaliacoesId ASC";
-    $result = $conexao->query($sql);
-    $dadosComents = $result->fetch_assoc();
-    $result->data_seek(0);
-} else {
-    header("location: ../pagina_principal/index.php");
-}
+$result = $conexao->query($sql);
+$dadosComents = $result->fetch_assoc();
+$result->data_seek(0);
+
+$sqlMedia = "SELECT
+    ROUND(AVG(avaliacoes.nota), 1) AS media_nota
+    FROM avaliacoes 
+    INNER JOIN
+    participacao_eventos
+    ON avaliacoes.participacaoId = participacao_eventos.participacaoId
+    INNER JOIN
+    eventos 
+    ON participacao_eventos.eventosId = eventos.eventosId
+    WHERE eventos.usuariosId ='$usuariosId'";
+
+$resultado = $conexao->query($sqlMedia);
+$MediaNotas = $resultado->fetch_assoc();
+
 ?>
 
 <!doctype html>
@@ -33,7 +55,6 @@ if (isset($_SESSION["usuariosId"])) {
 </head>
 
 <body>
-
 
     <header class="bg-black text-white text-center">
         <div class="container">
@@ -81,16 +102,12 @@ if (isset($_SESSION["usuariosId"])) {
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Avaliação do seu Evento</h5>
+                <h5 class="card-title">Avaliação Geral dos seus Eventos</h5>
 
                 <div class="rating">
-                    <span class="star" data-star="1">&#9733;</span>
-                    <span class="star" data-star="2">&#9733;</span>
-                    <span class="star" data-star="3">&#9733;</span>
-                    <span class="star" data-star="4">&#9733;</span>
-                    <span class="star" data-star="5">&#9733;</span>
+                    <span class="star" data-star="1">&#9733; <?= $MediaNotas['media_nota'] ?></span>
                 </div>
-                <p>Média de Avaliação: <span id="media-avaliacao">0.0</span></p>
+
             </div>
         </div>
     </div>
@@ -99,9 +116,11 @@ if (isset($_SESSION["usuariosId"])) {
 
     while ($dadosComents = mysqli_fetch_assoc($result)) {
 
-        echo "<div class='container'>
+        echo
+        "<div class='container'>
             <div class='mb-3'>
-                <textarea class='form-control mt-4' id='descricao' rows='4'> $dadosComents[comentario]</textarea>
+                <label class='mt-4'><b>Evento:</b> $dadosComents[nome] </label>
+                <textarea class='form-control ' id='descricao' rows='4'> $dadosComents[comentario]</textarea>
             </div>
         </div>'";
     }

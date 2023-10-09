@@ -1,11 +1,7 @@
 <?php
 session_start();
+$usuario = $_SESSION["usuariosId"];
 
-if (isset($_SESSION["usuariosId"])) {
-    $usuario = $_SESSION["usuariosId"];
-} else {
-    header("location: ../pagina_principal/index.php");
-}
 ?>
 
 <!doctype html>
