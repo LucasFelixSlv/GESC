@@ -26,6 +26,10 @@ if (isset($_GET['id'])) {
         $dataTerminoFormat = date_format($dataTermino,"d/m/Y");
         $dataInicio = new DateTime($aux["dataInicio"]);
         $dataInicio = date_format($dataInicio, "d/m/Y");
+        $localEv = $aux['localEv'];
+
+
+
 
         //
         //Aqui fica os detalhes do evento
@@ -36,8 +40,10 @@ if (isset($_GET['id'])) {
              <img src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
         </div>
             <h3><?=$aux["nome"] ?></h3>
-            <P ><?=$aux["descricao"] ?></p>
+            <P><?=$aux["descricao"] ?></p>
             <p><?=$dataInicio ?><span style="color: white;"> - </span><?= $dataTerminoFormat ?></p>
+            <p><?=$localEv ?></p>
+            <p> 
         
 
 <?php
