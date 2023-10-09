@@ -30,7 +30,7 @@ if (isset($_GET['id'])) {
         //
 
 ?>
-        <img src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
+            <img class="imgDetalhe" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
         <?php
 
         $sqlSolicitacao = mysqli_query($conexao, "SELECT usuariosId FROM solicitacao WHERE eventosId = '$eventosId'");
@@ -125,7 +125,7 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
                 </div>
-        <?php
+<?php
             }
         }
         echo "<div class='empurrarFooter'></div>";
