@@ -49,17 +49,16 @@ function toggleSenhaCadastro() {
     }
 }
 
-function checkNota(){
-    nota = document.querySelector('#notaAvaliacao');
-    botaoAvaliacao = document.querySelector('#enviar');
+document.querySelector('#notaAvaliacao').oninput = () => {
+    const nota = document.querySelector('#notaAvaliacao');
+    const botaoAvaliacao = document.querySelector('button[type="submit"]');
 
-    if(nota.value <= 5 && nota.value >= 1 && (nota.value % 1 === 0)){
+    if (nota.value >= 1 && nota.value <= 5 && nota.value % 1 === 0) {
         botaoAvaliacao.removeAttribute("disabled");
-    }else{
+    } else {
         botaoAvaliacao.setAttribute("disabled", "");
     }
-
-}
+};
 
 //Testes abaixo
 

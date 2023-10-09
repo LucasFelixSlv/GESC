@@ -133,7 +133,7 @@ function loginUser($conexao, $usuario, $senha)
 function userParticipation($usuariosId, $eventosId)
 {
     include_once('dbh.inc.php');
-    $sql = "INSERT INTO solicitacao (usuariosId, eventosId) VALUES ('$usuariosId', '$eventosId')";
+    $sql = "INSERT INTO solicitacao (usuariosId, eventosId, aprovado) VALUES ('$usuariosId', '$eventosId', 'NÃO')";
     mysqli_query($conexao, $sql);
 }
 

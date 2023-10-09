@@ -589,6 +589,10 @@ body {
 
 /* FOOTER */
 
+.empurrarFooter{
+    margin-bottom: 85px;
+}
+
 footer {
     margin-top: 12px;
     text-align: center;
