@@ -146,7 +146,7 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
                 </div>
-        <?php
+<?php
             }
         }
         echo "<div class='empurrarFooter'></div>";
