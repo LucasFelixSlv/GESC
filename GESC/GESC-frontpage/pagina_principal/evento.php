@@ -27,6 +27,8 @@ if (isset($_GET['id'])) {
         $dataInicio = new DateTime($aux["dataInicio"]);
         $dataInicio = date_format($dataInicio, "d/m/Y");
         $localEv = $aux['localEv'];
+        $horaInicio = $aux['horaInicio'];
+        $horaTermino = $aux['horaTermino'];
 
 
 
@@ -41,9 +43,10 @@ if (isset($_GET['id'])) {
         </div>
             <h3><?=$aux["nome"] ?></h3>
             <P><?=$aux["descricao"] ?></p>
-            <p><?=$dataInicio ?><span style="color: white;"> - </span><?= $dataTerminoFormat ?></p>
+            <p><?=$dataInicio ?><span style="color: black;"> - </span><?= $dataTerminoFormat ?></p>
             <p><?=$localEv ?></p>
-            <p> 
+            <p><?=$horaInicio ?></p>
+            <p><?=$horaTermino ?></p>
         
 
 <?php
