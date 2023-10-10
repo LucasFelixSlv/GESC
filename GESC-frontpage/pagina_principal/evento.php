@@ -30,7 +30,10 @@ if (isset($_GET['id'])) {
         //
 
 ?>
+    <div class="bannerEvento">
+        <img class="imgDetalheFundo" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
         <img class="imgDetalhe" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
+    </div>
         <?php
 
         $sqlSolicitacao = mysqli_query($conexao, "SELECT usuariosId FROM solicitacao WHERE eventosId = '$eventosId'");
