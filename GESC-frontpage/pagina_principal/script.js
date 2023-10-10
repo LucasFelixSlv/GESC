@@ -49,13 +49,18 @@ function toggleSenhaCadastro() {
     }
 }
 
-document.querySelector('#notaAvaliacao').oninput = () => {
-    const nota = document.querySelector('#notaAvaliacao');
-    const botaoAvaliacao = document.querySelector('button[type="submit"]');
+const notaAvaliacao = document.querySelector('#notaAvaliacao');
 
-    if (nota.value >= 1 && nota.value <= 5 && nota.value % 1 === 0) {
-        botaoAvaliacao.removeAttribute("disabled");
-    } else {
-        botaoAvaliacao.setAttribute("disabled", "");
-    }
-};
+if(notaAvaliacao){
+    notaAvaliacao.oninput = () => {
+        const nota = document.querySelector('#notaAvaliacao');
+        const botaoAvaliacao = document.querySelector('button[type="submit"]');
+    
+        if (nota.value >= 1 && nota.value <= 5 && nota.value % 1 === 0) {
+            botaoAvaliacao.removeAttribute("disabled");
+        } else {
+            botaoAvaliacao.setAttribute("disabled", "");
+        }
+    };
+}
+

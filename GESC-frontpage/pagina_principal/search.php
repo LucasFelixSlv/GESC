@@ -30,22 +30,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="row g-3 mobileCenter">
 
                 <?php
-                date_default_timezone_set('America/Sao_Paulo');
-                $dataAtual = date('d/m/Y');
+                $dataAtual = new DateTime('now', new DateTimeZone('America/Sao_Paulo'));
                 while ($aux = mysqli_fetch_assoc($sql)) {
-                    $dataInicio = $aux["dataInicio"];
-                    $DataEspecificaInicio = new DateTime($dataInicio);
-                    $dataTermino = $aux["dataTermino"];
-                    $DataEspecificaTermino = new DateTime($dataTermino);
+                    $dataInicio = new DateTime($aux["dataInicio"]);
+                    $dataTermino = new DateTime($aux["dataTermino"]);
+                    $horaTermino = new DateTime($aux["horaTermino"]);
                 ?>
                     <div class="col-10 col-md-6 col-lg-4 containerModal">
                         <div class="roundCard card h-100">
                             <img class="imageFit card-img-top" src="<?= $aux["imagem"] ?>" alt="imagem 3" />
                             <div class="infoCard card-body">
-                                <p class="m-0 dataEvento"><?= date_format($DataEspecificaInicio, "d/m/Y") ?><span style="color: white;"> - </span><?= date_format($DataEspecificaTermino, "d/m/Y") ?></p>
+                                <p class="m-0 dataEvento"><?= date_format($dataInicio, "d/m/Y") ?><span style="color: white;"> - </span><?= date_format($dataTermino, "d/m/Y") ?></p>
                                 <div class="textCard">
                                     <?php
-                                    if ($dataAtual > date_format($DataEspecificaTermino, "d/m/Y")) {
+                                    if ($dataAtual >= $dataTermino && $dataAtual->format('H:i:s') > $horaTermino->format('H:i:s')) {
                                     ?>
                                         <p class="eventoFinalizado">[Finalizado]</p>
                                     <?php
