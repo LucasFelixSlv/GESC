@@ -25,20 +25,21 @@ if (isset($_GET['id'])) {
         $dataInicio = new DateTime($aux["dataInicio"]);
         $dataInicio = date_format($dataInicio, "d/m/Y");
 
+        $horaTermino = new DateTime($aux["horaTermino"]);
         //
         //Aqui fica os detalhes do evento
         //
 
 ?>
-    <div class="bannerEvento">
-        <img class="imgDetalheFundo" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
-        <img class="imgDetalhe" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
-    </div>
+        <div class="bannerEvento">
+            <img class="imgDetalheFundo" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
+            <img class="imgDetalhe" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
+        </div>
         <?php
 
         $sqlSolicitacao = mysqli_query($conexao, "SELECT usuariosId FROM solicitacao WHERE eventosId = '$eventosId'");
 
-        if ($dataAtual < $dataTermino) {
+        if ($dataAtual < $dataTermino && $dataAtual->format('H:i:s') < $horaTermino->format('H:i:s')) {
             //o usuário ainda pode solicitar participação
 
             echo '<br>Você pode solicitar participação!';
@@ -61,7 +62,7 @@ if (isset($_GET['id'])) {
                 <p>Para solicitar participação realize seu <a href="cadastro.php" class="noEvent">cadastro</a> ou <a href="login.php" class="noEvent">acesse sua conta</a>.</p>
                 <?php
             }
-        } else if ($dataAtual >= $dataTermino) {
+        } else if ($dataAtual >= $dataTermino && $dataAtual->format('H:i:s') >= $horaTermino->format('H:i:s')) {
             //o usuário não pode mais solicitar participação
             echo '<br>Você não pode solicitar participação!';
             $sqlMedia = mysqli_query($conexao, "SELECT AVG(avaliacoes.nota) AS mediaEvento FROM avaliacoes INNER JOIN participacao_eventos ON avaliacoes.participacaoId = participacao_eventos.participacaoId WHERE participacao_eventos.eventosId = '$eventosId'");

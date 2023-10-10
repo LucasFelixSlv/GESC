@@ -71,7 +71,7 @@ if ($queryResult > 0) {
                     </form>
                 </div>
                 <?php
-                $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE dataTermino > NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
+                $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE CONCAT(dataTermino, ' ', horaTermino) > NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
                 if (mysqli_num_rows($sql) > 0) {
 
                 ?>
@@ -79,18 +79,18 @@ if ($queryResult > 0) {
             </div>
             <div class="row g-3 mobileCenter mb-3">
                 <?php
-                    $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE dataTermino > NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
+                    $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE CONCAT(dataTermino, ' ', horaTermino) > NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
                     while ($aux = mysqli_fetch_assoc($sql)) {
-                        $dataInicio = $aux["dataInicio"];
-                        $DataEspecificaInicio = new DateTime($dataInicio);
-                        $dataTermino = $aux["dataTermino"];
-                        $DataEspecificaTermino = new DateTime($dataTermino);
+                        $dataInicio = new DateTime($aux["dataInicio"]);
+                        $dataInicio = date_format($dataInicio, "d/m/Y");
+                        $dataTermino = new DateTime($aux["dataTermino"]);
+                        $dataTermino = date_format($dataTermino, "d/m/Y");
                 ?>
                     <div class="col-10 col-md-6 col-lg-4 containerModal">
                         <div class="roundCard card h-100">
                             <img class="imageFit card-img-top" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
                             <div class="infoCard card-body">
-                                <p class="m-0 dataEvento"><?= date_format($DataEspecificaInicio, "d/m/Y") ?><span style="color: white;"> - </span><?= date_format($DataEspecificaTermino, "d/m/Y") ?></p>
+                                <p class="m-0 dataEvento"><?= $dataInicio ?><span style="color: white;"> - </span><?= $dataTermino ?></p>
                                 <div class="textCard">
                                     <h3 class="card-title"><?= $aux["nome"] ?></h3>
                                 </div>
@@ -100,14 +100,14 @@ if ($queryResult > 0) {
                     </div>
                 <?php } ?>
             </div>
-            <div class="barDiv"></div>
         <?php
                 } else {
                     echo '</div>';
                 }
-                $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE dataTermino < NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
+                $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE CONCAT(dataTermino, ' ', horaTermino) <= NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
                 if (mysqli_num_rows($sql) > 0) {
         ?>
+            <div class="barDiv"></div>
             <div class="p-relative">
                 <h2 class="nextPastEvents">EVENTOS FINALIZADOS</h2>
             </div>
@@ -115,16 +115,16 @@ if ($queryResult > 0) {
 
                 <?php
                     while ($aux = mysqli_fetch_assoc($sql)) {
-                        $dataInicio = $aux["dataInicio"];
-                        $DataEspecificaInicio = new DateTime($dataInicio);
-                        $dataTermino = $aux["dataTermino"];
-                        $DataEspecificaTermino = new DateTime($dataTermino);
+                        $dataInicio = new DateTime($aux["dataInicio"]);
+                        $dataInicio = date_format($dataInicio, "d/m/Y");
+                        $dataTermino = new DateTime($aux["dataTermino"]);
+                        $dataTermino = date_format($dataTermino, "d/m/Y");
                 ?>
                     <div class="col-10 col-md-6 col-lg-4 containerModal">
                         <div class="roundCard card h-100">
                             <img class="imageFit card-img-top" src="<?= $aux["imagem"] ?>" alt="<?= $aux["nome"] ?>" />
                             <div class="infoCard card-body">
-                                <p class="m-0 dataEvento"><?= date_format($DataEspecificaInicio, "d/m/Y") ?><span style="color: white;"> - </span><?= date_format($DataEspecificaTermino, "d/m/Y") ?></p>
+                                <p class="m-0 dataEvento"><?= $dataInicio ?><span style="color: white;"> - </span><?= $dataTermino ?></p>
                                 <div class="textCard">
                                     <p class="eventoFinalizado">[Finalizado]</p>
                                     <h3 class="card-title"><?= $aux["nome"] ?></h3>
