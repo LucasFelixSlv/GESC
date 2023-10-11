@@ -76,29 +76,30 @@ if (isset($_GET['id'])) {
                 }
             } else if (!isset($usuariosId)) {
                 ?>
+                <div class="container col-10 semLogin">
                 <p>Para solicitar participação realize seu <a href="cadastro.php" class="noEvent">cadastro</a> ou <a href="login.php" class="noEvent">acesse sua conta</a>.</p>
+                </div>
                 <?php
             }
         } else if ($dataAtual >= $dataTermino) {
             //o usuário não pode mais solicitar participação
             echo '<br>Você não pode solicitar participação!';
-            $sqlMedia = mysqli_query($conexao, "SELECT AVG(avaliacoes.nota) AS mediaEvento FROM avaliacoes INNER JOIN participacao_eventos ON avaliacoes.participacaoId = participacao_eventos.participacaoId WHERE participacao_eventos.eventosId = '$eventosId'");
+            $sqlMedia = mysqli_query($conexao, "SELECT AVG(avaliacoes.nota) AS mediaEvento FROM avaliacoes INNER JOIN solicitacao ON avaliacoes.solicitacaoId = solicitacao.solicitacaoId WHERE solicitacao.eventosId = '$eventosId'");
             $media = mysqli_fetch_assoc($sqlMedia);
             $media["mediaEvento"] = number_format($media["mediaEvento"], 1);
             if ($media["mediaEvento"] > 0) {
                 echo "<br>Média das notas do evento: " . $media["mediaEvento"];
             }
             if (isset($usuariosId)) {
-                $sqlAceito = mysqli_query($conexao, "SELECT * FROM solicitacao WHERE usuariosId = '$usuariosId' AND eventosId = '$eventosId' AND aprovado = 'SIM'");
                 //verifica se o usuário está participando e se ainda não avaliou o evento
-                $sqlParticipacao = mysqli_query($conexao, "SELECT * FROM participacao_eventos WHERE eventosId = '$eventosId' AND usuariosId='$usuariosId'");
-                $sqlComentarios = mysqli_query($conexao, "SELECT * FROM avaliacoes INNER JOIN participacao_eventos ON avaliacoes.participacaoId = participacao_eventos.participacaoId WHERE participacao_eventos.usuariosId = '$usuariosId' AND participacao_eventos.eventosId = '$eventosId'");
+                $sqlParticipacao = mysqli_query($conexao, "SELECT * FROM solicitacao WHERE eventosId = '$eventosId' AND usuariosId='$usuariosId' AND aprovado='Sim'");
+                $sqlComentarios = mysqli_query($conexao, "SELECT * FROM avaliacoes INNER JOIN solicitacao ON avaliacoes.solicitacaoId = solicitacao.solicitacaoId WHERE solicitacao.usuariosId = '$usuariosId' AND solicitacao.eventosId = '$eventosId' AND aprovado='Sim'");
                 if (mysqli_num_rows($sqlParticipacao) === 1 && mysqli_num_rows($sqlComentarios) === 0) {
-                    $participacaoId = mysqli_fetch_assoc($sqlParticipacao);
-                    //form de avaliação
+                    $solicitacaoId = mysqli_fetch_assoc($sqlParticipacao);
+                    // form de avaliação
                 ?>
                     <form action="../includes/eventComment.inc.php" method="post">
-                        <input type="hidden" name="participacaoId" value="<?= $participacaoId["participacaoId"] ?>">
+                        <input type="hidden" name="solicitacaoId" value="<?= $solicitacaoId["solicitacaoId"] ?>">
                         <input type="hidden" name="linkEvento" value="<?= $linkEvento ?>">
                         <input type="number" name="nota" min="1" max="5" step="1" id="notaAvaliacao">
                         <textarea name="comentario" rows="4" cols="50"></textarea>
@@ -108,7 +109,7 @@ if (isset($_GET['id'])) {
                 }
             }
             //mostrando todos os comentários do evento passado
-            $sqlMostraComentarios = mysqli_query($conexao, "SELECT usuarios.usuariosNome, avaliacoes.comentario, avaliacoes.nota FROM avaliacoes INNER JOIN participacao_eventos ON avaliacoes.participacaoId = participacao_eventos.participacaoId INNER JOIN usuarios ON participacao_eventos.usuariosId = usuarios.usuariosId WHERE eventosId = '$eventosId'");
+            $sqlMostraComentarios = mysqli_query($conexao, "SELECT usuarios.usuariosNome, avaliacoes.comentario, avaliacoes.nota FROM avaliacoes INNER JOIN solicitacao ON avaliacoes.solicitacaoId = solicitacao.solicitacaoId INNER JOIN usuarios ON solicitacao.usuariosId = usuarios.usuariosId WHERE eventosId = '$eventosId'");
             if (mysqli_num_rows($sqlMostraComentarios) > 0) {
                 ?>
                 <div class="container">
