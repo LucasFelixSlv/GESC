@@ -57,7 +57,9 @@ if (isset($_GET['id'])) {
                 }
             } else if (!isset($usuariosId)) {
                 ?>
+                <div class="container col-10 semLogin">
                 <p>Para solicitar participação realize seu <a href="cadastro.php" class="noEvent">cadastro</a> ou <a href="login.php" class="noEvent">acesse sua conta</a>.</p>
+                </div>
                 <?php
             }
         } else if ($dataAtual >= $dataTermino) {

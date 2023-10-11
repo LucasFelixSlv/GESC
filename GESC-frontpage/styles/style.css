@@ -643,6 +643,12 @@ body {
     text-align: justify;
 }
 
+@media(min-width: 768px) {
+    .semLogin{
+        font-size: 24px;
+    }
+}
+
 /* PÁGINA DE PESQUISA */
 
 .textoPesquisa {
