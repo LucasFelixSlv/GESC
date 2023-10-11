@@ -70,7 +70,7 @@ if (isset($_GET['id'])) {
                         <input type="hidden" name="usuariosId" value="<?= $usuariosId ?>">
                         <input type="hidden" name="eventosId" value="<?= $aux["eventosId"] ?>">
                         <input type="hidden" name="linkEvento" value="<?= $linkEvento ?>">
-                        <button type="submit" name="participar">Solicitar participação</button>
+                        <button type="submit" name="participar" class="modalButton">Solicitar participação</button>
                     </form>
                 <?php
                 }
