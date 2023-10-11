@@ -34,7 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 while ($aux = mysqli_fetch_assoc($sql)) {
                     $dataInicio = new DateTime($aux["dataInicio"]);
                     $dataTermino = new DateTime($aux["dataTermino"]);
-                    $horaTermino = new DateTime($aux["horaTermino"]);
                 ?>
                     <div class="col-10 col-md-6 col-lg-4 containerModal">
                         <div class="roundCard card h-100">
@@ -43,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <p class="m-0 dataEvento"><?= date_format($dataInicio, "d/m/Y") ?><span style="color: white;"> - </span><?= date_format($dataTermino, "d/m/Y") ?></p>
                                 <div class="textCard">
                                     <?php
-                                    if ($dataAtual >= $dataTermino && $dataAtual->format('H:i:s') > $horaTermino->format('H:i:s')) {
+                                    if ($dataAtual >= $dataTermino) {
                                     ?>
                                         <p class="eventoFinalizado">[Finalizado]</p>
                                     <?php

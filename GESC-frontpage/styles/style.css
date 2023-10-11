@@ -325,10 +325,10 @@ body {
 
 @media(max-width:767px) {
     .wrapperMsgErro {
-        width: 117%;
+        width: 100%;
         height: 100%;
         top: 0%;
-        left: -25px;
+        left: 0%;
         position: fixed;
         justify-content: center;
         align-items: center;
@@ -340,7 +340,7 @@ body {
 .msgErro {
     position: absolute;
     margin: 0 auto;
-    width: 320px;
+    width: 300px;
     height: 270px;
     background-color: #252526;
     border: 2px solid rgba(255, 0, 0, 0.5);
@@ -641,6 +641,12 @@ body {
 
 .comentario {
     text-align: justify;
+}
+
+@media(min-width: 768px) {
+    .semLogin{
+        font-size: 24px;
+    }
 }
 
 /* PÁGINA DE PESQUISA */
