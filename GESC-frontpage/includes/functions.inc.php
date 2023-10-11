@@ -14,7 +14,7 @@ function emptyInputSignup($usuario, $senha, $repetirSenha)
 function invalidUser($usuario)
 {
     $result = null;
-    $padrao = '/^(?=.*[a-zA-Z].*[a-zA-Z])[a-zA-Z0-9_]{2,50}$/';
+    $padrao = '/^(?=.*[a-zA-Z].*[a-zA-Z])[a-zA-Z0-9_]{2,25}$/';
     if (!preg_match($padrao, $usuario) || strlen($usuario) < 2) {
         $result = true;
     } else {

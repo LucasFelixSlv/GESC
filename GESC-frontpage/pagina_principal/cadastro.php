@@ -31,7 +31,7 @@ include_once 'header.php';
                 if ($_GET["error"] == "campovazio") {
                     echo "<div class='wrapperMsgErro'><div class='msgErro'><p>Por favor, preencha todos os campos!</p><button type='button' class='confirmarMsg erroCadastro' name='fecharMsg'>OK</button></div></div>";
                 } else if ($_GET["error"] == "usuarioinvalido") {
-                    echo "<div class='wrapperMsgErro'><div class='msgErro'><p>Por favor, escolha um nome de usuário válido! <br/>&bull; Pelo menos 2 letras <br/>&bull; Pode conter números e '_'.)</p><button type='button' class='confirmarMsg erroCadastro' name='fecharMsg'>OK</button></div></div>";
+                    echo "<div class='wrapperMsgErro'><div class='msgErro'><p>Por favor, escolha um nome de usuário válido! <br/>&bull; Pelo menos 2 letras<br/>&bull; Máximo 25 letras<br/>&bull; Pode conter números e '_'.)</p><button type='button' class='confirmarMsg erroCadastro' name='fecharMsg'>OK</button></div></div>";
                 } else if ($_GET["error"] == "senhadiferente") {
                     echo "<div class='wrapperMsgErro'><div class='msgErro'><p>Suas senhas não são idênticas, por favor confira novamente!</p><button type='button' class='confirmarMsg erroCadastro' name='fecharMsg'>OK</button></div></div>";
                 } else if ($_GET["error"] == "senhafraca") {
