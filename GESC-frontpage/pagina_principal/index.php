@@ -71,7 +71,7 @@ if ($queryResult > 0) {
                     </form>
                 </div>
                 <?php
-                $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE CONCAT(dataTermino, ' ', horaTermino) > NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
+                $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE dataTermino > NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
                 if (mysqli_num_rows($sql) > 0) {
 
                 ?>
@@ -79,7 +79,7 @@ if ($queryResult > 0) {
             </div>
             <div class="row g-3 mobileCenter mb-3">
                 <?php
-                    $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE CONCAT(dataTermino, ' ', horaTermino) > NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
+                    // $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE dataTermino > NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
                     while ($aux = mysqli_fetch_assoc($sql)) {
                         $dataInicio = new DateTime($aux["dataInicio"]);
                         $dataInicio = date_format($dataInicio, "d/m/Y");
@@ -104,7 +104,7 @@ if ($queryResult > 0) {
                 } else {
                     echo '</div>';
                 }
-                $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE CONCAT(dataTermino, ' ', horaTermino) <= NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
+                $sql = mysqli_query($conexao, "SELECT * FROM eventos WHERE dataTermino <= NOW() ORDER BY dataInicio ASC") or die(mysqli_error($conexao));
                 if (mysqli_num_rows($sql) > 0) {
         ?>
             <div class="barDiv"></div>
