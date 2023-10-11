@@ -13,11 +13,11 @@ avaliacoes.comentario,
 eventos.nome
 FROM avaliacoes 
 INNER JOIN
-participacao_eventos
-ON avaliacoes.participacaoId = participacao_eventos.participacaoId
+solicitacao
+ON avaliacoes.solicitacaoId = solicitacao.solicitacaoId
 INNER JOIN
 eventos 
-ON participacao_eventos.eventosId = eventos.eventosId
+ON solicitacao.eventosId = eventos.eventosId
 WHERE eventos.usuariosId ='$usuariosId'";
 
 $result = $conexao->query($sql);
@@ -28,11 +28,11 @@ $sqlMedia = "SELECT
     ROUND(AVG(avaliacoes.nota), 1) AS media_nota
     FROM avaliacoes 
     INNER JOIN
-    participacao_eventos
-    ON avaliacoes.participacaoId = participacao_eventos.participacaoId
+    solicitacao
+    ON avaliacoes.solicitacaoId = solicitacao.solicitacaoId
     INNER JOIN
     eventos 
-    ON participacao_eventos.eventosId = eventos.eventosId
+    ON solicitacao.eventosId = eventos.eventosId
     WHERE eventos.usuariosId ='$usuariosId'";
 
 $resultado = $conexao->query($sqlMedia);

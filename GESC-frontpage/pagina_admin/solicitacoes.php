@@ -7,18 +7,16 @@ include_once('../includes/dbh.inc.php');
 // Buscar dados do evento
 
 $sql = "SELECT 
-                solicitacao.solicitacaoId,
-                usuarios.usuariosNome,
-                usuarios.usuariosId,
-                eventos.eventosId,
-                solicitacao.aprovado,
-                eventos.nome 
-              FROM usuarios
-              INNER JOIN solicitacao
-              ON usuarios.usuariosId = solicitacao.usuariosId
-              INNER JOIN eventos
-              ON solicitacao.eventosId = eventos.eventosId
-              WHERE solicitacao.aprovado = 'NÃO' AND eventos.usuariosId ='$usuariosId';";
+          solicitacao.solicitacaoId,
+          usuarios.usuariosNome,
+          solicitacao.aprovado,
+          eventos.nome 
+        FROM usuarios
+        INNER JOIN solicitacao
+        ON usuarios.usuariosId = solicitacao.usuariosId
+        INNER JOIN eventos
+        ON solicitacao.eventosId = eventos.eventosId
+        WHERE solicitacao.aprovado = 'Não' AND eventos.usuariosId ='$usuariosId';";
 
 $result = $conexao->query($sql);
 $dadosSolicitacao = $result->fetch_assoc();
@@ -28,7 +26,7 @@ $sqlCount = "SELECT
             FROM solicitacao
             INNER JOIN eventos
             ON solicitacao.eventosId = eventos.eventosId
-            WHERE aprovado = 'SIM' AND eventos.usuariosId ='$usuariosId';";
+            WHERE aprovado = 'Sim' AND eventos.usuariosId ='$usuariosId';";
 
 $resultCount = $conexao->query($sqlCount);
 $dadosCount = $resultCount->fetch_assoc();
@@ -102,52 +100,45 @@ $dadosCount = $resultCount->fetch_assoc();
             <th class="col-md-4">Nome</th>
             <th class="col-md-4">Nome do Evento</th>
             <th class="col-md-4">Aprovar Individualmente</th>
-            <th scope="col">Aprovar Todos?</th>
             <th scope="col">
               <div class="container">
-
-                <div class="col text-end">
-                  <button type="submit" name="atualizar" class="btn btn btn-success">Sim</button>
-                </div>
-              </div>
+                <button type="submit" name="usuariosId" class="btn btn-success" 
+                value="<?= $usuariosId ?>">Aprovar todos</button>
             </th>
           </tr>
         </thead>
         <tbody>
 
-          <?php
+        <form action="salvarSolicitacao.php">
 
+          <?php
           $result->data_seek(0);
 
           while ($dadosSolicitacao = mysqli_fetch_assoc($result)) {
 
           ?>
-
             <tr>
               <td><?= $dadosSolicitacao['usuariosNome'] ?></td>
               <td><?= $dadosSolicitacao['nome'] ?></td>
-              <form action="salvarSolicitacao.php">
+              
                 <td>
-                  <input type="hidden" name="usuariosId" value=<?= $dadosSolicitacao["usuariosId"] ?>>
-                  <input type="hidden" name="eventosId" value=<?= $dadosSolicitacao["eventosId"] ?>>
-                  <button type="submit" name="solicitacaoId" class="btn btn-success" value="<?= $dadosSolicitacao['solicitacaoId'] ?>">Aprovar</button>
+                  <button type="submit" name="solicitacaoId" class="btn btn-success" 
+                  value="<?= $dadosSolicitacao['solicitacaoId'] ?>">Aprovar</button>
                 </td>
-              </form>
+              
               <td></td>
               <td></td>
             </tr>
           <?php
           }
           ?>
-
-
+        </form>
         </tbody>
       </table>
     </div>
   </form>
 
   <?php
-
 
   if ($result->num_rows === 0) {
     // Se o valor for igual a "Sim", exiba uma mensagem Bootstrap
@@ -156,7 +147,7 @@ $dadosCount = $resultCount->fetch_assoc();
                   </div>';
   }
   ?>
-
+  
   <link rel="stylesheet" href="styleAdmin.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
