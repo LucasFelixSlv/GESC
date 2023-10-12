@@ -79,13 +79,19 @@ if (isset($_GET['id'])) {
                     $solicitacaoId = mysqli_fetch_assoc($sqlParticipacao);
                     // form de avaliação
                 ?>
-                    <form action="../includes/eventComment.inc.php" method="post">
+                <div class="container form-group">    
+                    <form action="../includes/eventComment.inc.php" method="post">  
                         <input type="hidden" name="solicitacaoId" value="<?= $solicitacaoId["solicitacaoId"] ?>">
                         <input type="hidden" name="linkEvento" value="<?= $linkEvento ?>">
-                        <input type="number" name="nota" min="1" max="5" step="1" id="notaAvaliacao">
-                        <textarea name="comentario" rows="4" cols="50"></textarea>
-                        <button type="submit" name="enviar" id="enviar" disabled>Enviar</button>
+                        <label for="notaAvaliacao">Nota:</label><br>
+                        <input class="form-avaliacao mb-1" type="number" name="nota" min="1" max="5" step="1" id="notaAvaliacao"><br>
+                        <label for="comentario">Comentário:</label><br>
+                        <textarea class="form-avaliacao" name="comentario" rows="4" cols="50"></textarea><br>
+                        <div class="container col-4 col-md-6 col-lg-4">
+                            <button type="submit" name="enviar" id="enviar" disabled class="botaoAvaliacao">Enviar</button>
+                        </div>
                     </form>
+                </div>
                 <?php
                 }
             }
