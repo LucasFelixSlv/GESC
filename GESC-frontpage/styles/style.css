@@ -108,6 +108,31 @@ body {
     color: #fff;
 }
 
+.form-avaliacao {
+    background-color: #252526;
+    color: #fff;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    max-width: 80%;
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-clip: padding-box;
+    border: 2px solid #42C82C;
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.form-avaliacao:focus {
+    background-color: #252526;
+    outline: none;
+    border-color: #42C82C;
+    color: #fff;
+}
+
+
 .dropdown-menu {
     background-color: #242426;
     border-color: #42C82C;
@@ -572,19 +597,41 @@ body {
     background-color: #2c8b1e;
 }
 
+.botaoAvaliacao {
+    background-color: #42C82C;
+    color: #252526;
+    padding: 0.75rem 0.375rem;
+    /* font-size: 1rem;
+    font-weight: 400; */
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+#enviar:hover {
+    background-color: #2c8b1e;
+
+}
+
 /* PÁGINA EVENTO */
 
 @media(min-width: 992px) {
-    .bannerEvento{
+    .bannerEvento {
         z-index: -1;
         position: relative;
         top: 0;
         left: 0;
         height: 47vh;
         overflow-x: clip;
+        margin-bottom: 30px;
     }
 
-    .imgDetalheFundo{
+    .imgDetalheFundo {
         aspect-ratio: 16/9;
         object-fit: cover;
         width: 100%;
@@ -593,7 +640,7 @@ body {
         transform: scale(1.1);
     }
 
-    .imgDetalhe{
+    .imgDetalhe {
         position: relative;
         aspect-ratio: 16/9;
         top: -98%;
@@ -608,7 +655,7 @@ body {
 }
 
 @media(max-width: 991px) {
-    .imgDetalhe{
+    .imgDetalhe {
         aspect-ratio: 16/9;
         object-fit: cover;
         width: 100%;
@@ -616,13 +663,13 @@ body {
         border-radius: 0;
     }
 
-    .imgDetalheFundo{
+    .imgDetalheFundo {
         display: none;
     }
 }
 
-@media(max-width:767px){
-    .imgDetalhe{
+@media(max-width:767px) {
+    .imgDetalhe {
         aspect-ratio: 16/9;
         object-fit: cover;
         width: 100%;
@@ -630,7 +677,7 @@ body {
         border-radius: 0;
     }
 
-    .imgDetalheFundo{
+    .imgDetalheFundo {
         display: none;
     }
 }
@@ -644,7 +691,7 @@ body {
 }
 
 @media(min-width: 768px) {
-    .semLogin{
+    .semLogin {
         font-size: 24px;
     }
 }
