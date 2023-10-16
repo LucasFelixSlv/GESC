@@ -613,9 +613,13 @@ body {
     cursor: pointer;
 }
 
+#enviar:disabled{
+    opacity: 0.7;
+    cursor:unset;
+}
+
 #enviar:hover {
     background-color: #2c8b1e;
-
 }
 
 /* PÁGINA EVENTO */
