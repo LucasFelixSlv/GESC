@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+if (isset($_SESSION["usuariosId"])){
 $usuariosId = $_SESSION['usuariosId'];
 include_once('../includes/dbh.inc.php');
 
@@ -154,3 +155,7 @@ $dadosCount = $resultCount->fetch_assoc();
 
 
 </html>
+<?php
+}else{
+  header('location: ../pagina_principal/index.php');
+}

@@ -15,6 +15,7 @@ function invalidUser($usuario)
 {
     $result = null;
     $padrao = '/^(?=.*[a-zA-Z].*[a-zA-Z])[a-zA-Z0-9_]{2,25}$/';
+    //Esta expressão regular exige pelo menos 2 letras (maiúsculas ou minúsculas) em qualquer lugar da string, aceita caracteres letras, números e underscores com comprimento mínimo de 2 e máximo de 25.
     if (!preg_match($padrao, $usuario) || strlen($usuario) < 2) {
         $result = true;
     } else {
