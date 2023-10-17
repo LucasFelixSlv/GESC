@@ -3,7 +3,7 @@
 $hostname="localhost";
 $username="root";
 $password="root";
-$dbname="gesc";
+$dbname="gesc2";
 
 $conexao = new mysqli($hostname,$username,$password,$dbname);
 $sql = mysqli_select_db($conexao, $dbname);
